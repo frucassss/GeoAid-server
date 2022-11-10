@@ -13,5 +13,6 @@ create table users
     id       int auto_increment,
     firstName varchar(255),
     lastName varchar(255),
+    homeAddress varchar(255),
     premium  varchar(255)
 );
