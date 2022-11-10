@@ -2,7 +2,7 @@ package be.howest.ti.mars.logic.domain;
 
 public class Dome {
 
-    private  int id;
+    private final int id;
     private final String domeName;
     private final int latitude;
     private final int longitude;
@@ -14,23 +14,13 @@ public class Dome {
         this.longitude = longitude;
     }
 
-    public int getId() {
-        return id;
-    }
-
-    public String getDomeName() {
-        return domeName;
-    }
-
-    public int getLatitude() {
-        return latitude;
-    }
-
-    public int getLongitude() {
-        return longitude;
-    }
-
-    public void setId(int id) {
-        this.id = id;
+    @Override
+    public String toString() {
+        return "Dome{" +
+                "id=" + id +
+                ", domeName='" + domeName + '\'' +
+                ", latitude=" + latitude +
+                ", longitude=" + longitude +
+                '}';
     }
 }

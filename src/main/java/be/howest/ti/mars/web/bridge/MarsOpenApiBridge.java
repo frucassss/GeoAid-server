@@ -2,6 +2,7 @@ package be.howest.ti.mars.web.bridge;
 
 import be.howest.ti.mars.logic.controller.DefaultMarsController;
 import be.howest.ti.mars.logic.controller.MarsController;
+import be.howest.ti.mars.logic.domain.Dome;
 import be.howest.ti.mars.logic.domain.Quote;
 import be.howest.ti.mars.web.exceptions.MalformedRequestException;
 import io.vertx.core.http.HttpMethod;
@@ -9,7 +10,7 @@ import io.vertx.ext.web.Router;
 import io.vertx.ext.web.RoutingContext;
 import io.vertx.ext.web.handler.CorsHandler;
 import io.vertx.ext.web.openapi.RouterBuilder;
-
+import java.util.ArrayList;
 import java.util.NoSuchElementException;
 import java.util.Objects;
 import java.util.logging.Level;
@@ -47,6 +48,9 @@ public class MarsOpenApiBridge {
 
         LOGGER.log(Level.INFO, "Installing handler for: deleteQuote");
         routerBuilder.operation("deleteQuote").handler(this::deleteQuote);
+
+        LOGGER.log(Level.INFO, "Installing handler for: getDomes");
+        routerBuilder.operation("getDomes").handler(this::getDomes);
 
         LOGGER.log(Level.INFO, "All handlers are installed, creating router.");
         return routerBuilder.createRouter();
@@ -86,6 +90,11 @@ public class MarsOpenApiBridge {
         controller.deleteQuote(quoteId);
 
         Response.sendQuoteDeleted(ctx);
+    }
+
+    public void getDomes(RoutingContext ctx) {
+        ArrayList<Dome> domes = controller.getDomes();
+        Response.sendDomes(ctx, domes);
     }
 
     private void onFailedRequest(RoutingContext ctx) {
