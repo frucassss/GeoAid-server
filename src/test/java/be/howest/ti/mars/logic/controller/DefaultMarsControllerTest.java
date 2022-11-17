@@ -137,4 +137,16 @@ class DefaultMarsControllerTest {
         assertThrows(NoSuchElementException.class, () -> sut.deleteQuote(-1));
     }
 
+    @Test
+    void getDomes() {
+        // Arrange
+        MarsController sut = new DefaultMarsController();
+
+        // Act
+        var domes = sut.getDomes();
+
+        //Assert
+        assertEquals(4, domes.size());
+    }
+
 }
