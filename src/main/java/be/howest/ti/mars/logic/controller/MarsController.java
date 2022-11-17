@@ -2,6 +2,7 @@ package be.howest.ti.mars.logic.controller;
 
 import be.howest.ti.mars.logic.domain.Dome;
 import be.howest.ti.mars.logic.domain.Quote;
+import be.howest.ti.mars.logic.domain.User;
 
 import java.util.List;
 
@@ -16,4 +17,5 @@ public interface MarsController {
 
     List<Dome> getDomes();
 
+    List<User> getUsers();
 }

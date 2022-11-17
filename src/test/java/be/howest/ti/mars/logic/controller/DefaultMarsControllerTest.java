@@ -149,4 +149,16 @@ class DefaultMarsControllerTest {
         assertEquals(4, domes.size());
     }
 
+    @Test
+    void getUsers() {
+        // Arrange
+        MarsController sut = new DefaultMarsController();
+
+        // Act
+        var users = sut.getUsers();
+
+        //Assert
+        assertEquals(4, users.size());
+    }
+
 }

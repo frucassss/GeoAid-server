@@ -2,6 +2,7 @@ package be.howest.ti.mars.logic.data;
 
 import be.howest.ti.mars.logic.domain.Dome;
 import be.howest.ti.mars.logic.domain.Quote;
+import be.howest.ti.mars.logic.domain.User;
 import be.howest.ti.mars.logic.exceptions.RepositoryException;
 import org.h2.tools.Server;
 
@@ -31,6 +32,7 @@ public class MarsH2Repository {
     private static final String SQL_UPDATE_QUOTE = "update quotes set quote = ? where id = ?;";
     private static final String SQL_DELETE_QUOTE = "delete from quotes where id = ?;";
     private static final String SQL_ALL_DOMES = "select id, domename, latitude, longitude from domes;";
+    private static final String SQL_ALL_USERS = "select id, firstName, lastName, homeAddress, premium role from users;";
     private final Server dbWebConsole;
     private final String username;
     private final String password;
@@ -185,6 +187,24 @@ public class MarsH2Repository {
         } catch (SQLException ex) {
             LOGGER.log(Level.SEVERE, "Failed to get domes.", ex);
             throw new RepositoryException("Could not get domes.");
+        }
+    }
+
+    public List<User> getUsers() {
+        try (
+                Connection conn = getConnection();
+                PreparedStatement stmt = conn.prepareStatement(SQL_ALL_USERS)
+        ) {
+            try (ResultSet rs = stmt.executeQuery()) {
+                List<User> users = new ArrayList<>();
+                while (rs.next()) {
+                    users.add(new User(rs.getInt("id"), rs.getString("firstname"), rs.getString("lastname"), rs.getString("homeAddress"), rs.getString("premium")));
+                }
+                return users;
+            }
+        } catch (SQLException ex) {
+            LOGGER.log(Level.SEVERE, "Failed to get users.", ex);
+            throw new RepositoryException("Could not get users.");
         }
     }
 }

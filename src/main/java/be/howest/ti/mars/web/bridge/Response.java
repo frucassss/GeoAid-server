@@ -2,6 +2,7 @@ package be.howest.ti.mars.web.bridge;
 
 import be.howest.ti.mars.logic.domain.Dome;
 import be.howest.ti.mars.logic.domain.Quote;
+import be.howest.ti.mars.logic.domain.User;
 import io.vertx.core.http.HttpHeaders;
 import io.vertx.core.json.Json;
 import io.vertx.core.json.JsonObject;
@@ -63,5 +64,13 @@ public class Response {
             domeJsons.add(JsonObject.mapFrom(dome));
         }
         sendOkJsonResponse(ctx, new JsonObject().put("domes", domeJsons));
+    }
+
+    public static void sendUsers(RoutingContext ctx, List<User> users) {
+        List<JsonObject> userJsons = new ArrayList<>();
+        for (User user : users) {
+            userJsons.add(JsonObject.mapFrom(user));
+        }
+        sendOkJsonResponse(ctx, new JsonObject().put("users", userJsons));
     }
 }
