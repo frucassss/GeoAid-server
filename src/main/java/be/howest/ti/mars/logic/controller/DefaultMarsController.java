@@ -1,9 +1,11 @@
 package be.howest.ti.mars.logic.controller;
 
 import be.howest.ti.mars.logic.data.Repositories;
+import be.howest.ti.mars.logic.domain.Dome;
 import be.howest.ti.mars.logic.domain.Quote;
 import org.apache.commons.lang3.StringUtils;
 
+import java.util.List;
 import java.util.NoSuchElementException;
 
 /**
@@ -56,5 +58,14 @@ public class DefaultMarsController implements MarsController {
             throw new NoSuchElementException(String.format(MSG_QUOTE_ID_UNKNOWN, quoteId));
 
         Repositories.getH2Repo().deleteQuote(quoteId);
+    }
+
+    @Override
+    public List<Dome> getDomes() {
+        List<Dome> domes = Repositories.getH2Repo().getDomes();
+        if(domes.isEmpty()) {
+            throw new NoSuchElementException("No domes found!");
+        }
+        return domes;
     }
 }

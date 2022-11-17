@@ -1,10 +1,13 @@
 package be.howest.ti.mars.web.bridge;
 
+import be.howest.ti.mars.logic.domain.Dome;
 import be.howest.ti.mars.logic.domain.Quote;
 import io.vertx.core.http.HttpHeaders;
 import io.vertx.core.json.Json;
 import io.vertx.core.json.JsonObject;
 import io.vertx.ext.web.RoutingContext;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * The Response class is responsible for translating the result of the controller into
@@ -12,7 +15,8 @@ import io.vertx.ext.web.RoutingContext;
  */
 public class Response {
 
-    private Response() { }
+    private Response() {
+    }
 
     public static void sendQuote(RoutingContext ctx, Quote quote) {
         sendOkJsonResponse(ctx, JsonObject.mapFrom(quote));
@@ -51,5 +55,13 @@ public class Response {
         sendJsonResponse(ctx, code, new JsonObject()
                 .put("failure", code)
                 .put("cause", quote));
+    }
+
+    public static void sendDomes(RoutingContext ctx, List<Dome> domes) {
+        List<JsonObject> domeJsons = new ArrayList<>();
+        for (Dome dome : domes) {
+            domeJsons.add(JsonObject.mapFrom(dome));
+        }
+        sendOkJsonResponse(ctx, new JsonObject().put("domes", domeJsons));
     }
 }

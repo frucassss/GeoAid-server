@@ -6,7 +6,7 @@ INSERT INTO users VALUES (1, 'Jane', 'Doe', '123 Main Street', 'company');
 INSERT INTO users VALUES (2, 'John', 'Smith', '123 Main Street', 'company');
 INSERT INTO users VALUES (3, 'Jane', 'Smith', '123 Main Street', 'standard');
 
-INSERT INTO domes VALUES (0, 'Dome 1', '40.0', '40.0');
-INSERT INTO domes VALUES (1, 'Dome 2', '40.1', '40.0');
-INSERT INTO domes VALUES (2, 'Dome 3', '40.2', '40.0');
-INSERT INTO domes VALUES (3, 'Dome 4', '40.3', '40.0');
+insert into domes values (0, 'Dome 1', 1.1, 0.0);
+insert into domes values (1, 'Dome 2', 0.2, 0.0);
+insert into domes values (2, 'Dome 3', 0.3, 0.0);
+insert into domes values (3, 'Dome 4', 0.4, 0.0);

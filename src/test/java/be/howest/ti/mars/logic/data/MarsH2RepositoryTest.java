@@ -1,5 +1,6 @@
 package be.howest.ti.mars.logic.data;
 
+import be.howest.ti.mars.logic.domain.Dome;
 import be.howest.ti.mars.logic.domain.Quote;
 import io.netty.util.internal.StringUtil;
 import io.vertx.core.json.JsonObject;
@@ -7,6 +8,7 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.util.List;
 import java.util.Map;
 
 class MarsH2RepositoryTest {
@@ -71,6 +73,16 @@ class MarsH2RepositoryTest {
 
         // Assert
         Assertions.assertNull(Repositories.getH2Repo().getQuote(id));
+    }
+
+    @Test
+    void getDomes(){
+
+        // Act
+        List<Dome> domes = Repositories.getH2Repo().getDomes();
+
+        // Assert
+        Assertions.assertTrue(domes.size() == 4);
     }
 
 }

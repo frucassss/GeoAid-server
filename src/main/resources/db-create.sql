@@ -22,7 +22,7 @@ drop table if exists domes;
 create table domes
 (
     id       int auto_increment,
-    domeName varchar(255),
-    latitude varchar(255),
-    longitude varchar(255)
+    domename varchar(255),
+    latitude double,
+    longitude double
 );

@@ -1,5 +1,6 @@
 package be.howest.ti.mars.logic.data;
 
+import be.howest.ti.mars.logic.domain.Dome;
 import be.howest.ti.mars.logic.domain.Quote;
 import be.howest.ti.mars.logic.exceptions.RepositoryException;
 import org.h2.tools.Server;
@@ -10,6 +11,8 @@ import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -27,6 +30,7 @@ public class MarsH2Repository {
     private static final String SQL_INSERT_QUOTE = "insert into quotes (`quote`) values (?);";
     private static final String SQL_UPDATE_QUOTE = "update quotes set quote = ? where id = ?;";
     private static final String SQL_DELETE_QUOTE = "delete from quotes where id = ?;";
+    private static final String SQL_ALL_DOMES = "select id, domename, latitude, longitude from domes;";
     private final Server dbWebConsole;
     private final String username;
     private final String password;
@@ -121,6 +125,7 @@ public class MarsH2Repository {
         }
     }
 
+
     public void cleanUp() {
         if (dbWebConsole != null && dbWebConsole.isRunning(false))
             dbWebConsole.stop();
@@ -163,5 +168,23 @@ public class MarsH2Repository {
 
     public Connection getConnection() throws SQLException {
         return DriverManager.getConnection(url, username, password);
+    }
+
+    public List<Dome> getDomes() {
+        try (
+                Connection conn = getConnection();
+                PreparedStatement stmt = conn.prepareStatement(SQL_ALL_DOMES)
+        ) {
+            try (ResultSet rs = stmt.executeQuery()) {
+                List<Dome> domes = new ArrayList<>();
+                while (rs.next()) {
+                    domes.add(new Dome(rs.getInt("id"), rs.getString("domename"), rs.getDouble("latitude"), rs.getDouble("longitude")));
+                }
+                return domes;
+            }
+        } catch (SQLException ex) {
+            LOGGER.log(Level.SEVERE, "Failed to get domes.", ex);
+            throw new RepositoryException("Could not get domes.");
+        }
     }
 }
