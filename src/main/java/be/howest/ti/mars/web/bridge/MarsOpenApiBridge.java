@@ -10,7 +10,7 @@ import io.vertx.ext.web.Router;
 import io.vertx.ext.web.RoutingContext;
 import io.vertx.ext.web.handler.CorsHandler;
 import io.vertx.ext.web.openapi.RouterBuilder;
-import java.util.ArrayList;
+import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Objects;
 import java.util.logging.Level;
@@ -93,7 +93,8 @@ public class MarsOpenApiBridge {
     }
 
     public void getDomes(RoutingContext ctx) {
-        ArrayList<Dome> domes = controller.getDomes();
+        List<Dome> domes = controller.getDomes();
+
         Response.sendDomes(ctx, domes);
     }
 

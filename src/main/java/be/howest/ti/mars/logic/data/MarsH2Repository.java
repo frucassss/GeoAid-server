@@ -12,6 +12,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -124,21 +125,6 @@ public class MarsH2Repository {
         }
     }
 
-    public ArrayList<Dome> getDomes() {
-        try (Connection conn = getConnection();
-             PreparedStatement stmt = conn.prepareStatement(SQL_ALL_DOMES)) {
-            try (ResultSet rs = stmt.executeQuery()) {
-                ArrayList<Dome> domes = new ArrayList<>();
-                while (rs.next()) {
-                    domes.add(new Dome(rs.getInt("id"), rs.getString("domeName"), rs.getInt("latitude"), rs.getInt("longitude")));
-                }
-                return domes;
-            }
-        } catch (SQLException ex) {
-            LOGGER.log(Level.SEVERE, "Failed to get domes.", ex);
-            throw new RepositoryException("Could not get domes.");
-        }
-    }
 
     public void cleanUp() {
         if (dbWebConsole != null && dbWebConsole.isRunning(false))
@@ -182,5 +168,23 @@ public class MarsH2Repository {
 
     public Connection getConnection() throws SQLException {
         return DriverManager.getConnection(url, username, password);
+    }
+
+    public List<Dome> getDomes() {
+        try (
+                Connection conn = getConnection();
+                PreparedStatement stmt = conn.prepareStatement(SQL_ALL_DOMES)
+        ) {
+            try (ResultSet rs = stmt.executeQuery()) {
+                List<Dome> domes = new ArrayList<>();
+                while (rs.next()) {
+                    domes.add(new Dome(rs.getInt("id"), rs.getString("domename"), rs.getDouble("latitude"), rs.getDouble("longitude")));
+                }
+                return domes;
+            }
+        } catch (SQLException ex) {
+            LOGGER.log(Level.SEVERE, "Failed to get domes.", ex);
+            throw new RepositoryException("Could not get domes.");
+        }
     }
 }

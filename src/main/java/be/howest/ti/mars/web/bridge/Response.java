@@ -7,6 +7,7 @@ import io.vertx.core.json.Json;
 import io.vertx.core.json.JsonObject;
 import io.vertx.ext.web.RoutingContext;
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * The Response class is responsible for translating the result of the controller into
@@ -14,7 +15,8 @@ import java.util.ArrayList;
  */
 public class Response {
 
-    private Response() { }
+    private Response() {
+    }
 
     public static void sendQuote(RoutingContext ctx, Quote quote) {
         sendOkJsonResponse(ctx, JsonObject.mapFrom(quote));
@@ -55,8 +57,11 @@ public class Response {
                 .put("cause", quote));
     }
 
-    public static void sendDomes(RoutingContext ctx, ArrayList<Dome> domes) {
-        sendOkJsonResponse(ctx, new JsonObject()
-                .put("domes", domes));
+    public static void sendDomes(RoutingContext ctx, List<Dome> domes) {
+        List<JsonObject> domeJsons = new ArrayList<>();
+        for (Dome dome : domes) {
+            domeJsons.add(JsonObject.mapFrom(dome));
+        }
+        sendOkJsonResponse(ctx, new JsonObject().put("domes", domeJsons));
     }
 }

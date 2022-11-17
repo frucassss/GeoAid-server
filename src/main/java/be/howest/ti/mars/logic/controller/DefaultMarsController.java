@@ -5,7 +5,7 @@ import be.howest.ti.mars.logic.domain.Dome;
 import be.howest.ti.mars.logic.domain.Quote;
 import org.apache.commons.lang3.StringUtils;
 
-import java.util.ArrayList;
+import java.util.List;
 import java.util.NoSuchElementException;
 
 /**
@@ -61,12 +61,11 @@ public class DefaultMarsController implements MarsController {
     }
 
     @Override
-    public ArrayList<Dome> getDomes() {
-        ArrayList<Dome> domes = Repositories.getH2Repo().getDomes();
-        if (null == domes){
-            throw new NoSuchElementException("No domes found");
-
-    }
+    public List<Dome> getDomes() {
+        List<Dome> domes = Repositories.getH2Repo().getDomes();
+        if(domes.isEmpty()) {
+            throw new NoSuchElementException("No domes found!");
+        }
         return domes;
     }
 }

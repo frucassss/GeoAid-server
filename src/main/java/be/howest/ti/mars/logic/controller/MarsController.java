@@ -3,7 +3,7 @@ package be.howest.ti.mars.logic.controller;
 import be.howest.ti.mars.logic.domain.Dome;
 import be.howest.ti.mars.logic.domain.Quote;
 
-import java.util.ArrayList;
+import java.util.List;
 
 public interface MarsController {
     Quote getQuote(int quoteId);
@@ -14,5 +14,6 @@ public interface MarsController {
 
     void deleteQuote(int quoteId);
 
-    ArrayList<Dome> getDomes();
+    List<Dome> getDomes();
+
 }

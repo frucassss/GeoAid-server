@@ -4,19 +4,35 @@ public class Dome {
 
     private final int id;
     private final String domeName;
-    private final int latitude;
-    private final int longitude;
+    private final double latitude;
+    private final double longitude;
 
-    public Dome(int id, String domeName, int latitude, int longitude) {
+    public Dome(int id, String domeName, double latitude, double longitude) {
         this.id = id;
         this.domeName = domeName;
         this.latitude = latitude;
         this.longitude = longitude;
     }
 
+    public int getId() {
+        return id;
+    }
+
+    public String getDomeName() {
+        return domeName;
+    }
+
+    public double getLatitude() {
+        return latitude;
+    }
+
+    public double getLongitude() {
+        return longitude;
+    }
+
     @Override
     public String toString() {
-        return "Dome{" +
+        return "{" +
                 "id=" + id +
                 ", domeName='" + domeName + '\'' +
                 ", latitude=" + latitude +
