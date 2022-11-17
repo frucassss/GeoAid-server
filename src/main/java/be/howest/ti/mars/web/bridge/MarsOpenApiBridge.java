@@ -4,6 +4,7 @@ import be.howest.ti.mars.logic.controller.DefaultMarsController;
 import be.howest.ti.mars.logic.controller.MarsController;
 import be.howest.ti.mars.logic.domain.Dome;
 import be.howest.ti.mars.logic.domain.Quote;
+import be.howest.ti.mars.logic.domain.User;
 import be.howest.ti.mars.web.exceptions.MalformedRequestException;
 import io.vertx.core.http.HttpMethod;
 import io.vertx.ext.web.Router;
@@ -52,6 +53,9 @@ public class MarsOpenApiBridge {
         LOGGER.log(Level.INFO, "Installing handler for: getDomes");
         routerBuilder.operation("getDomes").handler(this::getDomes);
 
+        LOGGER.log(Level.INFO, "Installing handler for: getUsers");
+        routerBuilder.operation("getUsers").handler(this::getUsers);
+
         LOGGER.log(Level.INFO, "All handlers are installed, creating router.");
         return routerBuilder.createRouter();
     }
@@ -96,6 +100,12 @@ public class MarsOpenApiBridge {
         List<Dome> domes = controller.getDomes();
 
         Response.sendDomes(ctx, domes);
+    }
+
+    public void getUsers(RoutingContext ctx) {
+        List<User> users = controller.getUsers();
+
+        Response.sendUsers(ctx, users);
     }
 
     private void onFailedRequest(RoutingContext ctx) {

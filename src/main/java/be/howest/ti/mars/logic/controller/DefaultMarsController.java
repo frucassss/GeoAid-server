@@ -3,6 +3,7 @@ package be.howest.ti.mars.logic.controller;
 import be.howest.ti.mars.logic.data.Repositories;
 import be.howest.ti.mars.logic.domain.Dome;
 import be.howest.ti.mars.logic.domain.Quote;
+import be.howest.ti.mars.logic.domain.User;
 import org.apache.commons.lang3.StringUtils;
 
 import java.util.List;
@@ -67,5 +68,14 @@ public class DefaultMarsController implements MarsController {
             throw new NoSuchElementException("No domes found!");
         }
         return domes;
+    }
+
+    @Override
+    public List<User> getUsers() {
+        List<User> users = Repositories.getH2Repo().getUsers();
+        if (users.isEmpty()) {
+            throw new NoSuchElementException("No users found!");
+        }
+        return users;
     }
 }
