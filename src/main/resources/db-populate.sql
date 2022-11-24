@@ -13,7 +13,19 @@ insert into domes values (3, 'Ceumi Castle', -23.892979149921235, -69.1285514831
 
 insert into companies values (0, 'Coca Cola', 'Food', 0.5, 1);
 insert into companies values (1, 'Pepsi', 'Food', 0.5, 2);
-insert into companies values (2, 'Apple', 'Technology', 0.5, 1);
-insert into companies values (3, 'Samsung', 'Technology', 0.5, 2);
-insert into companies values (4, 'Google', 'Technology', 0.5, 1);
-insert into companies values (5, 'Microsoft', 'Technology', 0.5, 2);
+insert into companies values (2, 'Apple', 'Technology', 0.5, 3);
+insert into companies values (3, 'Samsung', 'Technology', 0.5, 4);
+insert into companies values (4, 'Google', 'Technology', 0.5, 5);
+insert into companies values (5, 'Microsoft', 'Technology', 0.5, 6);
+insert into companies values (6, 'Facebook', 'Technology', 0.5, 7);
+insert into companies values (7, 'Amazon', 'Technology', 0.5, 8);
+insert into companies values (8, 'Netflix', 'Technology', 0.5, 9);
+insert into companies values (9, 'Disney', 'Entertainment', 0.5, 10);
+insert into companies values (10, 'Sony', 'Entertainment', 0.5, 11);
+insert into companies values (11, 'Nintendo', 'Entertainment', 0.5, 12);
+insert into companies values (12, 'Ubisoft', 'Entertainment', 0.5, 13);
+insert into companies values (13, 'EA', 'Entertainment', 0.5, 14);
+insert into companies values (14, 'Activision', 'Entertainment', 0.5, 15);
+insert into companies values (15, 'Warner Bros', 'Entertainment', 0.5, 16);
+insert into companies values (16, 'Universal', 'Entertainment', 0.5, 17);
+insert into companies values (17, 'McDonalds', 'Food', 0.5, 18);

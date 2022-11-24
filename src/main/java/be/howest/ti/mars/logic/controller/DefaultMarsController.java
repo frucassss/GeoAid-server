@@ -88,4 +88,13 @@ public class DefaultMarsController implements MarsController {
         }
         return companies;
     }
+
+    @Override
+    public Company getCompany(int companyId) {
+        Company company = Repositories.getH2Repo().getCompany(companyId);
+        if (null == company) {
+            throw new NoSuchElementException(String.format("No company with id: %d", companyId));
+        }
+        return company;
+    }
 }

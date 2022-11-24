@@ -60,6 +60,9 @@ public class MarsOpenApiBridge {
         LOGGER.log(Level.INFO, "Installing handler for: getCompanies");
         routerBuilder.operation("getCompanies").handler(this::getCompanies);
 
+        LOGGER.log(Level.INFO, "Installing handler for: getCompany");
+        routerBuilder.operation("getCompany").handler(this::getCompany);
+
         LOGGER.log(Level.INFO, "All handlers are installed, creating router.");
         return routerBuilder.createRouter();
     }
@@ -116,6 +119,12 @@ public class MarsOpenApiBridge {
         List<Company> companies = controller.getCompanies();
 
         Response.sendCompanies(routingContext, companies);
+    }
+
+    private void getCompany(RoutingContext routingContext) {
+        Company company = controller.getCompany(Request.from(routingContext).getCompanyId());
+
+        Response.sendCompany(routingContext, company);
     }
 
     private void onFailedRequest(RoutingContext ctx) {

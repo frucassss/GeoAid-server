@@ -82,4 +82,8 @@ public class Response {
         }
         sendOkJsonResponse(routingContext, new JsonObject().put("companies", companyJsons));
     }
+
+    public static void sendCompany(RoutingContext routingContext, Company company) {
+        sendOkJsonResponse(routingContext, JsonObject.mapFrom(company));
+    }
 }

@@ -35,6 +35,7 @@ public class MarsH2Repository {
     private static final String SQL_ALL_DOMES = "select id, domename, latitude, longitude from domes;";
     private static final String SQL_ALL_USERS = "select id, firstName, lastName, homeAddress, premium role from users;";
     private static final String SQL_ALL_COMPANIES = "select id, name, section, ad_effectiveness, user_id from companies;";
+    private static final String SQL_COMPANY_BY_ID = "select id, name, section, ad_effectiveness, user_id from companies where user_id = ?;";
     private final Server dbWebConsole;
     private final String username;
     private final String password;
@@ -224,6 +225,25 @@ public class MarsH2Repository {
         } catch (SQLException ex) {
             LOGGER.log(Level.SEVERE, "Failed to get companies.", ex);
             throw new RepositoryException("Could not get companies.");
+        }
+    }
+
+    public Company getCompany(int userId) {
+        try (
+                Connection conn = getConnection();
+                PreparedStatement stmt = conn.prepareStatement(SQL_COMPANY_BY_ID)
+        ) {
+            stmt.setInt(1, userId);
+            try (ResultSet rs = stmt.executeQuery()) {
+                if (rs.next()) {
+                    return new Company(rs.getInt("id"), rs.getString("name"), rs.getString("section"), rs.getInt("ad_effectiveness"), rs.getInt("user_Id"));
+                } else {
+                    throw new RepositoryException("Could not find company with user id: " + userId);
+                }
+            }
+        } catch (SQLException ex) {
+            LOGGER.log(Level.SEVERE, "Failed to get company.", ex);
+            throw new RepositoryException("Could not get company.");
         }
     }
 }

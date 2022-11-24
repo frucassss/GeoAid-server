@@ -21,4 +21,6 @@ public interface MarsController {
     List<User> getUsers();
 
     List<Company> getCompanies();
+
+    Company getCompany(int companyId);
 }

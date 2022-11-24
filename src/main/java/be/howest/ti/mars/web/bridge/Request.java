@@ -55,4 +55,8 @@ public class Request {
             throw new MalformedRequestException("Unable to decipher the data in the request body. See logs for details.");
         }
     }
+
+    public int getCompanyId() {
+        return params.pathParameter("userId").getInteger();
+    }
 }
