@@ -1,5 +1,6 @@
 package be.howest.ti.mars.web.bridge;
 
+import be.howest.ti.mars.logic.domain.Company;
 import be.howest.ti.mars.logic.domain.Dome;
 import be.howest.ti.mars.logic.domain.Quote;
 import be.howest.ti.mars.logic.domain.User;
@@ -72,5 +73,13 @@ public class Response {
             userJsons.add(JsonObject.mapFrom(user));
         }
         sendOkJsonResponse(ctx, new JsonObject().put("users", userJsons));
+    }
+
+    public static void sendCompanies(RoutingContext routingContext, List<Company> companies) {
+        List<JsonObject> companyJsons = new ArrayList<>();
+        for (Company company : companies) {
+            companyJsons.add(JsonObject.mapFrom(company));
+        }
+        sendOkJsonResponse(routingContext, new JsonObject().put("companies", companyJsons));
     }
 }

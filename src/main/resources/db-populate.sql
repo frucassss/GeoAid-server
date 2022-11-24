@@ -10,3 +10,10 @@ insert into domes values (0, 'Lyneaut With Stofi', -23.88830978488233, -69.10460
 insert into domes values (1, 'Vizes', -23.87351580987326, -69.10254478454591);
 insert into domes values (2, 'Kurspa-In-Belgeewich', -23.876341315056486, -69.12589073181154);
 insert into domes values (3, 'Ceumi Castle', -23.892979149921235, -69.12855148315431);
+
+insert into companies values (0, 'Coca Cola', 'Food', 0.5, 1);
+insert into companies values (1, 'Pepsi', 'Food', 0.5, 2);
+insert into companies values (2, 'Apple', 'Technology', 0.5, 1);
+insert into companies values (3, 'Samsung', 'Technology', 0.5, 2);
+insert into companies values (4, 'Google', 'Technology', 0.5, 1);
+insert into companies values (5, 'Microsoft', 'Technology', 0.5, 2);

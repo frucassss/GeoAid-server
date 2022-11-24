@@ -2,6 +2,7 @@ package be.howest.ti.mars.web.bridge;
 
 import be.howest.ti.mars.logic.controller.DefaultMarsController;
 import be.howest.ti.mars.logic.controller.MarsController;
+import be.howest.ti.mars.logic.domain.Company;
 import be.howest.ti.mars.logic.domain.Dome;
 import be.howest.ti.mars.logic.domain.Quote;
 import be.howest.ti.mars.logic.domain.User;
@@ -56,6 +57,9 @@ public class MarsOpenApiBridge {
         LOGGER.log(Level.INFO, "Installing handler for: getUsers");
         routerBuilder.operation("getUsers").handler(this::getUsers);
 
+        LOGGER.log(Level.INFO, "Installing handler for: getCompanies");
+        routerBuilder.operation("getCompanies").handler(this::getCompanies);
+
         LOGGER.log(Level.INFO, "All handlers are installed, creating router.");
         return routerBuilder.createRouter();
     }
@@ -106,6 +110,12 @@ public class MarsOpenApiBridge {
         List<User> users = controller.getUsers();
 
         Response.sendUsers(ctx, users);
+    }
+
+    private void getCompanies(RoutingContext routingContext) {
+        List<Company> companies = controller.getCompanies();
+
+        Response.sendCompanies(routingContext, companies);
     }
 
     private void onFailedRequest(RoutingContext ctx) {

@@ -1,5 +1,6 @@
 package be.howest.ti.mars.logic.controller;
 
+import be.howest.ti.mars.logic.domain.Company;
 import be.howest.ti.mars.logic.domain.Dome;
 import be.howest.ti.mars.logic.domain.Quote;
 import be.howest.ti.mars.logic.domain.User;
@@ -18,4 +19,6 @@ public interface MarsController {
     List<Dome> getDomes();
 
     List<User> getUsers();
+
+    List<Company> getCompanies();
 }

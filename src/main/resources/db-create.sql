@@ -26,3 +26,14 @@ create table domes
     latitude double,
     longitude double
 );
+
+drop table if exists companies;
+
+create table companies
+(
+    id       int auto_increment,
+    name varchar(255),
+    section varchar(255),
+    ad_effectiveness double,
+    user_id int
+);
