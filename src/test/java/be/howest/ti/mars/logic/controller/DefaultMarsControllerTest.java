@@ -161,4 +161,28 @@ class DefaultMarsControllerTest {
         assertEquals(4, users.size());
     }
 
+    @Test
+    void getCompanies() {
+        // Arrange
+        MarsController sut = new MockMarsController();
+
+        // Act
+        var companies = sut.getCompanies();
+
+        //Assert
+        assertEquals(3, companies.size());
+    }
+
+    @Test
+    void getCompany(){
+        // Arrange
+        MarsController sut = new MockMarsController();
+
+        // Act
+        var company = sut.getCompany(1);
+
+        //Assert
+        assertEquals("company 1", company.getName());
+    }
+
 }
