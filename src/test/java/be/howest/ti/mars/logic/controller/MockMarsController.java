@@ -1,5 +1,6 @@
 package be.howest.ti.mars.logic.controller;
 
+import be.howest.ti.mars.logic.domain.Company;
 import be.howest.ti.mars.logic.domain.Dome;
 import be.howest.ti.mars.logic.domain.Quote;
 import be.howest.ti.mars.logic.domain.User;
@@ -46,6 +47,21 @@ public class MockMarsController implements MarsController {
                 new User(2, "bob", "mama", "123 secondstreet", "standard"),
                 new User(3, "rob", "mama", "123 secondstreet", "premium"));
         return users;
+    }
+
+    @Override
+    public List<Company> getCompanies() {
+        List<Company> companies = List.of(
+                new Company(1, "company 1", "123 secondstreet", 20, 1),
+                new Company(2, "company 2", "123 secondstreet", 40, 2),
+                new Company(3, "company 3", "123 secondstreet", 60, 3)
+        );
+        return companies;
+    }
+
+    @Override
+    public Company getCompany(int companyId) {
+        return new Company(companyId, "company " + companyId, "123 secondstreet", 20, 1);
     }
 
 }
