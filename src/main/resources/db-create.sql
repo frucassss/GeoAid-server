@@ -47,3 +47,13 @@ create table oxygen_leaks
     dome_id int,
     date date
 );
+
+drop table if exists population;
+
+create table population
+(
+    id      int auto_increment,
+    size int,
+    latitude double,
+    longitude double
+);
