@@ -1,10 +1,7 @@
 package be.howest.ti.mars.logic.controller;
 
 import be.howest.ti.mars.logic.data.Repositories;
-import be.howest.ti.mars.logic.domain.Company;
-import be.howest.ti.mars.logic.domain.Dome;
-import be.howest.ti.mars.logic.domain.Quote;
-import be.howest.ti.mars.logic.domain.User;
+import be.howest.ti.mars.logic.domain.*;
 import org.apache.commons.lang3.StringUtils;
 
 import java.util.List;
@@ -96,5 +93,14 @@ public class DefaultMarsController implements MarsController {
             throw new NoSuchElementException(String.format("No company with id: %d", companyId));
         }
         return company;
+    }
+
+    @Override
+    public List<OxygenLeak> getOxygenLeaks() {
+        List<OxygenLeak> oxygenLeaks = Repositories.getH2Repo().getOxygenLeaks();
+        if (oxygenLeaks.isEmpty()) {
+            throw new NoSuchElementException("No oxygen leaks found!");
+        }
+        return oxygenLeaks;
     }
 }

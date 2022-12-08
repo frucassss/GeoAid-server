@@ -7,10 +7,13 @@ public class OxygenLeak {
     DangerLevel dangerLevel;
     int domeId;
 
-    public OxygenLeak(int id, DangerLevel dangerLevel, int dome) {
+    String date;
+
+    public OxygenLeak(int id, DangerLevel dangerLevel, int dome, String date) {
         this.id = id;
         this.dangerLevel = dangerLevel;
         this.domeId = dome;
+        this.date = date;
     }
 
     public int getId() {
@@ -21,7 +24,11 @@ public class OxygenLeak {
         return dangerLevel;
     }
 
-    public int getDome() {
+    public int getDomeId() {
         return domeId;
+    }
+
+    public String getDate() {
+        return date;
     }
 }

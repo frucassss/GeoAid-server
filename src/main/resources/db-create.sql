@@ -44,5 +44,6 @@ create table oxygen_leaks
 (
     id      int auto_increment,
     danger_level varchar(10),
-    dome_id int
+    dome_id int,
+    date date
 );

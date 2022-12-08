@@ -1,9 +1,7 @@
 package be.howest.ti.mars.logic.controller;
 
-import be.howest.ti.mars.logic.domain.Company;
-import be.howest.ti.mars.logic.domain.Dome;
-import be.howest.ti.mars.logic.domain.Quote;
-import be.howest.ti.mars.logic.domain.User;
+import be.howest.ti.mars.logic.domain.*;
+import be.howest.ti.mars.logic.util.DangerLevel;
 import io.vertx.core.Future;
 import io.vertx.core.Promise;
 
@@ -62,6 +60,16 @@ public class MockMarsController implements MarsController {
     @Override
     public Company getCompany(int companyId) {
         return new Company(companyId, "company " + companyId, "123 secondstreet", 20, 1);
+    }
+
+    @Override
+    public List<OxygenLeak> getOxygenLeaks() {
+        List<OxygenLeak> oxygenLeaks = List.of(
+                new OxygenLeak(1, DangerLevel.HIGH,1, "2022-01-01"),
+                new OxygenLeak(2, DangerLevel.MEDIUM,2, "2022-01-01"),
+                new OxygenLeak(3, DangerLevel.LOW,3, "2022-01-01")
+        );
+        return oxygenLeaks;
     }
 
 }

@@ -1,9 +1,6 @@
 package be.howest.ti.mars.web.bridge;
 
-import be.howest.ti.mars.logic.domain.Company;
-import be.howest.ti.mars.logic.domain.Dome;
-import be.howest.ti.mars.logic.domain.Quote;
-import be.howest.ti.mars.logic.domain.User;
+import be.howest.ti.mars.logic.domain.*;
 import io.vertx.core.http.HttpHeaders;
 import io.vertx.core.json.Json;
 import io.vertx.core.json.JsonObject;
@@ -85,5 +82,13 @@ public class Response {
 
     public static void sendCompany(RoutingContext routingContext, Company company) {
         sendOkJsonResponse(routingContext, JsonObject.mapFrom(company));
+    }
+
+    public static void sendOxygenLeaks(RoutingContext routingContext, List<OxygenLeak> oxygenLeaks) {
+        List<JsonObject> oxygenLeakJsons = new ArrayList<>();
+        for (OxygenLeak oxygenLeak : oxygenLeaks) {
+            oxygenLeakJsons.add(JsonObject.mapFrom(oxygenLeak));
+        }
+        sendOkJsonResponse(routingContext, new JsonObject().put("oxygenLeaks", oxygenLeakJsons));
     }
 }

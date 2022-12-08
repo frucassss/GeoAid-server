@@ -1,9 +1,6 @@
 package be.howest.ti.mars.logic.controller;
 
-import be.howest.ti.mars.logic.domain.Company;
-import be.howest.ti.mars.logic.domain.Dome;
-import be.howest.ti.mars.logic.domain.Quote;
-import be.howest.ti.mars.logic.domain.User;
+import be.howest.ti.mars.logic.domain.*;
 
 import java.util.List;
 
@@ -23,4 +20,6 @@ public interface MarsController {
     List<Company> getCompanies();
 
     Company getCompany(int companyId);
+
+    List<OxygenLeak> getOxygenLeaks();
 }
