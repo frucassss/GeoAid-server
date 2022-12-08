@@ -29,3 +29,18 @@ insert into companies values (14, 'Activision', 'Entertainment', 0.5, 15);
 insert into companies values (15, 'Warner Bros', 'Entertainment', 0.5, 16);
 insert into companies values (16, 'Universal', 'Entertainment', 0.5, 17);
 insert into companies values (17, 'McDonalds', 'Food', 0.5, 18);
+
+
+insert into oxygen_leaks values (0, 'low', 0);
+insert into oxygen_leaks values (1, 'medium', 1);
+insert into oxygen_leaks values (2, 'high', 2);
+insert into oxygen_leaks values (3, 'low', 1);
+insert into oxygen_leaks values (4, 'medium', 2);
+insert into oxygen_leaks values (5, 'high', 3);
+insert into oxygen_leaks values (6, 'low', 2);
+insert into oxygen_leaks values (7, 'medium', 3);
+insert into oxygen_leaks values (8, 'high', 0);
+insert into oxygen_leaks values (9, 'low', 3);
+insert into oxygen_leaks values (10, 'medium', 0);
+insert into oxygen_leaks values (11, 'high', 1);
+insert into oxygen_leaks values (12, 'low', 0);
