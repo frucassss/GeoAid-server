@@ -1,11 +1,11 @@
-package be.howest.ti.mars.logic.domain;
+package be.howest.ti.mars.logic.domain.statistics;
 
 import be.howest.ti.mars.logic.util.DangerLevel;
 
 public class OxygenLeak {
-    int id;
-    DangerLevel dangerLevel;
-    int domeId;
+    private final int id;
+    private final DangerLevel dangerLevel;
+    private final int domeId;
 
     String date;
 

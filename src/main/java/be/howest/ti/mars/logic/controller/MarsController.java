@@ -1,6 +1,7 @@
 package be.howest.ti.mars.logic.controller;
 
 import be.howest.ti.mars.logic.domain.*;
+import be.howest.ti.mars.logic.domain.statistics.OxygenLeak;
 
 import java.util.List;
 

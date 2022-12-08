@@ -1,11 +1,9 @@
 package be.howest.ti.mars.logic.controller;
 
 import be.howest.ti.mars.logic.domain.*;
+import be.howest.ti.mars.logic.domain.statistics.OxygenLeak;
 import be.howest.ti.mars.logic.util.DangerLevel;
-import io.vertx.core.Future;
-import io.vertx.core.Promise;
 
-import java.awt.desktop.UserSessionEvent;
 import java.util.List;
 
 public class MockMarsController implements MarsController {

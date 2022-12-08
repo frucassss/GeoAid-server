@@ -1,6 +1,7 @@
 package be.howest.ti.mars.logic.data;
 
 import be.howest.ti.mars.logic.domain.*;
+import be.howest.ti.mars.logic.domain.statistics.OxygenLeak;
 import be.howest.ti.mars.logic.exceptions.RepositoryException;
 import be.howest.ti.mars.logic.util.DangerLevel;
 import org.h2.tools.Server;

@@ -2,6 +2,7 @@ package be.howest.ti.mars.logic.controller;
 
 import be.howest.ti.mars.logic.data.Repositories;
 import be.howest.ti.mars.logic.domain.*;
+import be.howest.ti.mars.logic.domain.statistics.OxygenLeak;
 import org.apache.commons.lang3.StringUtils;
 
 import java.util.List;

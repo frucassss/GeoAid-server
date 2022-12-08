@@ -1,6 +1,7 @@
 package be.howest.ti.mars.web.bridge;
 
 import be.howest.ti.mars.logic.domain.*;
+import be.howest.ti.mars.logic.domain.statistics.OxygenLeak;
 import io.vertx.core.http.HttpHeaders;
 import io.vertx.core.json.Json;
 import io.vertx.core.json.JsonObject;

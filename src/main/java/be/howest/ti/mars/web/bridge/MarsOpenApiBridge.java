@@ -3,6 +3,7 @@ package be.howest.ti.mars.web.bridge;
 import be.howest.ti.mars.logic.controller.DefaultMarsController;
 import be.howest.ti.mars.logic.controller.MarsController;
 import be.howest.ti.mars.logic.domain.*;
+import be.howest.ti.mars.logic.domain.statistics.OxygenLeak;
 import be.howest.ti.mars.web.exceptions.MalformedRequestException;
 import io.vertx.core.http.HttpMethod;
 import io.vertx.ext.web.Router;
