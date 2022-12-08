@@ -1,6 +1,7 @@
 package be.howest.ti.mars.logic.controller;
 
 import be.howest.ti.mars.logic.data.Repositories;
+import be.howest.ti.mars.logic.domain.Company;
 import be.howest.ti.mars.logic.domain.Dome;
 import be.howest.ti.mars.logic.domain.Quote;
 import be.howest.ti.mars.logic.domain.User;
@@ -77,5 +78,23 @@ public class DefaultMarsController implements MarsController {
             throw new NoSuchElementException("No users found!");
         }
         return users;
+    }
+
+    @Override
+    public List<Company> getCompanies() {
+        List<Company> companies = Repositories.getH2Repo().getCompanies();
+        if (companies.isEmpty()) {
+            throw new NoSuchElementException("No companies found!");
+        }
+        return companies;
+    }
+
+    @Override
+    public Company getCompany(int companyId) {
+        Company company = Repositories.getH2Repo().getCompany(companyId);
+        if (null == company) {
+            throw new NoSuchElementException(String.format("No company with id: %d", companyId));
+        }
+        return company;
     }
 }

@@ -1,5 +1,6 @@
 package be.howest.ti.mars.logic.data;
 
+import be.howest.ti.mars.logic.domain.Company;
 import be.howest.ti.mars.logic.domain.Dome;
 import be.howest.ti.mars.logic.domain.Quote;
 import be.howest.ti.mars.logic.domain.User;
@@ -33,6 +34,8 @@ public class MarsH2Repository {
     private static final String SQL_DELETE_QUOTE = "delete from quotes where id = ?;";
     private static final String SQL_ALL_DOMES = "select id, domename, latitude, longitude from domes;";
     private static final String SQL_ALL_USERS = "select id, firstName, lastName, homeAddress, premium role from users;";
+    private static final String SQL_ALL_COMPANIES = "select id, name, section, ad_effectiveness, user_id from companies;";
+    private static final String SQL_COMPANY_BY_ID = "select id, name, section, ad_effectiveness, user_id from companies where user_id = ?;";
     private final Server dbWebConsole;
     private final String username;
     private final String password;
@@ -90,8 +93,7 @@ public class MarsH2Repository {
                 if (generatedKeys.next()) {
                     quote.setId(generatedKeys.getInt(1));
                     return quote;
-                }
-                else {
+                } else {
                     throw new SQLException("Creating quote failed, no ID obtained.");
                 }
             }
@@ -205,6 +207,43 @@ public class MarsH2Repository {
         } catch (SQLException ex) {
             LOGGER.log(Level.SEVERE, "Failed to get users.", ex);
             throw new RepositoryException("Could not get users.");
+        }
+    }
+
+    public List<Company> getCompanies() {
+        try (
+                Connection conn = getConnection();
+                PreparedStatement stmt = conn.prepareStatement(SQL_ALL_COMPANIES)
+        ) {
+            try (ResultSet rs = stmt.executeQuery()) {
+                List<Company> companies = new ArrayList<>();
+                while (rs.next()) {
+                    companies.add(new Company(rs.getInt("id"), rs.getString("name"), rs.getString("section"), rs.getInt("ad_effectiveness"), rs.getInt("user_Id")));
+                }
+                return companies;
+            }
+        } catch (SQLException ex) {
+            LOGGER.log(Level.SEVERE, "Failed to get companies.", ex);
+            throw new RepositoryException("Could not get companies.");
+        }
+    }
+
+    public Company getCompany(int userId) {
+        try (
+                Connection conn = getConnection();
+                PreparedStatement stmt = conn.prepareStatement(SQL_COMPANY_BY_ID)
+        ) {
+            stmt.setInt(1, userId);
+            try (ResultSet rs = stmt.executeQuery()) {
+                if (rs.next()) {
+                    return new Company(rs.getInt("id"), rs.getString("name"), rs.getString("section"), rs.getInt("ad_effectiveness"), rs.getInt("user_Id"));
+                } else {
+                    throw new RepositoryException("Could not find company with user id: " + userId);
+                }
+            }
+        } catch (SQLException ex) {
+            LOGGER.log(Level.SEVERE, "Failed to get company.", ex);
+            throw new RepositoryException("Could not get company.");
         }
     }
 }
