@@ -37,3 +37,13 @@ create table companies
     ad_effectiveness double,
     user_id int
 );
+
+drop table if exists oxygen_leaks;
+
+create table oxygen_leaks
+(
+    id      int auto_increment,
+    danger_level varchar(10),
+    dome_id int,
+    date date
+);

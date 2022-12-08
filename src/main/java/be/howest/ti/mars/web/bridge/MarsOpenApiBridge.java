@@ -2,10 +2,7 @@ package be.howest.ti.mars.web.bridge;
 
 import be.howest.ti.mars.logic.controller.DefaultMarsController;
 import be.howest.ti.mars.logic.controller.MarsController;
-import be.howest.ti.mars.logic.domain.Company;
-import be.howest.ti.mars.logic.domain.Dome;
-import be.howest.ti.mars.logic.domain.Quote;
-import be.howest.ti.mars.logic.domain.User;
+import be.howest.ti.mars.logic.domain.*;
 import be.howest.ti.mars.web.exceptions.MalformedRequestException;
 import io.vertx.core.http.HttpMethod;
 import io.vertx.ext.web.Router;
@@ -62,6 +59,9 @@ public class MarsOpenApiBridge {
 
         LOGGER.log(Level.INFO, "Installing handler for: getCompany");
         routerBuilder.operation("getCompany").handler(this::getCompany);
+
+        LOGGER.log(Level.INFO, "Installing handler for: getOxygenLeaks");
+        routerBuilder.operation("getOxygenLeaks").handler(this::getOxygenLeaks);
 
         LOGGER.log(Level.INFO, "All handlers are installed, creating router.");
         return routerBuilder.createRouter();
@@ -125,6 +125,12 @@ public class MarsOpenApiBridge {
         Company company = controller.getCompany(Request.from(routingContext).getCompanyId());
 
         Response.sendCompany(routingContext, company);
+    }
+
+    private void getOxygenLeaks(RoutingContext routingContext) {
+        List<OxygenLeak> oxygenLeaks = controller.getOxygenLeaks();
+
+        Response.sendOxygenLeaks(routingContext, oxygenLeaks);
     }
 
     private void onFailedRequest(RoutingContext ctx) {

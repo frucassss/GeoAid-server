@@ -1,10 +1,8 @@
 package be.howest.ti.mars.logic.data;
 
-import be.howest.ti.mars.logic.domain.Company;
-import be.howest.ti.mars.logic.domain.Dome;
-import be.howest.ti.mars.logic.domain.Quote;
-import be.howest.ti.mars.logic.domain.User;
+import be.howest.ti.mars.logic.domain.*;
 import be.howest.ti.mars.logic.exceptions.RepositoryException;
+import be.howest.ti.mars.logic.util.DangerLevel;
 import org.h2.tools.Server;
 
 import java.io.IOException;
@@ -36,6 +34,9 @@ public class MarsH2Repository {
     private static final String SQL_ALL_USERS = "select id, firstName, lastName, homeAddress, premium role from users;";
     private static final String SQL_ALL_COMPANIES = "select id, name, section, ad_effectiveness, user_id from companies;";
     private static final String SQL_COMPANY_BY_ID = "select id, name, section, ad_effectiveness, user_id from companies where user_id = ?;";
+    private static final String SQL_ALL_OXYGENLEAKS = "select id, danger_level, dome_id, date from oxygen_leaks;";
+    private static final String DOME_ID = "dome_id";
+    private static final String ID = "id";
     private final Server dbWebConsole;
     private final String username;
     private final String password;
@@ -182,7 +183,7 @@ public class MarsH2Repository {
             try (ResultSet rs = stmt.executeQuery()) {
                 List<Dome> domes = new ArrayList<>();
                 while (rs.next()) {
-                    domes.add(new Dome(rs.getInt("id"), rs.getString("domename"), rs.getDouble("latitude"), rs.getDouble("longitude")));
+                    domes.add(new Dome(rs.getInt(ID), rs.getString("domename"), rs.getDouble("latitude"), rs.getDouble("longitude")));
                 }
                 return domes;
             }
@@ -200,7 +201,7 @@ public class MarsH2Repository {
             try (ResultSet rs = stmt.executeQuery()) {
                 List<User> users = new ArrayList<>();
                 while (rs.next()) {
-                    users.add(new User(rs.getInt("id"), rs.getString("firstname"), rs.getString("lastname"), rs.getString("homeAddress"), rs.getString("premium")));
+                    users.add(new User(rs.getInt(ID), rs.getString("firstname"), rs.getString("lastname"), rs.getString("homeAddress"), rs.getString("premium")));
                 }
                 return users;
             }
@@ -218,7 +219,7 @@ public class MarsH2Repository {
             try (ResultSet rs = stmt.executeQuery()) {
                 List<Company> companies = new ArrayList<>();
                 while (rs.next()) {
-                    companies.add(new Company(rs.getInt("id"), rs.getString("name"), rs.getString("section"), rs.getInt("ad_effectiveness"), rs.getInt("user_Id")));
+                    companies.add(new Company(rs.getInt(ID), rs.getString("name"), rs.getString("section"), rs.getInt("ad_effectiveness"), rs.getInt("user_Id")));
                 }
                 return companies;
             }
@@ -236,7 +237,7 @@ public class MarsH2Repository {
             stmt.setInt(1, userId);
             try (ResultSet rs = stmt.executeQuery()) {
                 if (rs.next()) {
-                    return new Company(rs.getInt("id"), rs.getString("name"), rs.getString("section"), rs.getInt("ad_effectiveness"), rs.getInt("user_Id"));
+                    return new Company(rs.getInt(ID), rs.getString("name"), rs.getString("section"), rs.getInt("ad_effectiveness"), rs.getInt("user_Id"));
                 } else {
                     throw new RepositoryException("Could not find company with user id: " + userId);
                 }
@@ -244,6 +245,31 @@ public class MarsH2Repository {
         } catch (SQLException ex) {
             LOGGER.log(Level.SEVERE, "Failed to get company.", ex);
             throw new RepositoryException("Could not get company.");
+        }
+    }
+
+    public List<OxygenLeak> getOxygenLeaks() {
+        try (
+                Connection conn = getConnection();
+                PreparedStatement stmt = conn.prepareStatement(SQL_ALL_OXYGENLEAKS)
+        ) {
+            try (ResultSet rs = stmt.executeQuery()) {
+                List<OxygenLeak> oxygenLeaks = new ArrayList<>();
+                while (rs.next()) {
+                    String dangerLevel = rs.getString("danger_level");
+                    if (dangerLevel.equals("low")) {
+                        oxygenLeaks.add(new OxygenLeak(rs.getInt(ID), DangerLevel.LOW, rs.getInt(DOME_ID), rs.getDate("date").toString()));
+                    } else if (dangerLevel.equals("medium")) {
+                        oxygenLeaks.add(new OxygenLeak(rs.getInt(ID), DangerLevel.MEDIUM, rs.getInt(DOME_ID), rs.getDate("date").toString()));
+                    } else if (dangerLevel.equals("high")) {
+                        oxygenLeaks.add(new OxygenLeak(rs.getInt(ID), DangerLevel.HIGH, rs.getInt(DOME_ID), rs.getDate("date").toString()));
+                    }
+                }
+                return oxygenLeaks;
+            }
+        } catch (SQLException ex) {
+            LOGGER.log(Level.SEVERE, "Failed to get oxygen leaks.", ex);
+            throw new RepositoryException("Could not get oxygen leaks.");
         }
     }
 }
