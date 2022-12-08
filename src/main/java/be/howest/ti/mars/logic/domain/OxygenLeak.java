@@ -5,12 +5,12 @@ import be.howest.ti.mars.logic.util.DangerLevel;
 public class OxygenLeak {
     int id;
     DangerLevel dangerLevel;
-    Dome dome;
+    int domeId;
 
-    public OxygenLeak(int id, DangerLevel dangerLevel, Dome dome) {
+    public OxygenLeak(int id, DangerLevel dangerLevel, int dome) {
         this.id = id;
         this.dangerLevel = dangerLevel;
-        this.dome = dome;
+        this.domeId = dome;
     }
 
     public int getId() {
@@ -21,7 +21,7 @@ public class OxygenLeak {
         return dangerLevel;
     }
 
-    public Dome getDome() {
-        return dome;
+    public int getDome() {
+        return domeId;
     }
 }
