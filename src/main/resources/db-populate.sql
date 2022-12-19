@@ -8,12 +8,20 @@ INSERT INTO users VALUES (2, 'John', 'Smith', '123 Main Street', 'company');
 INSERT INTO users VALUES (3, 'Jane', 'Smith', '123 Main Street', 'standard');
 
 //domes
-insert into domes values (0, 'Lyneaut With Stofi', -23.88830978488233, -69.10460472106935);
-insert into domes values (1, 'Vizes', -23.87351580987326, -69.10254478454591);
-insert into domes values (2, 'Kurspa-In-Belgeewich', -23.876341315056486, -69.12589073181154);
-insert into domes values (3, 'Ceumi Castle', -23.892979149921235, -69.12855148315431);
+insert into domes values (0, 'Lyneaut With Stofi', -23.88830978488233, -69.10460472106935, 14654358.324);
+insert into domes values (1, 'Vizes', -23.87351580987326, -69.10254478454591, 16854268.324);
+insert into domes values (2, 'Kurspa-In-Belgeewich', -23.876341315056486, -69.12589073181154, 14567898.324);
+insert into domes values (3, 'Ceumi Castle', -23.892979149921235, -69.12855148315431, 14567898.324);
+insert into domes values (4, 'Kurspa', -26.876341315056486, -70.12589073181154, 14567898.324);
+insert into domes values (5, 'Ceumi', -26.892979149921235, -63.12855148315431, 65461321987654.852);
+insert into domes values (6, 'Kurspa-In-Belgeewich', -26.876341315056486, -70.12589073181154, 14567898.324);
+insert into domes values (7, 'Ceumi Castle', -26.892979149921235, -63.12855148315431, 65461321987654.852);
+insert into domes values (8, 'Kurspa', -26.876341315056486, -70.12589073181154, 14567898.324);
+insert into domes values (9, 'Ceumi', -26.892979149921235, -63.12855148315431, 65461321987654.852);
+insert into domes values (10, 'Kurspa-In-Belgeewich', -26.876341315056486, -70.12589073181154, 14567898.324);
+insert into domes values (11, 'Ceumi Castle', -30.892979149921235, -63.12855148315431, 65461321987654.852);
 
-//comapnies
+//companies
 insert into companies values (0, 'Coca Cola', 'Food', 0.5, 1);
 insert into companies values (1, 'Pepsi', 'Food', 0.5, 2);
 insert into companies values (2, 'Apple', 'Technology', 0.5, 3);
