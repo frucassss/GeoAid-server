@@ -140,13 +140,13 @@ class DefaultMarsControllerTest {
     @Test
     void getDomes() {
         // Arrange
-        MarsController sut = new DefaultMarsController();
+        MarsController sut = new MockMarsController();
 
         // Act
         var domes = sut.getDomes();
 
         //Assert
-        assertEquals(4, domes.size());
+        assertEquals(3, domes.size());
     }
 
     @Test
