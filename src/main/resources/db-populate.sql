@@ -34,19 +34,19 @@ insert into companies values (16, 'Universal', 'Entertainment', 0.5, 17);
 insert into companies values (17, 'McDonalds', 'Food', 0.5, 18);
 
 //oxygens leaks
-insert into oxygen_leaks values (0, 'low', 0, '2022-01-01');
-insert into oxygen_leaks values (1, 'medium', 1, '2022-06-26');
-insert into oxygen_leaks values (2, 'high', 2, '2022-03-16');
-insert into oxygen_leaks values (3, 'low', 1, '2022-11-04');
-insert into oxygen_leaks values (4, 'medium', 2, '2022-12-01');
-insert into oxygen_leaks values (5, 'high', 3, '2022-03-31');
-insert into oxygen_leaks values (6, 'low', 2, '2022-05-19');
-insert into oxygen_leaks values (7, 'medium', 3, '2022-09-28');
-insert into oxygen_leaks values (8, 'high', 0, '2022-07-11');
-insert into oxygen_leaks values (9, 'low', 3, '2022-08-22');
-insert into oxygen_leaks values (10, 'medium', 0, '2022-10-03');
-insert into oxygen_leaks values (11, 'high', 1, '2022-04-14');
-insert into oxygen_leaks values (12, 'low', 0, '2022-02-25');
+insert into oxygen_leaks values (0, 'low', 0, '2022-01-01', -23.88830978488233, -69.10460472106935);
+insert into oxygen_leaks values (1, 'medium', 1, '2022-06-26', -23.87351580987326, -69.10254478454591);
+insert into oxygen_leaks values (2, 'high', 2, '2022-03-16', -23.876341315056486, -69.12589073181154);
+insert into oxygen_leaks values (3, 'low', 1, '2022-11-04', -23.892979149921235, -69.12855148315431);
+insert into oxygen_leaks values (4, 'medium', 2, '2022-12-01', -23.88830978488233, -69.10460472106935);
+insert into oxygen_leaks values (5, 'high', 3, '2022-03-31', -23.87351580987326, -69.10254478454591);
+insert into oxygen_leaks values (6, 'low', 2, '2022-05-19', -23.876341315056486, -69.12589073181154);
+insert into oxygen_leaks values (7, 'medium', 3, '2022-09-28', -23.892979149921235, -69.12855148315431);
+insert into oxygen_leaks values (8, 'high', 0, '2022-07-11', -23.88830978488233, -69.10460472106935);
+insert into oxygen_leaks values (9, 'low', 3, '2022-08-22', -23.87351580987326, -69.10254478454591);
+insert into oxygen_leaks values (10, 'medium', 0, '2022-10-03', -23.876341315056486, -69.12589073181154);
+insert into oxygen_leaks values (11, 'high', 1, '2022-04-14', -23.892979149921235, -69.12855148315431);
+insert into oxygen_leaks values (12, 'low', 0, '2022-02-25', -23.88830978488233, -69.10460472106935);
 
 -- //population
 -- insert into population values (0, 100, -23.88830978488233, -69.10460472106935);
