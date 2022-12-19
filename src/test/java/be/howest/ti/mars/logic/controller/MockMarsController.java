@@ -63,9 +63,9 @@ public class MockMarsController implements MarsController {
     @Override
     public List<OxygenLeak> getOxygenLeaks() {
         List<OxygenLeak> oxygenLeaks = List.of(
-                new OxygenLeak(1, DangerLevel.HIGH,1, "2022-01-01", longitude, latitude),
-                new OxygenLeak(2, DangerLevel.MEDIUM,2, "2022-01-01", longitude, latitude),
-                new OxygenLeak(3, DangerLevel.LOW,3, "2022-01-01", longitude, latitude)
+                new OxygenLeak(1, DangerLevel.HIGH,1, "2022-01-01", 2.0, 3.2),
+                new OxygenLeak(2, DangerLevel.MEDIUM,2, "2022-01-01", 6.366, 78.3214),
+                new OxygenLeak(3, DangerLevel.LOW,3, "2022-01-01", -63.666, 47.635)
         );
         return oxygenLeaks;
     }
