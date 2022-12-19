@@ -13,6 +13,7 @@ import java.nio.file.Path;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -35,8 +36,12 @@ public class MarsH2Repository {
     private static final String SQL_ALL_COMPANIES = "select id, name, section, ad_effectiveness, user_id from companies;";
     private static final String SQL_COMPANY_BY_ID = "select id, name, section, ad_effectiveness, user_id from companies where user_id = ?;";
     private static final String SQL_ALL_OXYGENLEAKS = "select id, danger_level, dome_id, date from oxygen_leaks;";
+    private static final String SQL_ALL_APPOINTMENTS = "select id, date, time, topic, employee_id, expertise from appointments;";
     private static final String DOME_ID = "dome_id";
     private static final String ID = "id";
+    private static final String TOPIC = "topic";
+    private static final String EXPERTISE = "expertise";
+    private static final String SQL_INSERT_APPOINTMENT = "insert into appointments (`date`, `time`, `topic`, `employee_id`, `expertise`) values (?, ?, ?, ?, ?);";
     private final Server dbWebConsole;
     private final String username;
     private final String password;
@@ -270,6 +275,48 @@ public class MarsH2Repository {
         } catch (SQLException ex) {
             LOGGER.log(Level.SEVERE, "Failed to get oxygen leaks.", ex);
             throw new RepositoryException("Could not get oxygen leaks.");
+        }
+    }
+
+    public List<Appointment> getAppointments() {
+        try (
+                Connection conn = getConnection();
+                PreparedStatement stmt = conn.prepareStatement(SQL_ALL_APPOINTMENTS)
+        ) {
+            try (ResultSet rs = stmt.executeQuery()) {
+                List<Appointment> appointments = new ArrayList<>();
+                while (rs.next()) {
+                    appointments.add(new Appointment(rs.getInt(ID), rs.getDate("date").toString(), rs.getString("time"), rs.getString(TOPIC), rs.getInt("employee_id"), rs.getString(EXPERTISE)));
+                }
+                return appointments;
+            }
+        } catch (SQLException ex) {
+            LOGGER.log(Level.SEVERE, "Failed to get appointments.", ex);
+            throw new RepositoryException("Could not get appointments.");
+        }
+    }
+
+    public Appointment insertAppointment(Map<String, String> appointment) {
+        try (
+                Connection conn = getConnection();
+                PreparedStatement stmt = conn.prepareStatement(SQL_INSERT_APPOINTMENT, Statement.RETURN_GENERATED_KEYS)
+        ) {
+            stmt.setString(1, appointment.get("date"));
+            stmt.setString(2, appointment.get("time"));
+            stmt.setString(3, appointment.get(TOPIC));
+            stmt.setInt(4, Integer.parseInt(appointment.get("employeeID")));
+            stmt.setString(5, appointment.get(EXPERTISE));
+            stmt.executeUpdate();
+            try (ResultSet rs = stmt.getGeneratedKeys()) {
+                if (rs.next()) {
+                    return new Appointment(rs.getInt(1), appointment.get("date"), appointment.get("time"), appointment.get(TOPIC), Integer.parseInt(appointment.get("employeeID")), appointment.get(EXPERTISE));
+                } else {
+                    throw new RepositoryException("Could not insert appointment.");
+                }
+            }
+        } catch (SQLException ex) {
+            LOGGER.log(Level.SEVERE, "Failed to insert appointment.", ex);
+            throw new RepositoryException("Could not insert appointment.");
         }
     }
 }

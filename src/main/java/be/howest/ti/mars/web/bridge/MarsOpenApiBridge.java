@@ -10,6 +10,7 @@ import io.vertx.ext.web.RoutingContext;
 import io.vertx.ext.web.handler.CorsHandler;
 import io.vertx.ext.web.openapi.RouterBuilder;
 import java.util.List;
+import java.util.Map;
 import java.util.NoSuchElementException;
 import java.util.Objects;
 import java.util.logging.Level;
@@ -62,6 +63,12 @@ public class MarsOpenApiBridge {
 
         LOGGER.log(Level.INFO, "Installing handler for: getOxygenLeaks");
         routerBuilder.operation("getOxygenLeaks").handler(this::getOxygenLeaks);
+
+        LOGGER.log(Level.INFO, "Installing handler for: getAppointments");
+        routerBuilder.operation("getAppointments").handler(this::getAppointments);
+
+        LOGGER.log(Level.INFO, "Installing handler for: createAppointment");
+        routerBuilder.operation("createAppointment").handler(this::createAppointment);
 
         LOGGER.log(Level.INFO, "All handlers are installed, creating router.");
         return routerBuilder.createRouter();
@@ -133,6 +140,17 @@ public class MarsOpenApiBridge {
         Response.sendOxygenLeaks(routingContext, oxygenLeaks);
     }
 
+    private void getAppointments(RoutingContext routingContext) {
+        List<Appointment> appointments = controller.getAppointments();
+
+        Response.sendAppointments(routingContext, appointments);
+    }
+
+    private void createAppointment(RoutingContext routingContext) {
+        Map<String, String> appointment = Request.from(routingContext).getAppointment();
+
+        Response.sendAppointmentCreated(routingContext, controller.createAppointment(appointment));
+    }
     private void onFailedRequest(RoutingContext ctx) {
         Throwable cause = ctx.failure();
         int code = ctx.statusCode();
