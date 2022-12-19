@@ -2,10 +2,7 @@ package be.howest.ti.mars.logic.controller;
 
 import be.howest.ti.mars.logic.domain.*;
 import be.howest.ti.mars.logic.util.DangerLevel;
-import io.vertx.core.Future;
-import io.vertx.core.Promise;
 
-import java.awt.desktop.UserSessionEvent;
 import java.util.List;
 import java.util.Map;
 
@@ -66,9 +63,9 @@ public class MockMarsController implements MarsController {
     @Override
     public List<OxygenLeak> getOxygenLeaks() {
         List<OxygenLeak> oxygenLeaks = List.of(
-                new OxygenLeak(1, DangerLevel.HIGH,1, "2022-01-01"),
-                new OxygenLeak(2, DangerLevel.MEDIUM,2, "2022-01-01"),
-                new OxygenLeak(3, DangerLevel.LOW,3, "2022-01-01")
+                new OxygenLeak(1, DangerLevel.HIGH,1, "2022-01-01", longitude, latitude),
+                new OxygenLeak(2, DangerLevel.MEDIUM,2, "2022-01-01", longitude, latitude),
+                new OxygenLeak(3, DangerLevel.LOW,3, "2022-01-01", longitude, latitude)
         );
         return oxygenLeaks;
     }

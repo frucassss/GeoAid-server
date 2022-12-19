@@ -45,7 +45,9 @@ create table oxygen_leaks
     id      int auto_increment,
     danger_level varchar(10),
     dome_id int,
-    date date
+    date date,
+    latitude double,
+    longitude double
 );
 
 drop table if exists appointments;

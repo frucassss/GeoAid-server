@@ -35,13 +35,16 @@ public class MarsH2Repository {
     private static final String SQL_ALL_USERS = "select id, firstName, lastName, homeAddress, premium role from users;";
     private static final String SQL_ALL_COMPANIES = "select id, name, section, ad_effectiveness, user_id from companies;";
     private static final String SQL_COMPANY_BY_ID = "select id, name, section, ad_effectiveness, user_id from companies where user_id = ?;";
-    private static final String SQL_ALL_OXYGENLEAKS = "select id, danger_level, dome_id, date from oxygen_leaks;";
+    private static final String SQL_ALL_OXYGENLEAKS = "select id, danger_level, dome_id, date, latitude, longitude from oxygen_leaks;";
     private static final String SQL_ALL_APPOINTMENTS = "select id, date, time, topic, employee_id, expertise from appointments;";
     private static final String DOME_ID = "dome_id";
     private static final String ID = "id";
     private static final String TOPIC = "topic";
     private static final String EXPERTISE = "expertise";
+
     private static final String SQL_INSERT_APPOINTMENT = "insert into appointments (`date`, `time`, `topic`, `employee_id`, `expertise`) values (?, ?, ?, ?, ?);";
+    public static final String LONGITUDE = "longitude";
+    public static final String LATITUDE = "latitude";
     private final Server dbWebConsole;
     private final String username;
     private final String password;
@@ -188,7 +191,7 @@ public class MarsH2Repository {
             try (ResultSet rs = stmt.executeQuery()) {
                 List<Dome> domes = new ArrayList<>();
                 while (rs.next()) {
-                    domes.add(new Dome(rs.getInt(ID), rs.getString("domename"), rs.getDouble("latitude"), rs.getDouble("longitude")));
+                    domes.add(new Dome(rs.getInt(ID), rs.getString("domename"), rs.getDouble(LATITUDE), rs.getDouble(LONGITUDE)));
                 }
                 return domes;
             }
@@ -263,11 +266,11 @@ public class MarsH2Repository {
                 while (rs.next()) {
                     String dangerLevel = rs.getString("danger_level");
                     if (dangerLevel.equals("low")) {
-                        oxygenLeaks.add(new OxygenLeak(rs.getInt(ID), DangerLevel.LOW, rs.getInt(DOME_ID), rs.getDate("date").toString()));
+                        oxygenLeaks.add(new OxygenLeak(rs.getInt(ID), DangerLevel.LOW, rs.getInt(DOME_ID), rs.getDate("date").toString(), rs.getDouble(LATITUDE), rs.getDouble(LONGITUDE)));
                     } else if (dangerLevel.equals("medium")) {
-                        oxygenLeaks.add(new OxygenLeak(rs.getInt(ID), DangerLevel.MEDIUM, rs.getInt(DOME_ID), rs.getDate("date").toString()));
+                        oxygenLeaks.add(new OxygenLeak(rs.getInt(ID), DangerLevel.MEDIUM, rs.getInt(DOME_ID), rs.getDate("date").toString(), rs.getDouble(LATITUDE), rs.getDouble(LONGITUDE)));
                     } else if (dangerLevel.equals("high")) {
-                        oxygenLeaks.add(new OxygenLeak(rs.getInt(ID), DangerLevel.HIGH, rs.getInt(DOME_ID), rs.getDate("date").toString()));
+                        oxygenLeaks.add(new OxygenLeak(rs.getInt(ID), DangerLevel.HIGH, rs.getInt(DOME_ID), rs.getDate("date").toString(), rs.getDouble(LATITUDE), rs.getDouble(LONGITUDE)));
                     }
                 }
                 return oxygenLeaks;
