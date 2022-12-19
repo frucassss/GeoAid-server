@@ -7,6 +7,7 @@ import io.vertx.core.Promise;
 
 import java.awt.desktop.UserSessionEvent;
 import java.util.List;
+import java.util.Map;
 
 public class MockMarsController implements MarsController {
     private static final String SOME_QUOTE = "quote";
@@ -70,6 +71,22 @@ public class MockMarsController implements MarsController {
                 new OxygenLeak(3, DangerLevel.LOW,3, "2022-01-01")
         );
         return oxygenLeaks;
+    }
+
+    @Override
+    public List<Appointment> getAppointments() {
+        List<Appointment> appointments = List.of(
+                new Appointment(1, "2022-01-01", "15:00:00", "location", 2, "sales"),
+                new Appointment(2, "2022-01-01", "15:00:00", "location", 6, "developer"),
+                new Appointment(3, "2022-01-01", "15:00:00", "location", 3, "sales"),
+                new Appointment(4, "2022-01-01", "15:00:00", "location", 4, "sales")
+                );
+        return appointments;
+    }
+
+    @Override
+    public Appointment createAppointment(Map<String, String> appointment) {
+        return new Appointment(1, appointment.get("date"), appointment.get("time"), appointment.get("topic"), Integer.parseInt(appointment.get("employeeID")), appointment.get("expertise"));
     }
 
 }

@@ -5,6 +5,8 @@ import io.vertx.ext.web.RoutingContext;
 import io.vertx.ext.web.validation.RequestParameters;
 import io.vertx.ext.web.validation.ValidationHandler;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -58,5 +60,23 @@ public class Request {
 
     public int getCompanyId() {
         return params.pathParameter("userId").getInteger();
+    }
+
+    public Map<String, String> getAppointment() {
+        Map<String, String> appointmentParms = new HashMap<>();
+        try{
+            if (params.body().isJsonObject()) {
+                appointmentParms.put("date", params.body().getJsonObject().getString("date"));
+                appointmentParms.put("time", params.body().getJsonObject().getString("time"));
+                appointmentParms.put("topic", params.body().getJsonObject().getString("topic"));
+                appointmentParms.put("employeeID", params.body().getJsonObject().getString("employee_id"));
+                appointmentParms.put("expertise", params.body().getJsonObject().getString("expertise"));
+                return appointmentParms;
+            }
+            return null;
+        } catch (IllegalArgumentException ex) {
+            LOGGER.log(Level.INFO, "Unable to decipher the data in the body", ex);
+            throw new MalformedRequestException("Unable to decipher the data in the request body. See logs for details.");
+        }
     }
 }

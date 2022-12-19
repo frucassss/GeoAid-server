@@ -47,3 +47,15 @@ create table oxygen_leaks
     dome_id int,
     date date
 );
+
+drop table if exists appointments;
+
+create table appointments
+(
+    id      int auto_increment,
+    date date,
+    time time,
+    topic varchar(255),
+    employee_id int,
+    expertise varchar(255)
+);

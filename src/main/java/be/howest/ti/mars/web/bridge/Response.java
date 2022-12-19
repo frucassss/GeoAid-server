@@ -91,4 +91,16 @@ public class Response {
         }
         sendOkJsonResponse(routingContext, new JsonObject().put("oxygenLeaks", oxygenLeakJsons));
     }
+
+    public static void sendAppointments(RoutingContext routingContext, List<Appointment> appointments) {
+        List<JsonObject> appointmentJsons = new ArrayList<>();
+        for (Appointment appointment : appointments) {
+            appointmentJsons.add(JsonObject.mapFrom(appointment));
+        }
+        sendOkJsonResponse(routingContext, new JsonObject().put("appointments", appointmentJsons));
+    }
+
+    public static void sendAppointmentCreated(RoutingContext routingContext, Appointment appointment) {
+        sendJsonResponse(routingContext, 201, JsonObject.mapFrom(appointment));
+    }
 }
