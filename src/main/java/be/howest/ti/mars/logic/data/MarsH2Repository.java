@@ -31,7 +31,7 @@ public class MarsH2Repository {
     private static final String SQL_INSERT_QUOTE = "insert into quotes (`quote`) values (?);";
     private static final String SQL_UPDATE_QUOTE = "update quotes set quote = ? where id = ?;";
     private static final String SQL_DELETE_QUOTE = "delete from quotes where id = ?;";
-    private static final String SQL_ALL_DOMES = "select id, domename, latitude, longitude from domes;";
+    private static final String SQL_ALL_DOMES = "select id, domename, latitude, longitude, surface from domes;";
     private static final String SQL_ALL_USERS = "select id, firstName, lastName, homeAddress, premium role from users;";
     private static final String SQL_ALL_COMPANIES = "select id, name, section, ad_effectiveness, user_id from companies;";
     private static final String SQL_COMPANY_BY_ID = "select id, name, section, ad_effectiveness, user_id from companies where user_id = ?;";
@@ -191,7 +191,7 @@ public class MarsH2Repository {
             try (ResultSet rs = stmt.executeQuery()) {
                 List<Dome> domes = new ArrayList<>();
                 while (rs.next()) {
-                    domes.add(new Dome(rs.getInt(ID), rs.getString("domename"), rs.getDouble(LATITUDE), rs.getDouble(LONGITUDE)));
+                    domes.add(new Dome(rs.getInt(ID), rs.getString("domename"), rs.getDouble(LATITUDE), rs.getDouble(LONGITUDE), rs.getDouble("surface")));
                 }
                 return domes;
             }

@@ -29,10 +29,11 @@ public class MockMarsController implements MarsController {
 
     @Override
     public List<Dome> getDomes() {
-         List<Dome> domes = List.of(
-                new Dome(1, "Dome 1", 1.0, 1.0),
-                new Dome(2, "Dome 2", 2.0, 2.0),
-                new Dome(3, "Dome 3", 3.0, 3.0));
+        double surface = 40.3;
+        List<Dome> domes = List.of(
+                new Dome(1, "Dome 1", 1.0, 1.0, surface),
+                new Dome(2, "Dome 2", 2.0, 2.0, surface),
+                new Dome(3, "Dome 3", 3.0, 3.0, surface));
         return domes;
     }
 

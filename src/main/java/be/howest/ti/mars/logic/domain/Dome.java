@@ -6,12 +6,14 @@ public class Dome {
     private final String domeName;
     private final double latitude;
     private final double longitude;
+    private final double surface;
 
-    public Dome(int id, String domeName, double latitude, double longitude) {
+    public Dome(int id, String domeName, double latitude, double longitude, double surface) {
         this.id = id;
         this.domeName = domeName;
         this.latitude = latitude;
         this.longitude = longitude;
+        this.surface = surface;
     }
 
     public int getId() {
@@ -28,6 +30,10 @@ public class Dome {
 
     public double getLongitude() {
         return longitude;
+    }
+
+    public double getSurface() {
+        return surface;
     }
 
     @Override
