@@ -62,3 +62,14 @@ create table appointments
     employee_id int,
     expertise varchar(255)
 );
+
+drop table if exists population;
+
+create table population
+(
+    id      int auto_increment,
+    size int,
+    latitude double,
+    longitude double,
+    colony varchar(255)
+);

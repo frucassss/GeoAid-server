@@ -2,6 +2,7 @@ package be.howest.ti.mars.logic.controller;
 
 import be.howest.ti.mars.logic.data.Repositories;
 import be.howest.ti.mars.logic.domain.*;
+import be.howest.ti.mars.logic.domain.statistics.*;
 import org.apache.commons.lang3.StringUtils;
 
 import java.util.List;
@@ -120,5 +121,14 @@ public class DefaultMarsController implements MarsController {
             throw new IllegalArgumentException("No appointment provided!");
         }
         return Repositories.getH2Repo().insertAppointment(appointment);
+    }
+
+    @Override
+    public List<Population> getPopulation() {
+        List<Population> population = Repositories.getH2Repo().getPopulation();
+        if (population.isEmpty()) {
+            throw new NoSuchElementException("No population found!");
+        }
+        return population;
     }
 }

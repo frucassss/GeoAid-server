@@ -1,6 +1,7 @@
 package be.howest.ti.mars.web.bridge;
 
 import be.howest.ti.mars.logic.domain.*;
+import be.howest.ti.mars.logic.domain.statistics.*;
 import io.vertx.core.http.HttpHeaders;
 import io.vertx.core.json.Json;
 import io.vertx.core.json.JsonObject;
@@ -102,5 +103,13 @@ public class Response {
 
     public static void sendAppointmentCreated(RoutingContext routingContext, Appointment appointment) {
         sendJsonResponse(routingContext, 201, JsonObject.mapFrom(appointment));
+    }
+
+    public static void sendPopulation(RoutingContext routingContext, List<Population> population) {
+        List<JsonObject> populationJsons = new ArrayList<>();
+        for (Population pop : population) {
+            populationJsons.add(JsonObject.mapFrom(pop));
+        }
+        sendOkJsonResponse(routingContext, new JsonObject().put("population", populationJsons));
     }
 }

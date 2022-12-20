@@ -1,7 +1,9 @@
 package be.howest.ti.mars.logic.data;
 
 import be.howest.ti.mars.logic.domain.*;
+import be.howest.ti.mars.logic.domain.statistics.*;
 import be.howest.ti.mars.logic.exceptions.RepositoryException;
+import be.howest.ti.mars.logic.util.Colony;
 import be.howest.ti.mars.logic.util.DangerLevel;
 import org.h2.tools.Server;
 
@@ -45,6 +47,7 @@ public class MarsH2Repository {
     private static final String SQL_INSERT_APPOINTMENT = "insert into appointments (`date`, `time`, `topic`, `employee_id`, `expertise`) values (?, ?, ?, ?, ?);";
     public static final String LONGITUDE = "longitude";
     public static final String LATITUDE = "latitude";
+    private static final String SQL_ALL_POPULATIONS = "select id, size, latitude, longitude, colony from population;";
     private final Server dbWebConsole;
     private final String username;
     private final String password;
@@ -320,6 +323,33 @@ public class MarsH2Repository {
         } catch (SQLException ex) {
             LOGGER.log(Level.SEVERE, "Failed to insert appointment.", ex);
             throw new RepositoryException("Could not insert appointment.");
+        }
+    }
+
+    public List<Population> getPopulation() {
+        try (
+                Connection conn = getConnection();
+                PreparedStatement stmt = conn.prepareStatement(SQL_ALL_POPULATIONS)
+        ) {
+            try (ResultSet rs = stmt.executeQuery()) {
+                List<Population> populations = new ArrayList<>();
+                while (rs.next()) {
+                    String colony = rs.getString("colony");
+                    if(colony.equals("MINE")) {
+                        populations.add(new Population(rs.getInt(ID), rs.getInt("size"), rs.getDouble(LATITUDE), rs.getDouble(LONGITUDE), Colony.MINE));
+                    }
+                    else if(colony.equals("SPACESTATION")) {
+                        populations.add(new Population(rs.getInt(ID), rs.getInt("size"), rs.getDouble(LATITUDE), rs.getDouble(LONGITUDE), Colony.SPACESTATION));
+                    }
+                    else if(colony.equals("SURFACE")) {
+                        populations.add(new Population(rs.getInt(ID), rs.getInt("size"), rs.getDouble(LATITUDE), rs.getDouble(LONGITUDE), Colony.SURFACE));
+                    }
+                }
+                return populations;
+            }
+        } catch (SQLException ex) {
+            LOGGER.log(Level.SEVERE, "Failed to get populations.", ex);
+            throw new RepositoryException("Could not get populations.");
         }
     }
 }

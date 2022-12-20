@@ -56,11 +56,11 @@ insert into oxygen_leaks values (10, 'medium', 0, '2022-10-03', -23.876341315056
 insert into oxygen_leaks values (11, 'high', 1, '2022-04-14', -23.892979149921235, -69.12855148315431);
 insert into oxygen_leaks values (12, 'low', 0, '2022-02-25', -23.88830978488233, -69.10460472106935);
 
--- //population
--- insert into population values (0, 100, -23.88830978488233, -69.10460472106935);
--- insert into population values (1, 200, -23.87351580987326, -69.10254478454591);
--- insert into population values (2, 300, -23.876341315056486, -69.12589073181154);
--- insert into population values (3, 400, -23.892979149921235, -69.12855148315431);
+//population
+insert into population values (0, 100, -23.88830978488233, -69.10460472106935, 'MINE');
+insert into population values (1, 200, -23.87351580987326, -69.10254478454591, 'MINE');
+insert into population values (2, 300, -23.876341315056486, -69.12589073181154, 'SPACESTATION');
+insert into population values (3, 400, -23.892979149921235, -69.12855148315431, 'SURFACE');
 
 //appointments
 insert into appointments values (0, '2022-01-01', '12:00:00', 'Meeting with the CEO', 1, 'CEO');

@@ -3,6 +3,7 @@ package be.howest.ti.mars.web.bridge;
 import be.howest.ti.mars.logic.controller.DefaultMarsController;
 import be.howest.ti.mars.logic.controller.MarsController;
 import be.howest.ti.mars.logic.domain.*;
+import be.howest.ti.mars.logic.domain.statistics.*;
 import be.howest.ti.mars.web.exceptions.MalformedRequestException;
 import io.vertx.core.http.HttpMethod;
 import io.vertx.ext.web.Router;
@@ -69,6 +70,9 @@ public class MarsOpenApiBridge {
 
         LOGGER.log(Level.INFO, "Installing handler for: createAppointment");
         routerBuilder.operation("createAppointment").handler(this::createAppointment);
+
+        LOGGER.log(Level.INFO, "Installing handler for: getPopulation");
+        routerBuilder.operation("getPopulation").handler(this::getPopulation);
 
         LOGGER.log(Level.INFO, "All handlers are installed, creating router.");
         return routerBuilder.createRouter();
@@ -150,6 +154,12 @@ public class MarsOpenApiBridge {
         Map<String, String> appointment = Request.from(routingContext).getAppointment();
 
         Response.sendAppointmentCreated(routingContext, controller.createAppointment(appointment));
+    }
+
+    private void getPopulation(RoutingContext routingContext) {
+        List<Population> population = controller.getPopulation();
+
+        Response.sendPopulation(routingContext, population);
     }
     private void onFailedRequest(RoutingContext ctx) {
         Throwable cause = ctx.failure();

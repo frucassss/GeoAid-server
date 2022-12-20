@@ -1,4 +1,4 @@
-package be.howest.ti.mars.logic.domain;
+package be.howest.ti.mars.logic.domain.statistics;
 
 import be.howest.ti.mars.logic.util.DangerLevel;
 
@@ -44,3 +44,4 @@ public class OxygenLeak {
         return latitude;
     }
 }
+
