@@ -1,4 +1,4 @@
-package be.howest.ti.mars.logic.domain;
+package be.howest.ti.mars.logic.domain.statistics;
 
 public class Appointment {
     private final int id;

@@ -1,6 +1,7 @@
 package be.howest.ti.mars.logic.controller;
 
 import be.howest.ti.mars.logic.domain.*;
+import be.howest.ti.mars.logic.domain.statistics.Appointment;
 import be.howest.ti.mars.logic.domain.statistics.OxygenLeak;
 import be.howest.ti.mars.logic.domain.statistics.Population;
 import be.howest.ti.mars.logic.util.Colony;
@@ -66,14 +67,14 @@ public class MockMarsController implements MarsController {
 
     @Override
     public List<OxygenLeak> getOxygenLeaks() {
+        double surface = 40.3;
         List<OxygenLeak> oxygenLeaks = List.of(
-                new OxygenLeak(1, DangerLevel.HIGH,1, "2022-01-01", 2.0, 3.2),
-                new OxygenLeak(2, DangerLevel.MEDIUM,2, "2022-01-01", 6.366, 78.3214),
-                new OxygenLeak(3, DangerLevel.LOW,3, "2022-01-01", -63.666, 47.635)
+                new OxygenLeak(1, DangerLevel.HIGH,1, "2022-01-01", 2.0, 3.2, new Dome(1, "Dome 1", 1.0, 1.0, surface)),
+                new OxygenLeak(2, DangerLevel.MEDIUM,2, "2022-01-01", 6.366, 78.3214, new Dome(1, "Dome 1", 1.0, 1.0, surface)),
+                new OxygenLeak(3, DangerLevel.LOW,3, "2022-01-01", -63.666, 47.635, new Dome(1, "Dome 1", 1.0, 1.0, surface))
         );
         return oxygenLeaks;
     }
-
     @Override
     public List<Appointment> getAppointments() {
         List<Appointment> appointments = List.of(
@@ -92,13 +93,15 @@ public class MockMarsController implements MarsController {
 
     @Override
     public List<Population> getPopulation() {
+        int domeId = 1;
+        Dome dome = new Dome(domeId, "Dome 1", 1.0, 1.0, 40.3);
         List<Population> population = List.of(
-                new Population(1, 34, 100, -951, Colony.MINE),
-                new Population(2, 60, 100, -951, Colony.SURFACE),
-                new Population(3, 34, 100, -951, Colony.MINE),
-                new Population(4, 34, 100, -951, Colony.SPACESTATION),
-                new Population(5, 34, 100, -951, Colony.MINE),
-                new Population(6, 34, 100, -951, Colony.SURFACE)
+                new Population(1, domeId, 34, 100, -951, Colony.MINE, dome),
+                new Population(2, domeId, 60, 100, -951, Colony.SURFACE, dome),
+                new Population(3, domeId, 34, 100, -951, Colony.MINE, dome),
+                new Population(4, domeId, 34, 100, -951, Colony.SPACESTATION, dome),
+                new Population(5, domeId, 34, 100, -951, Colony.MINE, dome),
+                new Population(6, domeId, 34, 100, -951, Colony.SURFACE, dome)
         );
         return population;
 

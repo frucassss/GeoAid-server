@@ -69,6 +69,7 @@ create table population
 (
     id      int auto_increment,
     size int,
+    dome_id int,
     latitude double,
     longitude double,
     colony varchar(255)

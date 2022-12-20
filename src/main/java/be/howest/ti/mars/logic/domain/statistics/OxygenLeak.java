@@ -1,23 +1,26 @@
 package be.howest.ti.mars.logic.domain.statistics;
 
+import be.howest.ti.mars.logic.domain.Dome;
 import be.howest.ti.mars.logic.util.DangerLevel;
 
 public class OxygenLeak {
     private final int id;
     private final DangerLevel dangerLevel;
-    private final int domeId;
+    final int domeId;
     private final String date;
 
     private final Double longitude;
     private final Double latitude;
+    private final Dome dome;
 
-    public OxygenLeak(int id, DangerLevel dangerLevel, int dome, String date, Double longitude, Double latitude) {
+    public OxygenLeak(int id, DangerLevel dangerLevel, int domeId, String date, Double longitude, Double latitude, Dome dome) {
         this.id = id;
         this.dangerLevel = dangerLevel;
-        this.domeId = dome;
+        this.domeId = domeId;
         this.date = date;
         this.longitude = longitude;
         this.latitude = latitude;
+        this.dome = dome;
     }
 
     public int getId() {
@@ -28,9 +31,6 @@ public class OxygenLeak {
         return dangerLevel;
     }
 
-    public int getDomeId() {
-        return domeId;
-    }
 
     public String getDate() {
         return date;
@@ -43,5 +43,8 @@ public class OxygenLeak {
     public Double getLatitude() {
         return latitude;
     }
-}
 
+    public Dome getDome() {
+        return dome;
+    }
+}
