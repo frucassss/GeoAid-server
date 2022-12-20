@@ -16,10 +16,16 @@ insert into domes values (4, 'Kurspa', -24.876341365435415056486, -70.1258907318
 insert into domes values (5, 'Ceumi', -22.892979149921235, -67.12855148315431, 65461321987654.852);
 insert into domes values (6, 'Kurspa-In-Belgeewich', -21.876341315056486, -68.12589073181154, 14567898.324);
 insert into domes values (7, 'Ceumi Castle', -20.892979149921235, -66.12855148315431, 65461321987654.852);
-insert into domes values (8, 'Kurspa', -23.876341315056486, -67.12589073181154, 14567898.324);
+insert into domes values (8, 'Kurspa', -23.876341315056488, -67.12589073181154, 14567898.324);
 insert into domes values (9, 'Ceumi', -24.892979149921235, -66.13215687431, 65461321987654.852);
 insert into domes values (10, 'Kurspa-In-Belgeewich', -24.876341315654487913056486, -69.1258907316518181154, 14567898.324);
 insert into domes values (11, 'Ceumi Castle', -23.1256874569965, -66.12855148313214515431, 65461321987654.852);
+insert into domes values (12, 'BABYLON 5', -23.876341315056586, -69.12589073181154, 14567898.324);
+insert into domes values (13, 'CHYRSE', -23.892979149921335, -69.12855148315431, 14567898.324);
+insert into domes values (14, 'DELPHI', -23.876341315156486, -69.12589073181154, 14567898.324);
+insert into domes values (15, 'DELTA QUADRANT', -23.892979149922235, -69.12855148315431, 14567898.324);
+insert into domes values (16, 'DELTA VEGA', -23.876341325056486, -69.12589073181154, 14567898.324);
+insert into domes values (17, 'Cyndonia', -23.892979148921235, -69.12855148315431, 14567898.324);
 
 //companies
 insert into companies values (0, 'Coca Cola', 'Food', 0.5, 1);
@@ -40,6 +46,8 @@ insert into companies values (14, 'Activision', 'Entertainment', 0.5, 15);
 insert into companies values (15, 'Warner Bros', 'Entertainment', 0.5, 16);
 insert into companies values (16, 'Universal', 'Entertainment', 0.5, 17);
 insert into companies values (17, 'McDonalds', 'Food', 0.5, 18);
+insert into companies values (18, 'GeoAid', 'Technology', 0.5, 19);
+
 
 //oxygens leaks
 insert into oxygen_leaks values (0, 'low', 0, '2022-01-01', -23.88830978488233, -69.10460472106935);
@@ -52,15 +60,24 @@ insert into oxygen_leaks values (6, 'low', 2, '2022-05-19', -23.876341315056486,
 insert into oxygen_leaks values (7, 'medium', 3, '2022-09-28', -23.892979149921235, -69.12855148315431);
 insert into oxygen_leaks values (8, 'high', 0, '2022-07-11', -23.88830978488233, -69.10460472106935);
 insert into oxygen_leaks values (9, 'low', 3, '2022-08-22', -23.87351580987326, -69.10254478454591);
-insert into oxygen_leaks values (10, 'medium', 0, '2022-10-03', -23.876341315056486, -69.12589073181154);
-insert into oxygen_leaks values (11, 'high', 1, '2022-04-14', -23.892979149921235, -69.12855148315431);
+insert into oxygen_leaks values (10, 'medium', 0, '2022-10-03', -23.876341315056586, -69.12589073181154);
+insert into oxygen_leaks values (11, 'high', 1, '2022-04-14', -23.876341315156486, -69.12855148315431);
 insert into oxygen_leaks values (12, 'low', 0, '2022-02-25', -23.88830978488233, -69.10460472106935);
+insert into oxygen_leaks values (13, 'medium', 1, '2022-06-06', -23.892979149922235, -69.10254478454591);
+insert into oxygen_leaks values (14, 'high', 2, '2022-01-16', -23.876341325056486, -69.12589073181154);
+insert into oxygen_leaks values (15, 'low', 1, '2022-11-24', -23.892979148921235, -69.12855148315431);
+
 
 //population
 insert into population values (0, 100, -23.88830978488233, -69.10460472106935, 'MINE');
 insert into population values (1, 200, -23.87351580987326, -69.10254478454591, 'MINE');
-insert into population values (2, 300, -23.876341315056486, -69.12589073181154, 'SPACESTATION');
+insert into population values (2, 300, -23.892979149922235, -69.12589073181154, 'SPACESTATION');
 insert into population values (3, 400, -23.892979149921235, -69.12855148315431, 'SURFACE');
+insert into population values (4, 500, -23.892979148921235, -69.10460472106935, 'MINE');
+insert into population values (5, 600, -23.88830978488233, -69.10254478454591, 'SPACESTATION');
+insert into population values (6, 700, -23.876341315056586, -69.12589073181154, 'SURFACE');
+insert into population values (7, 800, -23.876341325056486, -69.12855148315431, 'SPACESTATION');
+
 
 //appointments
 insert into appointments values (0, '2022-01-01', '12:00:00', 'Meeting with the CEO', 1, 'CEO');
@@ -70,3 +87,4 @@ insert into appointments values (3, '2022-01-01', '15:00:00', 'Meeting with the 
 insert into appointments values (4, '2022-01-01', '16:00:00', 'Meeting with the CMO', 1, 'CMO');
 insert into appointments values (5, '2022-01-01', '17:00:00', 'Meeting with the CIO', 1, 'CIO');
 insert into appointments values (6, '2022-01-01', '18:00:00', 'Meeting with the CDO', 1, 'CDO');
+
