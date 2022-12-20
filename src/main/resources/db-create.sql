@@ -74,3 +74,15 @@ create table population
     longitude double,
     colony varchar(255)
 );
+
+drop table if exists medical_dispatch;
+
+create table medical_dispatch
+(
+    id      int auto_increment,
+    date date,
+    dome_id int,
+    latitude double,
+    longitude double,
+    dispatch_type varchar(255)
+);
