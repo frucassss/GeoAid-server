@@ -93,13 +93,15 @@ public class MockMarsController implements MarsController {
 
     @Override
     public List<Population> getPopulation() {
+        int domeId = 1;
+        Dome dome = new Dome(domeId, "Dome 1", 1.0, 1.0, 40.3);
         List<Population> population = List.of(
-                new Population(1, 34, 100, -951, Colony.MINE),
-                new Population(2, 60, 100, -951, Colony.SURFACE),
-                new Population(3, 34, 100, -951, Colony.MINE),
-                new Population(4, 34, 100, -951, Colony.SPACESTATION),
-                new Population(5, 34, 100, -951, Colony.MINE),
-                new Population(6, 34, 100, -951, Colony.SURFACE)
+                new Population(1, domeId, 34, 100, -951, Colony.MINE, dome),
+                new Population(2, domeId, 60, 100, -951, Colony.SURFACE, dome),
+                new Population(3, domeId, 34, 100, -951, Colony.MINE, dome),
+                new Population(4, domeId, 34, 100, -951, Colony.SPACESTATION, dome),
+                new Population(5, domeId, 34, 100, -951, Colony.MINE, dome),
+                new Population(6, domeId, 34, 100, -951, Colony.SURFACE, dome)
         );
         return population;
 

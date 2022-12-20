@@ -6,7 +6,7 @@ import be.howest.ti.mars.logic.util.DangerLevel;
 public class OxygenLeak {
     private final int id;
     private final DangerLevel dangerLevel;
-    private final int domeId;
+    final int domeId;
     private final String date;
 
     private final Double longitude;
@@ -31,9 +31,6 @@ public class OxygenLeak {
         return dangerLevel;
     }
 
-    public int getDomeId() {
-        return domeId;
-    }
 
     public String getDate() {
         return date;

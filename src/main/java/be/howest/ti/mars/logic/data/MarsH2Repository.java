@@ -46,7 +46,7 @@ public class MarsH2Repository {
     private static final String SQL_INSERT_APPOINTMENT = "insert into appointments (`date`, `time`, `topic`, `employee_id`, `expertise`) values (?, ?, ?, ?, ?);";
     public static final String LONGITUDE = "longitude";
     public static final String LATITUDE = "latitude";
-    private static final String SQL_ALL_POPULATIONS = "select id, size, latitude, longitude, colony from population;";
+    private static final String SQL_ALL_POPULATIONS = "select * from population p join domes d on p.dome_id = d.id;";
     public static final String OXYGEN_LEAKS_ID = "oxygen_leaks.id";
     public static final String OXYGEN_LEAKS_DOME_ID = "oxygen_leaks.dome_id";
     public static final String OXYGEN_LEAKS_DATE = "oxygen_leaks.date";
@@ -57,6 +57,11 @@ public class MarsH2Repository {
     public static final String DOMES_LATITUDE = "domes.latitude";
     public static final String DOMES_LONGITUDE = "domes.longitude";
     public static final String DOMES_SURFACE = "domes.surface";
+    public static final String POPULATION_ID = "population.id";
+    public static final String POPULATION_DOME_ID = "population.dome_id";
+    public static final String POPULATION_SIZE = "population.size";
+    public static final String POPULATION_LATITUDE = "population.latitude";
+    public static final String POPULATION_LONGITUDE = "population.longitude";
     private final Server dbWebConsole;
     private final String username;
     private final String password;
@@ -345,13 +350,13 @@ public class MarsH2Repository {
                 while (rs.next()) {
                     String colony = rs.getString("colony");
                     if(colony.equals("MINE")) {
-                        populations.add(new Population(rs.getInt(ID), rs.getInt("size"), rs.getDouble(LATITUDE), rs.getDouble(LONGITUDE), Colony.MINE));
+                        populations.add(new Population(rs.getInt(POPULATION_ID), rs.getInt(POPULATION_DOME_ID), rs.getInt(POPULATION_SIZE), rs.getDouble(POPULATION_LATITUDE), rs.getDouble(POPULATION_LONGITUDE), Colony.MINE, new Dome(rs.getInt(DOMES_ID), rs.getString(DOMES_DOMENAME), rs.getDouble(DOMES_LATITUDE), rs.getDouble(DOMES_LONGITUDE), rs.getDouble(DOMES_SURFACE))));
                     }
                     else if(colony.equals("SPACESTATION")) {
-                        populations.add(new Population(rs.getInt(ID), rs.getInt("size"), rs.getDouble(LATITUDE), rs.getDouble(LONGITUDE), Colony.SPACESTATION));
+                        populations.add(new Population(rs.getInt(POPULATION_ID), rs.getInt(POPULATION_DOME_ID), rs.getInt(POPULATION_SIZE), rs.getDouble(POPULATION_LATITUDE), rs.getDouble(POPULATION_LONGITUDE), Colony.SPACESTATION, new Dome(rs.getInt(DOMES_ID), rs.getString(DOMES_DOMENAME), rs.getDouble(DOMES_LATITUDE), rs.getDouble(DOMES_LONGITUDE), rs.getDouble(DOMES_SURFACE))));
                     }
                     else if(colony.equals("SURFACE")) {
-                        populations.add(new Population(rs.getInt(ID), rs.getInt("size"), rs.getDouble(LATITUDE), rs.getDouble(LONGITUDE), Colony.SURFACE));
+                        populations.add(new Population(rs.getInt(POPULATION_ID), rs.getInt(POPULATION_DOME_ID), rs.getInt(POPULATION_SIZE), rs.getDouble(POPULATION_LATITUDE), rs.getDouble(POPULATION_LONGITUDE), Colony.SURFACE, new Dome(rs.getInt(DOMES_ID), rs.getString(DOMES_DOMENAME), rs.getDouble(DOMES_LATITUDE), rs.getDouble(DOMES_LONGITUDE), rs.getDouble(DOMES_SURFACE))));
                     }
                 }
                 return populations;
