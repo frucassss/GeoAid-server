@@ -2,6 +2,8 @@ package be.howest.ti.mars.logic.controller;
 
 import be.howest.ti.mars.logic.domain.*;
 import be.howest.ti.mars.logic.domain.statistics.OxygenLeak;
+import be.howest.ti.mars.logic.domain.statistics.Population;
+import be.howest.ti.mars.logic.util.Colony;
 import be.howest.ti.mars.logic.util.DangerLevel;
 
 import java.util.List;
@@ -86,6 +88,20 @@ public class MockMarsController implements MarsController {
     @Override
     public Appointment createAppointment(Map<String, String> appointment) {
         return new Appointment(1, appointment.get("date"), appointment.get("time"), appointment.get("topic"), Integer.parseInt(appointment.get("employeeID")), appointment.get("expertise"));
+    }
+
+    @Override
+    public List<Population> getPopulation() {
+        List<Population> population = List.of(
+                new Population(1, 34, 100, -951, Colony.MINE),
+                new Population(2, 60, 100, -951, Colony.SURFACE),
+                new Population(3, 34, 100, -951, Colony.MINE),
+                new Population(4, 34, 100, -951, Colony.SPACESTATION),
+                new Population(5, 34, 100, -951, Colony.MINE),
+                new Population(6, 34, 100, -951, Colony.SURFACE)
+        );
+        return population;
+
     }
 
 }

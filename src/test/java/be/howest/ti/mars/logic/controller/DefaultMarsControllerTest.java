@@ -2,6 +2,7 @@ package be.howest.ti.mars.logic.controller;
 
 import be.howest.ti.mars.logic.data.Repositories;
 import be.howest.ti.mars.logic.domain.Quote;
+import be.howest.ti.mars.logic.util.Colony;
 import io.vertx.core.json.JsonObject;
 import org.apache.commons.lang3.StringUtils;
 import org.junit.jupiter.api.BeforeAll;
@@ -235,6 +236,23 @@ class DefaultMarsControllerTest {
                 "expertise", "some expertise"
         );
         assertThrows(IllegalArgumentException.class, () -> sut.createAppointment(appointmentData));
+    }
+
+    @Test
+    void getPopulation() {
+        // Arrange
+        MarsController sut = new MockMarsController();
+
+        // Act
+        var population = sut.getPopulation();
+
+        //Assert
+        assertEquals(6, population.size());
+        assertEquals(1, population.get(0).getId());
+        assertEquals(60, population.get(1).getSize());
+        assertEquals(100, population.get(2).getLatitude());
+        assertEquals(-951, population.get(3).getLongitude());
+        assertEquals(Colony.SPACESTATION, population.get(3).getColony());
     }
 
 }
