@@ -1,9 +1,11 @@
 package be.howest.ti.mars.logic.controller;
 
 import be.howest.ti.mars.logic.domain.*;
-import be.howest.ti.mars.logic.domain.statistics.OxygenLeak;
+import be.howest.ti.mars.logic.domain.statistics.*;
+
 
 import java.util.List;
+import java.util.Map;
 
 public interface MarsController {
     Quote getQuote(int quoteId);
@@ -23,4 +25,8 @@ public interface MarsController {
     Company getCompany(int companyId);
 
     List<OxygenLeak> getOxygenLeaks();
+
+    List<Appointment> getAppointments();
+
+    Appointment createAppointment(Map<String, String> appointment);
 }

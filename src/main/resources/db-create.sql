@@ -24,7 +24,8 @@ create table domes
     id       int auto_increment,
     domename varchar(255),
     latitude double,
-    longitude double
+    longitude double,
+    surface double
 );
 
 drop table if exists companies;
@@ -45,7 +46,21 @@ create table oxygen_leaks
     id      int auto_increment,
     danger_level varchar(10),
     dome_id int,
-    date date
+    date date,
+    latitude double,
+    longitude double
+);
+
+drop table if exists appointments;
+
+create table appointments
+(
+    id      int auto_increment,
+    date date,
+    time time,
+    topic varchar(255),
+    employee_id int,
+    expertise varchar(255)
 );
 
 drop table if exists population;

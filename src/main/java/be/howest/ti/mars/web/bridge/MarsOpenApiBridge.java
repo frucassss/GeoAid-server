@@ -3,7 +3,7 @@ package be.howest.ti.mars.web.bridge;
 import be.howest.ti.mars.logic.controller.DefaultMarsController;
 import be.howest.ti.mars.logic.controller.MarsController;
 import be.howest.ti.mars.logic.domain.*;
-import be.howest.ti.mars.logic.domain.statistics.OxygenLeak;
+import be.howest.ti.mars.logic.domain.statistics.*;
 import be.howest.ti.mars.web.exceptions.MalformedRequestException;
 import io.vertx.core.http.HttpMethod;
 import io.vertx.ext.web.Router;
@@ -11,6 +11,7 @@ import io.vertx.ext.web.RoutingContext;
 import io.vertx.ext.web.handler.CorsHandler;
 import io.vertx.ext.web.openapi.RouterBuilder;
 import java.util.List;
+import java.util.Map;
 import java.util.NoSuchElementException;
 import java.util.Objects;
 import java.util.logging.Level;
@@ -63,6 +64,15 @@ public class MarsOpenApiBridge {
 
         LOGGER.log(Level.INFO, "Installing handler for: getOxygenLeaks");
         routerBuilder.operation("getOxygenLeaks").handler(this::getOxygenLeaks);
+
+        LOGGER.log(Level.INFO, "Installing handler for: getAppointments");
+        routerBuilder.operation("getAppointments").handler(this::getAppointments);
+
+        LOGGER.log(Level.INFO, "Installing handler for: createAppointment");
+        routerBuilder.operation("createAppointment").handler(this::createAppointment);
+
+        LOGGER.log(Level.INFO, "Installing handler for: getPopulation");
+        routerBuilder.operation("getPopulation").handler(this::getPopulation);
 
         LOGGER.log(Level.INFO, "All handlers are installed, creating router.");
         return routerBuilder.createRouter();
@@ -134,6 +144,23 @@ public class MarsOpenApiBridge {
         Response.sendOxygenLeaks(routingContext, oxygenLeaks);
     }
 
+    private void getAppointments(RoutingContext routingContext) {
+        List<Appointment> appointments = controller.getAppointments();
+
+        Response.sendAppointments(routingContext, appointments);
+    }
+
+    private void createAppointment(RoutingContext routingContext) {
+        Map<String, String> appointment = Request.from(routingContext).getAppointment();
+
+        Response.sendAppointmentCreated(routingContext, controller.createAppointment(appointment));
+    }
+
+    private void getPopulation(RoutingContext routingContext) {
+        List<Population> population = controller.getPopulation();
+
+        Response.sendPopulation(routingContext, population);
+    }
     private void onFailedRequest(RoutingContext ctx) {
         Throwable cause = ctx.failure();
         int code = ctx.statusCode();

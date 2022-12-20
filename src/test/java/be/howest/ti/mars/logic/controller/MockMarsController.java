@@ -5,6 +5,7 @@ import be.howest.ti.mars.logic.domain.statistics.OxygenLeak;
 import be.howest.ti.mars.logic.util.DangerLevel;
 
 import java.util.List;
+import java.util.Map;
 
 public class MockMarsController implements MarsController {
     private static final String SOME_QUOTE = "quote";
@@ -29,10 +30,11 @@ public class MockMarsController implements MarsController {
 
     @Override
     public List<Dome> getDomes() {
-         List<Dome> domes = List.of(
-                new Dome(1, "Dome 1", 1.0, 1.0),
-                new Dome(2, "Dome 2", 2.0, 2.0),
-                new Dome(3, "Dome 3", 3.0, 3.0));
+        double surface = 40.3;
+        List<Dome> domes = List.of(
+                new Dome(1, "Dome 1", 1.0, 1.0, surface),
+                new Dome(2, "Dome 2", 2.0, 2.0, surface),
+                new Dome(3, "Dome 3", 3.0, 3.0, surface));
         return domes;
     }
 
@@ -63,11 +65,27 @@ public class MockMarsController implements MarsController {
     @Override
     public List<OxygenLeak> getOxygenLeaks() {
         List<OxygenLeak> oxygenLeaks = List.of(
-                new OxygenLeak(1, DangerLevel.HIGH,1, "2022-01-01"),
-                new OxygenLeak(2, DangerLevel.MEDIUM,2, "2022-01-01"),
-                new OxygenLeak(3, DangerLevel.LOW,3, "2022-01-01")
+                new OxygenLeak(1, DangerLevel.HIGH,1, "2022-01-01", 2.0, 3.2),
+                new OxygenLeak(2, DangerLevel.MEDIUM,2, "2022-01-01", 6.366, 78.3214),
+                new OxygenLeak(3, DangerLevel.LOW,3, "2022-01-01", -63.666, 47.635)
         );
         return oxygenLeaks;
+    }
+
+    @Override
+    public List<Appointment> getAppointments() {
+        List<Appointment> appointments = List.of(
+                new Appointment(1, "2022-01-01", "15:00:00", "location", 2, "sales"),
+                new Appointment(2, "2022-01-01", "15:00:00", "location", 6, "developer"),
+                new Appointment(3, "2022-01-01", "15:00:00", "location", 3, "sales"),
+                new Appointment(4, "2022-01-01", "15:00:00", "location", 4, "sales")
+                );
+        return appointments;
+    }
+
+    @Override
+    public Appointment createAppointment(Map<String, String> appointment) {
+        return new Appointment(1, appointment.get("date"), appointment.get("time"), appointment.get("topic"), Integer.parseInt(appointment.get("employeeID")), appointment.get("expertise"));
     }
 
 }

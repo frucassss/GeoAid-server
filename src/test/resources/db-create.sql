@@ -12,7 +12,8 @@ create table domes
     id       int auto_increment,
     domename varchar(255),
     latitude double,
-    longitude double
+    longitude double,
+    surface double
 );
 
 drop table if exists users;

@@ -2,10 +2,11 @@ package be.howest.ti.mars.logic.controller;
 
 import be.howest.ti.mars.logic.data.Repositories;
 import be.howest.ti.mars.logic.domain.*;
-import be.howest.ti.mars.logic.domain.statistics.OxygenLeak;
+import be.howest.ti.mars.logic.domain.statistics.*;
 import org.apache.commons.lang3.StringUtils;
 
 import java.util.List;
+import java.util.Map;
 import java.util.NoSuchElementException;
 
 /**
@@ -103,5 +104,22 @@ public class DefaultMarsController implements MarsController {
             throw new NoSuchElementException("No oxygen leaks found!");
         }
         return oxygenLeaks;
+    }
+
+    @Override
+    public List<Appointment> getAppointments() {
+        List<Appointment> appointments = Repositories.getH2Repo().getAppointments();
+        if (appointments.isEmpty()) {
+            throw new NoSuchElementException("No appointments found!");
+        }
+        return appointments;
+    }
+
+    @Override
+    public Appointment createAppointment(Map<String, String> appointment) {
+        if (appointment.isEmpty()) {
+            throw new IllegalArgumentException("No appointment provided!");
+        }
+        return Repositories.getH2Repo().insertAppointment(appointment);
     }
 }

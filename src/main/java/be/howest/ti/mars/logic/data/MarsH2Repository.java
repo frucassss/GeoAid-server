@@ -1,7 +1,7 @@
 package be.howest.ti.mars.logic.data;
 
 import be.howest.ti.mars.logic.domain.*;
-import be.howest.ti.mars.logic.domain.statistics.OxygenLeak;
+import be.howest.ti.mars.logic.domain.statistics.*;
 import be.howest.ti.mars.logic.exceptions.RepositoryException;
 import be.howest.ti.mars.logic.util.DangerLevel;
 import org.h2.tools.Server;
@@ -14,6 +14,7 @@ import java.nio.file.Path;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -31,13 +32,20 @@ public class MarsH2Repository {
     private static final String SQL_INSERT_QUOTE = "insert into quotes (`quote`) values (?);";
     private static final String SQL_UPDATE_QUOTE = "update quotes set quote = ? where id = ?;";
     private static final String SQL_DELETE_QUOTE = "delete from quotes where id = ?;";
-    private static final String SQL_ALL_DOMES = "select id, domename, latitude, longitude from domes;";
+    private static final String SQL_ALL_DOMES = "select id, domename, latitude, longitude, surface from domes;";
     private static final String SQL_ALL_USERS = "select id, firstName, lastName, homeAddress, premium role from users;";
     private static final String SQL_ALL_COMPANIES = "select id, name, section, ad_effectiveness, user_id from companies;";
     private static final String SQL_COMPANY_BY_ID = "select id, name, section, ad_effectiveness, user_id from companies where user_id = ?;";
-    private static final String SQL_ALL_OXYGENLEAKS = "select id, danger_level, dome_id, date from oxygen_leaks;";
+    private static final String SQL_ALL_OXYGENLEAKS = "select id, danger_level, dome_id, date, latitude, longitude from oxygen_leaks;";
+    private static final String SQL_ALL_APPOINTMENTS = "select id, date, time, topic, employee_id, expertise from appointments;";
     private static final String DOME_ID = "dome_id";
     private static final String ID = "id";
+    private static final String TOPIC = "topic";
+    private static final String EXPERTISE = "expertise";
+
+    private static final String SQL_INSERT_APPOINTMENT = "insert into appointments (`date`, `time`, `topic`, `employee_id`, `expertise`) values (?, ?, ?, ?, ?);";
+    public static final String LONGITUDE = "longitude";
+    public static final String LATITUDE = "latitude";
     private final Server dbWebConsole;
     private final String username;
     private final String password;
@@ -184,7 +192,7 @@ public class MarsH2Repository {
             try (ResultSet rs = stmt.executeQuery()) {
                 List<Dome> domes = new ArrayList<>();
                 while (rs.next()) {
-                    domes.add(new Dome(rs.getInt(ID), rs.getString("domename"), rs.getDouble("latitude"), rs.getDouble("longitude")));
+                    domes.add(new Dome(rs.getInt(ID), rs.getString("domename"), rs.getDouble(LATITUDE), rs.getDouble(LONGITUDE), rs.getDouble("surface")));
                 }
                 return domes;
             }
@@ -259,11 +267,11 @@ public class MarsH2Repository {
                 while (rs.next()) {
                     String dangerLevel = rs.getString("danger_level");
                     if (dangerLevel.equals("low")) {
-                        oxygenLeaks.add(new OxygenLeak(rs.getInt(ID), DangerLevel.LOW, rs.getInt(DOME_ID), rs.getDate("date").toString()));
+                        oxygenLeaks.add(new OxygenLeak(rs.getInt(ID), DangerLevel.LOW, rs.getInt(DOME_ID), rs.getDate("date").toString(), rs.getDouble(LATITUDE), rs.getDouble(LONGITUDE)));
                     } else if (dangerLevel.equals("medium")) {
-                        oxygenLeaks.add(new OxygenLeak(rs.getInt(ID), DangerLevel.MEDIUM, rs.getInt(DOME_ID), rs.getDate("date").toString()));
+                        oxygenLeaks.add(new OxygenLeak(rs.getInt(ID), DangerLevel.MEDIUM, rs.getInt(DOME_ID), rs.getDate("date").toString(), rs.getDouble(LATITUDE), rs.getDouble(LONGITUDE)));
                     } else if (dangerLevel.equals("high")) {
-                        oxygenLeaks.add(new OxygenLeak(rs.getInt(ID), DangerLevel.HIGH, rs.getInt(DOME_ID), rs.getDate("date").toString()));
+                        oxygenLeaks.add(new OxygenLeak(rs.getInt(ID), DangerLevel.HIGH, rs.getInt(DOME_ID), rs.getDate("date").toString(), rs.getDouble(LATITUDE), rs.getDouble(LONGITUDE)));
                     }
                 }
                 return oxygenLeaks;
@@ -271,6 +279,48 @@ public class MarsH2Repository {
         } catch (SQLException ex) {
             LOGGER.log(Level.SEVERE, "Failed to get oxygen leaks.", ex);
             throw new RepositoryException("Could not get oxygen leaks.");
+        }
+    }
+
+    public List<Appointment> getAppointments() {
+        try (
+                Connection conn = getConnection();
+                PreparedStatement stmt = conn.prepareStatement(SQL_ALL_APPOINTMENTS)
+        ) {
+            try (ResultSet rs = stmt.executeQuery()) {
+                List<Appointment> appointments = new ArrayList<>();
+                while (rs.next()) {
+                    appointments.add(new Appointment(rs.getInt(ID), rs.getDate("date").toString(), rs.getString("time"), rs.getString(TOPIC), rs.getInt("employee_id"), rs.getString(EXPERTISE)));
+                }
+                return appointments;
+            }
+        } catch (SQLException ex) {
+            LOGGER.log(Level.SEVERE, "Failed to get appointments.", ex);
+            throw new RepositoryException("Could not get appointments.");
+        }
+    }
+
+    public Appointment insertAppointment(Map<String, String> appointment) {
+        try (
+                Connection conn = getConnection();
+                PreparedStatement stmt = conn.prepareStatement(SQL_INSERT_APPOINTMENT, Statement.RETURN_GENERATED_KEYS)
+        ) {
+            stmt.setString(1, appointment.get("date"));
+            stmt.setString(2, appointment.get("time"));
+            stmt.setString(3, appointment.get(TOPIC));
+            stmt.setInt(4, Integer.parseInt(appointment.get("employeeID")));
+            stmt.setString(5, appointment.get(EXPERTISE));
+            stmt.executeUpdate();
+            try (ResultSet rs = stmt.getGeneratedKeys()) {
+                if (rs.next()) {
+                    return new Appointment(rs.getInt(1), appointment.get("date"), appointment.get("time"), appointment.get(TOPIC), Integer.parseInt(appointment.get("employeeID")), appointment.get(EXPERTISE));
+                } else {
+                    throw new RepositoryException("Could not insert appointment.");
+                }
+            }
+        } catch (SQLException ex) {
+            LOGGER.log(Level.SEVERE, "Failed to insert appointment.", ex);
+            throw new RepositoryException("Could not insert appointment.");
         }
     }
 }

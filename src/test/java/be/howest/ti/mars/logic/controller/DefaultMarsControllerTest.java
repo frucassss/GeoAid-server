@@ -140,13 +140,13 @@ class DefaultMarsControllerTest {
     @Test
     void getDomes() {
         // Arrange
-        MarsController sut = new DefaultMarsController();
+        MarsController sut = new MockMarsController();
 
         // Act
         var domes = sut.getDomes();
 
         //Assert
-        assertEquals(4, domes.size());
+        assertEquals(3, domes.size());
     }
 
     @Test
@@ -183,6 +183,58 @@ class DefaultMarsControllerTest {
 
         //Assert
         assertEquals("company 1", company.getName());
+    }
+
+    @Test
+    void getAppointments() {
+        // Arrange
+        MarsController sut = new MockMarsController();
+
+        // Act
+        var appointments = sut.getAppointments();
+
+        //Assert
+        assertEquals(4, appointments.size());
+    }
+
+    @Test
+    void createAppointment() {
+        // Arrange
+        MarsController sut = new MockMarsController();
+
+        // Act
+        Map<String, String> appointmentData = Map.of(
+                "date", "2021-01-01",
+                "time", "12:00:00",
+                "topic", "some topic",
+                "employeeID", "1",
+                "expertise", "some expertise"
+        );
+        var appointment = sut.createAppointment(appointmentData);
+
+        //Assert
+        assertEquals(1, appointment.getId());
+        assertEquals("2021-01-01", appointment.getDate());
+        assertEquals("12:00:00", appointment.getTime());
+        assertEquals("some topic", appointment.getTopic());
+        assertEquals(1, appointment.getEmployeeId());
+        assertEquals("some expertise", appointment.getExpertise());
+    }
+
+    @Test
+    void createAppointmentWithWrongDateThrowsIllegalArgument() {
+        // Arrange
+        MarsController sut = new MockMarsController();
+
+        // Act + Assert
+        Map<String, String> appointmentData = Map.of(
+                "date", "2021-01-01",
+                "time", "12:00:00",
+                "topic", "some topic",
+                "employeeID", "dertig",
+                "expertise", "some expertise"
+        );
+        assertThrows(IllegalArgumentException.class, () -> sut.createAppointment(appointmentData));
     }
 
 }
