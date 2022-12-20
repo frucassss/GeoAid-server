@@ -122,4 +122,13 @@ public class DefaultMarsController implements MarsController {
         }
         return Repositories.getH2Repo().insertAppointment(appointment);
     }
+
+    @Override
+    public List<Population> getPopulation() {
+        List<Population> population = Repositories.getH2Repo().getPopulation();
+        if (population.isEmpty()) {
+            throw new NoSuchElementException("No population found!");
+        }
+        return population;
+    }
 }

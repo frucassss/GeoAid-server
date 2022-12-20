@@ -70,5 +70,6 @@ create table population
     id      int auto_increment,
     size int,
     latitude double,
-    longitude double
+    longitude double,
+    colony varchar(255)
 );

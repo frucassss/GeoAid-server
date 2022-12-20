@@ -104,4 +104,12 @@ public class Response {
     public static void sendAppointmentCreated(RoutingContext routingContext, Appointment appointment) {
         sendJsonResponse(routingContext, 201, JsonObject.mapFrom(appointment));
     }
+
+    public static void sendPopulation(RoutingContext routingContext, List<Population> population) {
+        List<JsonObject> populationJsons = new ArrayList<>();
+        for (Population pop : population) {
+            populationJsons.add(JsonObject.mapFrom(pop));
+        }
+        sendOkJsonResponse(routingContext, new JsonObject().put("population", populationJsons));
+    }
 }
