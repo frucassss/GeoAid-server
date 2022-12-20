@@ -1,6 +1,6 @@
 package be.howest.ti.mars.logic.util;
 
-public enum TypeOfDispach {
+public enum TypeOfDispatch {
     AMBULANCE,
     EMS,
     FIRE_DEPARTMENT,
@@ -8,5 +8,6 @@ public enum TypeOfDispach {
     LIFEGUARD,
     MEDICAL_HELICOPTER,
     SEARCH_AND_RESCUE,
-    TOXICOLOGY_TEAM
+    TOXICOLOGY_TEAM,
+    POLICE
 }

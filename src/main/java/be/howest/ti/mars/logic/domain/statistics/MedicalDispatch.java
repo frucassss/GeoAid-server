@@ -1,18 +1,18 @@
 package be.howest.ti.mars.logic.domain.statistics;
 
 import be.howest.ti.mars.logic.domain.Dome;
-import be.howest.ti.mars.logic.util.TypeOfDispach;
+import be.howest.ti.mars.logic.util.TypeOfDispatch;
 
-public class MedicalDispach {
+public class MedicalDispatch {
     private final int id;
-    private final TypeOfDispach dispachType;
+    private final TypeOfDispatch dispachType;
     final int domeId;
     private final String date;
     private final Double longitude;
     private final Double latitude;
     private final Dome dome;
 
-    public MedicalDispach(int id, TypeOfDispach dispachType, int domeId, String date, Double longitude, Double latitude, Dome dome) {
+    public MedicalDispatch(int id, TypeOfDispatch dispachType, int domeId, String date, Double longitude, Double latitude, Dome dome) {
         this.id = id;
         this.dispachType = dispachType;
         this.domeId = domeId;
@@ -26,7 +26,7 @@ public class MedicalDispach {
         return id;
     }
 
-    public TypeOfDispach getDispachType() {
+    public TypeOfDispatch getDispachType() {
         return dispachType;
     }
 

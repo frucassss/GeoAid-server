@@ -112,4 +112,12 @@ public class Response {
         }
         sendOkJsonResponse(routingContext, new JsonObject().put("population", populationJsons));
     }
+
+    public static void sendMedicalDispatches(RoutingContext routingContext, List<MedicalDispatch> medicalDispatches) {
+        List<JsonObject> medicalDispatchJsons = new ArrayList<>();
+        for (MedicalDispatch medicalDispatch : medicalDispatches) {
+            medicalDispatchJsons.add(JsonObject.mapFrom(medicalDispatch));
+        }
+        sendOkJsonResponse(routingContext, new JsonObject().put("medicalDispatches", medicalDispatchJsons));
+    }
 }

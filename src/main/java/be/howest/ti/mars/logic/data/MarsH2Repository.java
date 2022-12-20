@@ -5,6 +5,7 @@ import be.howest.ti.mars.logic.domain.statistics.*;
 import be.howest.ti.mars.logic.exceptions.RepositoryException;
 import be.howest.ti.mars.logic.util.Colony;
 import be.howest.ti.mars.logic.util.DangerLevel;
+import be.howest.ti.mars.logic.util.TypeOfDispatch;
 import org.h2.tools.Server;
 
 import java.io.IOException;
@@ -62,6 +63,12 @@ public class MarsH2Repository {
     public static final String POPULATION_SIZE = "population.size";
     public static final String POPULATION_LATITUDE = "population.latitude";
     public static final String POPULATION_LONGITUDE = "population.longitude";
+    private static final String SQL_ALL_MEDICAL_DISPATCHES = "select * from medical_dispatches m join domes d on m.dome_id = d.id;";
+    private static final String MEDICAL_DISPATCHES_ID = "medical_dispatches.id";
+    private static final String MEDICAL_DISPATCHES_DOME_ID = "medical_dispatches.dome_id";
+    private static final String MEDICAL_DISPATCHES_LATITUDE = "medical_dispatches.latitude";
+    private static final String MEDICAL_DISPATCHES_LONGITUDE = "medical_dispatches.longitude";
+    public static final String MEDICAL_DISPATCHES_DATE = "medical_dispatches.date";
     private final Server dbWebConsole;
     private final String username;
     private final String password;
@@ -364,6 +371,56 @@ public class MarsH2Repository {
         } catch (SQLException ex) {
             LOGGER.log(Level.SEVERE, "Failed to get populations.", ex);
             throw new RepositoryException("Could not get populations.");
+        }
+    }
+
+    public List<MedicalDispatch> getMedicalDispatches() {
+        try (
+                Connection conn = getConnection();
+                PreparedStatement stmt = conn.prepareStatement(SQL_ALL_MEDICAL_DISPATCHES)
+        ) {
+            try (ResultSet rs = stmt.executeQuery()) {
+                List<MedicalDispatch> medicalDispatches = new ArrayList<>();
+                while (rs.next()) {
+                    String type = rs.getString("dispatch_type");
+                    switch (type){
+                        case "AMBULANCE":
+                            medicalDispatches.add(new MedicalDispatch(rs.getInt(MEDICAL_DISPATCHES_ID), TypeOfDispatch.AMBULANCE, rs.getInt(MEDICAL_DISPATCHES_DOME_ID), rs.getDate(MEDICAL_DISPATCHES_DATE).toString(), rs.getDouble(MEDICAL_DISPATCHES_LATITUDE), rs.getDouble(MEDICAL_DISPATCHES_LONGITUDE), new Dome(rs.getInt(DOMES_ID), rs.getString(DOMES_DOMENAME), rs.getDouble(DOMES_LATITUDE), rs.getDouble(DOMES_LONGITUDE), rs.getDouble(DOMES_SURFACE))));
+                            break;
+                        case "EMS":
+                            medicalDispatches.add(new MedicalDispatch(rs.getInt(MEDICAL_DISPATCHES_ID), TypeOfDispatch.EMS, rs.getInt(MEDICAL_DISPATCHES_DOME_ID), rs.getDate(MEDICAL_DISPATCHES_DATE).toString(), rs.getDouble(MEDICAL_DISPATCHES_LATITUDE), rs.getDouble(MEDICAL_DISPATCHES_LONGITUDE), new Dome(rs.getInt(DOMES_ID), rs.getString(DOMES_DOMENAME), rs.getDouble(DOMES_LATITUDE), rs.getDouble(DOMES_LONGITUDE), rs.getDouble(DOMES_SURFACE))));
+                            break;
+                        case "FIRE_DEPARTMENT":
+                            medicalDispatches.add(new MedicalDispatch(rs.getInt(MEDICAL_DISPATCHES_ID), TypeOfDispatch.FIRE_DEPARTMENT, rs.getInt(MEDICAL_DISPATCHES_DOME_ID), rs.getDate(MEDICAL_DISPATCHES_DATE).toString(), rs.getDouble(MEDICAL_DISPATCHES_LATITUDE), rs.getDouble(MEDICAL_DISPATCHES_LONGITUDE), new Dome(rs.getInt(DOMES_ID), rs.getString(DOMES_DOMENAME), rs.getDouble(DOMES_LATITUDE), rs.getDouble(DOMES_LONGITUDE), rs.getDouble(DOMES_SURFACE))));
+                            break;
+                        case "HAZMAT_TEAM":
+                            medicalDispatches.add(new MedicalDispatch(rs.getInt(MEDICAL_DISPATCHES_ID), TypeOfDispatch.HAZMAT_TEAM, rs.getInt(MEDICAL_DISPATCHES_DOME_ID), rs.getDate(MEDICAL_DISPATCHES_DATE).toString(), rs.getDouble(MEDICAL_DISPATCHES_LATITUDE), rs.getDouble(MEDICAL_DISPATCHES_LONGITUDE), new Dome(rs.getInt(DOMES_ID), rs.getString(DOMES_DOMENAME), rs.getDouble(DOMES_LATITUDE), rs.getDouble(DOMES_LONGITUDE), rs.getDouble(DOMES_SURFACE))));
+                            break;
+                        case "LIFEGUARD":
+                            medicalDispatches.add(new MedicalDispatch(rs.getInt(MEDICAL_DISPATCHES_ID), TypeOfDispatch.LIFEGUARD, rs.getInt(MEDICAL_DISPATCHES_DOME_ID), rs.getDate(MEDICAL_DISPATCHES_DATE).toString(), rs.getDouble(MEDICAL_DISPATCHES_LATITUDE), rs.getDouble(MEDICAL_DISPATCHES_LONGITUDE), new Dome(rs.getInt(DOMES_ID), rs.getString(DOMES_DOMENAME), rs.getDouble(DOMES_LATITUDE), rs.getDouble(DOMES_LONGITUDE), rs.getDouble(DOMES_SURFACE))));
+                            break;
+                        case "MEDICAL_HELICOPTER":
+                            medicalDispatches.add(new MedicalDispatch(rs.getInt(MEDICAL_DISPATCHES_ID), TypeOfDispatch.MEDICAL_HELICOPTER, rs.getInt(MEDICAL_DISPATCHES_DOME_ID), rs.getDate(MEDICAL_DISPATCHES_DATE).toString(), rs.getDouble(MEDICAL_DISPATCHES_LATITUDE), rs.getDouble(MEDICAL_DISPATCHES_LONGITUDE), new Dome(rs.getInt(DOMES_ID), rs.getString(DOMES_DOMENAME), rs.getDouble(DOMES_LATITUDE), rs.getDouble(DOMES_LONGITUDE), rs.getDouble(DOMES_SURFACE))));
+                            break;
+                        case "SEARCH_AND_RESCUE":
+                            medicalDispatches.add(new MedicalDispatch(rs.getInt(MEDICAL_DISPATCHES_ID), TypeOfDispatch.SEARCH_AND_RESCUE, rs.getInt(MEDICAL_DISPATCHES_DOME_ID), rs.getDate(MEDICAL_DISPATCHES_DATE).toString(), rs.getDouble(MEDICAL_DISPATCHES_LATITUDE), rs.getDouble(MEDICAL_DISPATCHES_LONGITUDE), new Dome(rs.getInt(DOMES_ID), rs.getString(DOMES_DOMENAME), rs.getDouble(DOMES_LATITUDE), rs.getDouble(DOMES_LONGITUDE), rs.getDouble(DOMES_SURFACE))));
+                            break;
+                        case "TOXICOLOGY_TEAM":
+                            medicalDispatches.add(new MedicalDispatch(rs.getInt(MEDICAL_DISPATCHES_ID), TypeOfDispatch.TOXICOLOGY_TEAM, rs.getInt(MEDICAL_DISPATCHES_DOME_ID), rs.getDate(MEDICAL_DISPATCHES_DATE).toString(), rs.getDouble(MEDICAL_DISPATCHES_LATITUDE), rs.getDouble(MEDICAL_DISPATCHES_LONGITUDE), new Dome(rs.getInt(DOMES_ID), rs.getString(DOMES_DOMENAME), rs.getDouble(DOMES_LATITUDE), rs.getDouble(DOMES_LONGITUDE), rs.getDouble(DOMES_SURFACE))));
+                            break;
+                        case "POLICE":
+                            medicalDispatches.add(new MedicalDispatch(rs.getInt(MEDICAL_DISPATCHES_ID), TypeOfDispatch.POLICE, rs.getInt(MEDICAL_DISPATCHES_DOME_ID), rs.getDate(MEDICAL_DISPATCHES_DATE).toString(), rs.getDouble(MEDICAL_DISPATCHES_LATITUDE), rs.getDouble(MEDICAL_DISPATCHES_LONGITUDE), new Dome(rs.getInt(DOMES_ID), rs.getString(DOMES_DOMENAME), rs.getDouble(DOMES_LATITUDE), rs.getDouble(DOMES_LONGITUDE), rs.getDouble(DOMES_SURFACE))));
+                            break;
+                        default:
+                            LOGGER.log(Level.WARNING, "Unknown type of dispatch: " + type);
+                            break;
+                    }
+                }
+                return medicalDispatches;
+            }
+        } catch (SQLException ex) {
+            LOGGER.log(Level.SEVERE, "Failed to get medical dispatches.", ex);
+            throw new RepositoryException("Could not get medical dispatches.");
         }
     }
 }

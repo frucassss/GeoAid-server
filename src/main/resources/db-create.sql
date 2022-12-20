@@ -75,9 +75,9 @@ create table population
     colony varchar(255)
 );
 
-drop table if exists medical_dispatch;
+drop table if exists medical_dispatches;
 
-create table medical_dispatch
+create table medical_dispatches
 (
     id      int auto_increment,
     date date,
