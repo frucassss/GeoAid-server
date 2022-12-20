@@ -37,9 +37,8 @@ public class MarsH2Repository {
     private static final String SQL_ALL_USERS = "select id, firstName, lastName, homeAddress, premium role from users;";
     private static final String SQL_ALL_COMPANIES = "select id, name, section, ad_effectiveness, user_id from companies;";
     private static final String SQL_COMPANY_BY_ID = "select id, name, section, ad_effectiveness, user_id from companies where user_id = ?;";
-    private static final String SQL_ALL_OXYGENLEAKS = "select id, danger_level, dome_id, date, latitude, longitude from oxygen_leaks;";
+    private static final String SQL_ALL_OXYGENLEAKS = "select * from oxygen_leaks o join domes d on o.dome_id = d.id;";
     private static final String SQL_ALL_APPOINTMENTS = "select id, date, time, topic, employee_id, expertise from appointments;";
-    private static final String DOME_ID = "dome_id";
     private static final String ID = "id";
     private static final String TOPIC = "topic";
     private static final String EXPERTISE = "expertise";
@@ -48,6 +47,16 @@ public class MarsH2Repository {
     public static final String LONGITUDE = "longitude";
     public static final String LATITUDE = "latitude";
     private static final String SQL_ALL_POPULATIONS = "select id, size, latitude, longitude, colony from population;";
+    public static final String OXYGEN_LEAKS_ID = "oxygen_leaks.id";
+    public static final String OXYGEN_LEAKS_DOME_ID = "oxygen_leaks.dome_id";
+    public static final String OXYGEN_LEAKS_DATE = "oxygen_leaks.date";
+    public static final String OXYGEN_LEAKS_LATITUDE = "oxygen_leaks.latitude";
+    public static final String OXYGEN_LEAKS_LONGITUDE = "oxygen_leaks.longitude";
+    public static final String DOMES_ID = "domes.id";
+    public static final String DOMES_DOMENAME = "domes.domename";
+    public static final String DOMES_LATITUDE = "domes.latitude";
+    public static final String DOMES_LONGITUDE = "domes.longitude";
+    public static final String DOMES_SURFACE = "domes.surface";
     private final Server dbWebConsole;
     private final String username;
     private final String password;
@@ -269,11 +278,11 @@ public class MarsH2Repository {
                 while (rs.next()) {
                     String dangerLevel = rs.getString("danger_level");
                     if (dangerLevel.equals("low")) {
-                        oxygenLeaks.add(new OxygenLeak(rs.getInt(ID), DangerLevel.LOW, rs.getInt(DOME_ID), rs.getDate("date").toString(), rs.getDouble(LATITUDE), rs.getDouble(LONGITUDE)));
+                        oxygenLeaks.add(new OxygenLeak(rs.getInt(OXYGEN_LEAKS_ID), DangerLevel.LOW, rs.getInt(OXYGEN_LEAKS_DOME_ID), rs.getDate(OXYGEN_LEAKS_DATE).toString(), rs.getDouble(OXYGEN_LEAKS_LATITUDE), rs.getDouble(OXYGEN_LEAKS_LONGITUDE), new Dome(rs.getInt(DOMES_ID), rs.getString(DOMES_DOMENAME), rs.getDouble(DOMES_LATITUDE), rs.getDouble(DOMES_LONGITUDE), rs.getDouble(DOMES_SURFACE))));
                     } else if (dangerLevel.equals("medium")) {
-                        oxygenLeaks.add(new OxygenLeak(rs.getInt(ID), DangerLevel.MEDIUM, rs.getInt(DOME_ID), rs.getDate("date").toString(), rs.getDouble(LATITUDE), rs.getDouble(LONGITUDE)));
+                        oxygenLeaks.add(new OxygenLeak(rs.getInt(OXYGEN_LEAKS_ID), DangerLevel.MEDIUM, rs.getInt(OXYGEN_LEAKS_DOME_ID), rs.getDate(OXYGEN_LEAKS_DATE).toString(), rs.getDouble(OXYGEN_LEAKS_LATITUDE), rs.getDouble(OXYGEN_LEAKS_LONGITUDE),  new Dome(rs.getInt(DOMES_ID), rs.getString(DOMES_DOMENAME), rs.getDouble(DOMES_LATITUDE), rs.getDouble(DOMES_LONGITUDE), rs.getDouble(DOMES_SURFACE))));
                     } else if (dangerLevel.equals("high")) {
-                        oxygenLeaks.add(new OxygenLeak(rs.getInt(ID), DangerLevel.HIGH, rs.getInt(DOME_ID), rs.getDate("date").toString(), rs.getDouble(LATITUDE), rs.getDouble(LONGITUDE)));
+                        oxygenLeaks.add(new OxygenLeak(rs.getInt(OXYGEN_LEAKS_ID), DangerLevel.HIGH, rs.getInt(OXYGEN_LEAKS_DOME_ID), rs.getDate(OXYGEN_LEAKS_DATE).toString(), rs.getDouble(OXYGEN_LEAKS_LATITUDE), rs.getDouble(OXYGEN_LEAKS_LONGITUDE),  new Dome(rs.getInt(DOMES_ID), rs.getString(DOMES_DOMENAME), rs.getDouble(DOMES_LATITUDE), rs.getDouble(DOMES_LONGITUDE), rs.getDouble(DOMES_SURFACE))));
                     }
                 }
                 return oxygenLeaks;

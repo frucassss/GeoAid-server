@@ -1,6 +1,7 @@
 package be.howest.ti.mars.logic.controller;
 
 import be.howest.ti.mars.logic.domain.*;
+import be.howest.ti.mars.logic.domain.statistics.Appointment;
 import be.howest.ti.mars.logic.domain.statistics.OxygenLeak;
 import be.howest.ti.mars.logic.domain.statistics.Population;
 import be.howest.ti.mars.logic.util.Colony;
@@ -66,14 +67,14 @@ public class MockMarsController implements MarsController {
 
     @Override
     public List<OxygenLeak> getOxygenLeaks() {
+        double surface = 40.3;
         List<OxygenLeak> oxygenLeaks = List.of(
-                new OxygenLeak(1, DangerLevel.HIGH,1, "2022-01-01", 2.0, 3.2),
-                new OxygenLeak(2, DangerLevel.MEDIUM,2, "2022-01-01", 6.366, 78.3214),
-                new OxygenLeak(3, DangerLevel.LOW,3, "2022-01-01", -63.666, 47.635)
+                new OxygenLeak(1, DangerLevel.HIGH,1, "2022-01-01", 2.0, 3.2, new Dome(1, "Dome 1", 1.0, 1.0, surface)),
+                new OxygenLeak(2, DangerLevel.MEDIUM,2, "2022-01-01", 6.366, 78.3214, new Dome(1, "Dome 1", 1.0, 1.0, surface)),
+                new OxygenLeak(3, DangerLevel.LOW,3, "2022-01-01", -63.666, 47.635, new Dome(1, "Dome 1", 1.0, 1.0, surface))
         );
         return oxygenLeaks;
     }
-
     @Override
     public List<Appointment> getAppointments() {
         List<Appointment> appointments = List.of(
