@@ -71,8 +71,3 @@ insert into appointments values (4, '2022-01-01', '16:00:00', 'Meeting with the 
 insert into appointments values (5, '2022-01-01', '17:00:00', 'Meeting with the CIO', 1, 'CIO');
 insert into appointments values (6, '2022-01-01', '18:00:00', 'Meeting with the CDO', 1, 'CDO');
 
-insert into medical_dispatches values (0, '2022-01-01', 5, -23.88830978488233, -69.10460472106935, 'AMBULANCE');
-insert into medical_dispatches values (1, '2022-01-01', 5, -23.87351580987326, -69.10254478454591, 'POLICE');
-insert into medical_dispatches values (2, '2022-01-01', 5, -23.876341315056486, -69.12589073181154, 'FIRE_DEPARTMENT');
-insert into medical_dispatches values (3, '2022-01-01', 5, -23.892979149921235, -69.12855148315431, 'AMBULANCE');
-insert into medical_dispatches values (4, '2022-01-01', 5, -23.88830978488233, -69.10460472106935, 'POLICE');
