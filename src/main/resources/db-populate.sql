@@ -8,21 +8,21 @@ INSERT INTO users VALUES (2, 'John', 'Smith', '123 Main Street', 'company');
 INSERT INTO users VALUES (3, 'Jane', 'Smith', '123 Main Street', 'standard');
 
 //domes
-insert into domes values (0, 'Lyneaut With Stofi', -23.88830978488233, -69.10460472106935, 11114567898.324);
+insert into domes values (0, 'Stofi', -23.88830978488233, -69.10460472106935, 11114567898.324);
 insert into domes values (1, 'Vizes', -26.89251580987326, -67.10254478454591, 11114567898.324);
-insert into domes values (2, 'Kurspa-In-Belgeewich', -29.878641315056486, -62.12589073181154, 11114567898.324);
-insert into domes values (3, 'Ceumi Castle', -24.897979149921235, -67.12855148315431, 11114567898.324);
-insert into domes values (4, 'Kurspa', -24.876341365435415056486, -70.12589073181154, 11114567898.324);
+insert into domes values (2, 'Belgeewich', -29.878641315056486, -62.12589073181154, 11114567898.324);
+insert into domes values (3, 'Castelia', -24.897979149921235, -67.12855148315431, 11114567898.324);
+insert into domes values (4, 'Schiaparelli', -24.876341365435415056486, -70.12589073181154, 11114567898.324);
 insert into domes values (5, 'Ceumi', -22.892979149921235, -67.12855148315431, 11114567898.852);
-insert into domes values (7, 'Ceumi Castle', -20.892979149921235, -66.12855148315431, 11114567898.852);
-insert into domes values (8, 'Kurspa', -25.876341315056488, -67.12589073181154, 11114567898.324);
-insert into domes values (9, 'Ceumi', -24.892979149921235, -66.13215687431, 11114567898.852);
-insert into domes values (12, 'Bbabylon 5', -26.876341315056586, -666.12589073181154, 11114567898.324);
-insert into domes values (13, 'Chryse', -20.892979149921335, -64.12855148315431, 1114567898.324);
-insert into domes values (14, 'Delphi', -28.876341315156486, -65.12589073181154, 1114567898.324);
-insert into domes values (15, 'DELTA Quadrant', -25.892979149922235, -69.12855148315431, 1114567898.324);
-insert into domes values (16, 'DELTA Vega', -23.876341325056486, -68.12589073181154, 1114567898.324);
-insert into domes values (17, 'Cyndonia', -22.892979148921235, -67.12855148315431, 21114567898.324);
+insert into domes values (6, 'Birmingham', -20.892979149921235, -66.12855148315431, 11114567898.852);
+insert into domes values (7, 'Kurspa', -25.876341315056488, -67.12589073181154, 11114567898.324);
+insert into domes values (8, 'Digeste', -24.892979149921235, -66.13215687431, 11114567898.852);
+insert into domes values (9, 'Ckal', -26.876341315056586, -666.12589073181154, 11114567898.324);
+insert into domes values (10, 'Chryse', -20.892979149921335, -64.12855148315431, 1114567898.324);
+insert into domes values (11, 'Delphi', -28.876341315156486, -65.12589073181154, 1114567898.324);
+insert into domes values (12, 'DELTA Quadrant', -25.892979149922235, -69.12855148315431, 1114567898.324);
+insert into domes values (13, 'DELTA Vega', -23.876341325056486, -68.12589073181154, 1114567898.324);
+insert into domes values (14, 'Cyndonia', -22.892979148921235, -67.12855148315431, 21114567898.324);
 
 //companies
 insert into companies values (0, 'Coca Cola', 'Food', 0.5, 1);
@@ -95,96 +95,96 @@ insert into oxygen_leaks values (33, 'low', 5, '2022-11-01', -22.892979149932235
 insert into oxygen_leaks values (34, 'medium', 5, '2021-11-05', -22.892979124921235, -67.11855148315431);
 insert into oxygen_leaks values (35, 'high', 5, '2023-02-11', -22.892979149531235, -67.12855148315431);
 
-insert into oxygen_leaks values (42, 'low', 7, '2022-09-01', -20.892979149923235, -66.14855148315431);
-insert into oxygen_leaks values (43, 'medium', 7, '2021-10-05', -20.892979145921235, -66.13855148315431);
-insert into oxygen_leaks values (44, 'medium', 7, '2023-12-11', -20.8929791499641235, -66.12855148315431);
+insert into oxygen_leaks values (42, 'low', 6, '2022-09-01', -20.892979149923235, -66.14855148315431);
+insert into oxygen_leaks values (43, 'medium', 6, '2021-10-05', -20.892979145921235, -66.13855148315431);
+insert into oxygen_leaks values (44, 'medium', 6, '2023-12-11', -20.8929791499641235, -66.12855148315431);
 
-insert into oxygen_leaks values (45, 'low', 7, '2022-01-01', -20.892979149922335, -66.07855148315431);
+insert into oxygen_leaks values (45, 'low', 6, '2022-01-01', -20.892979149922335, -66.07855148315431);
 
-insert into oxygen_leaks values (47, 'high', 7, '2023-02-13', -20.8925379149921235, -66.09855148315431);
+insert into oxygen_leaks values (47, 'high', 6, '2023-02-13', -20.8925379149921235, -66.09855148315431);
 
-insert into oxygen_leaks values (48, 'medium', 8, '2022-01-01', -25.876323315056488, -67.08589073181154);
-insert into oxygen_leaks values (49, 'medium', 8, '2021-11-05', -25.8764341315056488, -67.13589073181154);
-insert into oxygen_leaks values (50, 'high', 8, '2023-02-11', -25.876354315056488, -67.12589073181154);
+insert into oxygen_leaks values (48, 'medium', 7, '2022-01-01', -25.876323315056488, -67.08589073181154);
+insert into oxygen_leaks values (49, 'medium', 7, '2021-11-05', -25.8764341315056488, -67.13589073181154);
+insert into oxygen_leaks values (50, 'high', 7, '2023-02-11', -25.876354315056488, -67.12589073181154);
 
-insert into oxygen_leaks values (51, 'low', 8, '2022-11-01', -25.876342315056488, -67.12589073181154);
-insert into oxygen_leaks values (52, 'medium', 8, '2020-11-05', -25.873441315056488, -67.12589073181154);
-insert into oxygen_leaks values (53, 'low', 8, '2023-05-11', -25.876334315056488, -67.12589073181154);
+insert into oxygen_leaks values (51, 'low', 7, '2022-11-01', -25.876342315056488, -67.12589073181154);
+insert into oxygen_leaks values (52, 'medium', 7, '2020-11-05', -25.873441315056488, -67.12589073181154);
+insert into oxygen_leaks values (53, 'low', 7, '2023-05-11', -25.876334315056488, -67.12589073181154);
 
-insert into oxygen_leaks values (54, 'high', 9, '2022-01-01', -24.892973449921235, -66.14215687431);
+insert into oxygen_leaks values (54, 'high', 8, '2022-01-01', -24.892973449921235, -66.14215687431);
 
-insert into oxygen_leaks values (56, 'high', 9, '2023-06-11', -24.892932149921235, -66.13215687431);
+insert into oxygen_leaks values (56, 'high', 8, '2023-06-11', -24.892932149921235, -66.13215687431);
 
-insert into oxygen_leaks values (57, 'low', 9, '2022-06-01', -24.892972449921235, -66.13215687431);
-insert into oxygen_leaks values (58, 'medium', 9, '2021-11-05', -24.892479149921235, -66.13215687431);
-insert into oxygen_leaks values (59, 'high', 9, '2023-06-11', -24.892924149921235, -66.13215687431);
+insert into oxygen_leaks values (57, 'low', 8, '2022-06-01', -24.892972449921235, -66.13215687431);
+insert into oxygen_leaks values (58, 'medium', 8, '2021-11-05', -24.892479149921235, -66.13215687431);
+insert into oxygen_leaks values (59, 'high', 8, '2023-06-11', -24.892924149921235, -66.13215687431);
 
-insert into oxygen_leaks values (72, 'low', 12, '2021-01-01', -26.876353315056586, -66.13589073181154);
-insert into oxygen_leaks values (73, 'low', 12, '2021-09-05', -26.87244341315056586, -66.09589073181154);
-insert into oxygen_leaks values (74, 'high', 12, '2023-02-11', -26.876342415056586, -66.11589073181154);
+insert into oxygen_leaks values (72, 'low', 9, '2021-01-01', -26.876353315056586, -66.13589073181154);
+insert into oxygen_leaks values (73, 'low', 9, '2021-09-05', -26.87244341315056586, -66.09589073181154);
+insert into oxygen_leaks values (74, 'high', 9, '2023-02-11', -26.876342415056586, -66.11589073181154);
 
-insert into oxygen_leaks values (75, 'high', 12, '2022-01-09', -26.876341645056586, -66.12589073181154);
-insert into oxygen_leaks values (76, 'medium', 12, '2021-11-05', -26.876251315056586, -66.12589073181154);
-insert into oxygen_leaks values (77, 'high', 12, '2023-02-11', -26.876346415056586, -66.12589073181154);
+insert into oxygen_leaks values (75, 'high', 9, '2022-01-09', -26.876341645056586, -66.12589073181154);
+insert into oxygen_leaks values (76, 'medium', 9, '2021-11-05', -26.876251315056586, -66.12589073181154);
+insert into oxygen_leaks values (77, 'high', 9, '2023-02-11', -26.876346415056586, -66.12589073181154);
 
-insert into oxygen_leaks values (78, 'medium', 13, '2022-01-01', -20.8929796439921335, -64.13855148315431);
+insert into oxygen_leaks values (78, 'medium', 10, '2022-01-01', -20.8929796439921335, -64.13855148315431);
 
-insert into oxygen_leaks values (80, 'high', 13, '2023-02-11', -20.8929792349921335, -64.10855148315431);
+insert into oxygen_leaks values (80, 'high', 10, '2023-02-11', -20.8929792349921335, -64.10855148315431);
 
-insert into oxygen_leaks values (81, 'low', 13, '2022-01-01', -20.8929791464321335, -64.162855148315431);
-insert into oxygen_leaks values (82, 'medium', 13, '2021-10-05', -20.892979249921335, -64.0312855148315431);
-insert into oxygen_leaks values (83, 'medium', 13, '2023-02-11', -20.892979142221335, -64.10855148315431);
+insert into oxygen_leaks values (81, 'low', 10, '2022-01-01', -20.8929791464321335, -64.162855148315431);
+insert into oxygen_leaks values (82, 'medium', 10, '2021-10-05', -20.892979249921335, -64.0312855148315431);
+insert into oxygen_leaks values (83, 'medium', 10, '2023-02-11', -20.892979142221335, -64.10855148315431);
 
-insert into oxygen_leaks values (84, 'low', 14, '2022-01-01', -28.8763413155436486, -65.10589073181154);
-insert into oxygen_leaks values (85, 'medium', 14, '2021-11-05', -28.876341364156486, -65.06589073181154);
+insert into oxygen_leaks values (84, 'low', 11, '2022-01-01', -28.8763413155436486, -65.10589073181154);
+insert into oxygen_leaks values (85, 'medium', 11, '2021-11-05', -28.876341364156486, -65.06589073181154);
 ;
 
-insert into oxygen_leaks values (87, 'low', 14, '2022-01-01', -28.876341315143486, -65.12589073181154);
-insert into oxygen_leaks values (88, 'medium', 14, '2021-11-05', -28.876341324156486, -65.12589073181154);
-insert into oxygen_leaks values (89, 'medium', 14, '2023-07-11', -28.876341315246486, -65.12589073181154);
+insert into oxygen_leaks values (87, 'low', 11, '2022-01-01', -28.876341315143486, -65.12589073181154);
+insert into oxygen_leaks values (88, 'medium', 11, '2021-11-05', -28.876341324156486, -65.12589073181154);
+insert into oxygen_leaks values (89, 'medium', 11, '2023-07-11', -28.876341315246486, -65.12589073181154);
 
-insert into oxygen_leaks values (90, 'low', 15, '2022-01-01', -25.892979149953235, -69.12855148315431);
-insert into oxygen_leaks values (91, 'medium', 15, '2021-11-05', -25.892979123922235, -69.12855148315431);
-insert into oxygen_leaks values (92, 'low', 15, '2023-02-11', -25.824979149922235, -69.12855148315431);
+insert into oxygen_leaks values (90, 'low', 12, '2022-01-01', -25.892979149953235, -69.12855148315431);
+insert into oxygen_leaks values (91, 'medium', 12, '2021-11-05', -25.892979123922235, -69.12855148315431);
+insert into oxygen_leaks values (92, 'low', 12, '2023-02-11', -25.824979149922235, -69.12855148315431);
 
-insert into oxygen_leaks values (93, 'low', 15, '2022-11-01', -25.895579149922235, -69.12855148315431);
-insert into oxygen_leaks values (94, 'medium', 15, '2021-11-05', -25.855979149922235, -69.12855148315431);
-insert into oxygen_leaks values (95, 'high', 15, '2023-02-11', -25.863979149922235, -69.12855148315431);
+insert into oxygen_leaks values (93, 'low', 12, '2022-11-01', -25.895579149922235, -69.12855148315431);
+insert into oxygen_leaks values (94, 'medium', 12, '2021-11-05', -25.855979149922235, -69.12855148315431);
+insert into oxygen_leaks values (95, 'high', 12, '2023-02-11', -25.863979149922235, -69.12855148315431);
 
-insert into oxygen_leaks values (96, 'low', 16, '2022-01-01', -23.8766491325056486, -68.12582073181154);
-insert into oxygen_leaks values (97, 'high', 16, '2021-11-05', -23.8764341325056486, -68.12689073181154);
+insert into oxygen_leaks values (96, 'low', 13, '2022-01-01', -23.8766491325056486, -68.12582073181154);
+insert into oxygen_leaks values (97, 'high', 13, '2021-11-05', -23.8764341325056486, -68.12689073181154);
 
 
-insert into oxygen_leaks values (99, 'low', 16, '2022-01-01', -23.8767761325059486, -68.12589073181454);
-insert into oxygen_leaks values (100, 'medium', 16, '2021-11-05', -23.8766781325056486, -68.12589273181154);
-insert into oxygen_leaks values (101, 'high', 16, '2023-02-11', -23.8763965325056486, -68.12589273181154);
+insert into oxygen_leaks values (99, 'low', 13, '2022-01-01', -23.8767761325059486, -68.12589073181454);
+insert into oxygen_leaks values (100, 'medium', 13, '2021-11-05', -23.8766781325056486, -68.12589273181154);
+insert into oxygen_leaks values (101, 'high', 13, '2023-02-11', -23.8763965325056486, -68.12589273181154);
 
-insert into oxygen_leaks values (102, 'low', 17, '2022-01-01', -22.892964148921235, -67.12855148315431);
+insert into oxygen_leaks values (102, 'low', 14, '2022-01-01', -22.892964148921235, -67.12855148315431);
 
-insert into oxygen_leaks values (104, 'low', 17, '2023-02-11', -22.892963148921235, -67.12855148315431);
+insert into oxygen_leaks values (104, 'low', 14, '2023-02-11', -22.892963148921235, -67.12855148315431);
 
-insert into oxygen_leaks values (105, 'medium', 17, '2022-04-01', -22.892974348921235, -67.12855148315431);
-insert into oxygen_leaks values (106, 'medium', 17, '2021-11-05', -22.8973479148921235, -67.12855148315431);
-insert into oxygen_leaks values (107, 'high', 17, '2023-02-11', -22.892977448921235, -67.12855148315431);
+insert into oxygen_leaks values (105, 'medium', 14, '2022-04-01', -22.892974348921235, -67.12855148315431);
+insert into oxygen_leaks values (106, 'medium', 14, '2021-11-05', -22.8973479148921235, -67.12855148315431);
+insert into oxygen_leaks values (107, 'high', 14, '2023-02-11', -22.892977448921235, -67.12855148315431);
 
 
 
 //population
-insert into population values (0, 100,1, -23.81830978488233, -69.12460472106935, 'MINE');
+insert into population values (0, 100,0, -23.81830978488233, -69.12460472106935, 'MINE');
 insert into population values (1, 120,1, -26.79251580987326, -67.14254478454591, 'COLONY');
-insert into population values (2, 160,3, -29.778641315056486, -62.12589073181154, 'SURFACE');
-insert into population values (3, 150,4, -24.837979149921235, -67.11855148315431, 'MINE');
-insert into population values (4, 90,9, -24.826341365435415056486, -70.15589073181154, 'COLONY');
-insert into population values (5, 110,4, -22.812979149921235, -67.11855148315431, 'SURFACE');
-insert into population values (6, 160,10, -20.872979149921235, -66.14855148315431, 'MINE');
+insert into population values (2, 160,2, -29.778641315056486, -62.12589073181154, 'SURFACE');
+insert into population values (3, 150,3, -24.837979149921235, -67.11855148315431, 'MINE');
+insert into population values (4, 90,4, -24.826341365435415056486, -70.15589073181154, 'COLONY');
+insert into population values (5, 110,5, -22.812979149921235, -67.11855148315431, 'SURFACE');
+insert into population values (6, 160,6, -20.872979149921235, -66.14855148315431, 'MINE');
 insert into population values (7, 80,7, -25.816341315056488, -67.12589073181154, 'COLONY');
-insert into population values (8, 90,11, -24.992979149921235, -66.13215687431, 'SURFACE');
-insert into population values (9, 120,13, -26.836341315056586, -666.12589073181154, 'MINE');
-insert into population values (10, 130,16, -20.792979149921335, -64.09855148315431, 'COLONY');
-insert into population values (11, 140,9, -28.872341315156486, -65.12589073181154, 'SURFACE');
-insert into population values (12, 90,8, -25.792979149922235, -69.092855148315431, 'MINE');
-insert into population values (13, 150,5, -23.8266491325056486, -68.082582073181154, 'COLONY');
-insert into population values (14, 120,6, -22.812964148921235, -67.12855148315431, 'SURFACE');
+insert into population values (8, 90,8, -24.992979149921235, -66.13215687431, 'SURFACE');
+insert into population values (9, 120,9, -26.836341315056586, -666.12589073181154, 'MINE');
+insert into population values (10, 130,10, -20.792979149921335, -64.09855148315431, 'COLONY');
+insert into population values (11, 140,11, -28.872341315156486, -65.12589073181154, 'SURFACE');
+insert into population values (12, 90,12, -25.792979149922235, -69.092855148315431, 'MINE');
+insert into population values (13, 150,13, -23.8266491325056486, -68.082582073181154, 'COLONY');
+insert into population values (14, 120,14, -22.812964148921235, -67.12855148315431, 'SURFACE');
 
 
 
