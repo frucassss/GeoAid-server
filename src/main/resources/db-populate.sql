@@ -195,19 +195,22 @@ insert into appointments values (1, '2022-01-01', '13:00:00', 'Meeting with the 
 
 
 //medical dispatches
-insert into medical_dispatches values (0, '2022-01-01', 5, -23.88830978488233, -69.10460472106935, 'AMBULANCE');
-insert into medical_dispatches values (1, '2022-01-01', 5, -23.87351580987326, -69.10254478454591, 'POLICE');
-insert into medical_dispatches values (2, '2022-01-01', 5, -23.876341315056486, -69.12589073181154, 'FIRE_DEPARTMENT');
-insert into medical_dispatches values (3, '2022-01-01', 5, -23.892979149921235, -69.12855148315431, 'AMBULANCE');
-insert into medical_dispatches values (4, '2022-01-01', 5, -23.88830978488233, -69.10460472106935, 'POLICE');
+insert into medical_dispatches values (0, '2022-03-01', 0, -23.88830978488233, -69.10460472106935, 'AMBULANCE');
+insert into medical_dispatches values (1, '2022-01-21', 3, -23.87351580987326, -69.10254478454591, 'POLICE');
+insert into medical_dispatches values (2, '2021-01-01', 6, -23.876341315056486, -69.12589073181154, 'FIRE_DEPARTMENT');
+insert into medical_dispatches values (3, '2022-09-01', 9, -23.892979149921235, -69.12855148315431, 'AMBULANCE');
+insert into medical_dispatches values (4, '2023-01-01', 12, -23.88830978488233, -69.10460472106935, 'POLICE');
 
 //meteor showers
-insert into meteor_showers values (0, '2022-01-01', 1, -23.88830978488233, -69.10460472106935, 'MEDIUM');
-insert into meteor_showers values (1, '2022-01-01', 6, -23.87351580987326, -69.10254478454591, 'LOW');
-insert into meteor_showers values (2, '2022-01-01', 12, -23.876341315056486, -69.12589073181154, 'HIGH');
-insert into meteor_showers values (3, '2022-01-01', 7, -23.892979149921235, -69.12855148315431, 'MEDIUM');
+insert into meteor_showers values (0, '2021-01-01', 1, -22.88830978488233, -69.10460472106935, 'MEDIUM');
+insert into meteor_showers values (1, '2022-09-09', 4, -24.87351580987326, -69.10254478454591, 'LOW');
+insert into meteor_showers values (2, '2021-06-01', 7, -23.876341315056486, -68.12589073181154, 'HIGH');
+insert into meteor_showers values (3, '2022-06-01', 10, -22.892979149921235, -68.12855148315431, 'MEDIUM');
+insert into meteor_showers values (4, '2022-01-01', 13, -23.88830978488233, -69.10460472106935, 'LOW');
 
 //dust storms
-insert into dust_storms values (0, '2022-01-01', 1, -23.88830978488233, -69.10460472106935, 'MEDIUM');
-insert into dust_storms values (1, '2022-01-01', 6, -23.87351580987326, -69.10254478454591, 'LOW');
-insert into dust_storms values (2, '2022-01-01', 2, -23.876341315056486, -69.12589073181154, 'HIGH');
+insert into dust_storms values (0, '2021-10-11', 2, -23.88830978488233, -69.10460472106935, 'MEDIUM');
+insert into dust_storms values (1, '2022-11-11', 5, -23.87351580987326, -69.10254478454591, 'LOW');
+insert into dust_storms values (2, '2021-11-10', 8, -23.876341315056486, -69.12589073181154, 'HIGH');
+insert into dust_storms values (3, '2022-05-01', 11, -23.892979149921235, -69.12855148315431, 'MEDIUM');
+insert into dust_storms values (4, '2023-01-12', 14, -23.88830978488233, -69.10460472106935, 'LOW');
