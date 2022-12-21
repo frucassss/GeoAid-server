@@ -136,4 +136,8 @@ public class Response {
         }
         sendOkJsonResponse(routingContext, new JsonObject().put("dustStorms", dustStormJsons));
     }
+
+    public static void sendAppointmentDeleted(RoutingContext routingContext) {
+        sendEmptyResponse(routingContext, 204);
+    }
 }

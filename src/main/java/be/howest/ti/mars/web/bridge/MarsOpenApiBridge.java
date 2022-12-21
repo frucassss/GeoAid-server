@@ -71,6 +71,9 @@ public class MarsOpenApiBridge {
         LOGGER.log(Level.INFO, "Installing handler for: createAppointment");
         routerBuilder.operation("createAppointment").handler(this::createAppointment);
 
+        LOGGER.log(Level.INFO, "Installing handler for: deleteAppointment");
+        routerBuilder.operation("deleteAppointment").handler(this::deleteAppointment);
+
         LOGGER.log(Level.INFO, "Installing handler for: getPopulation");
         routerBuilder.operation("getPopulation").handler(this::getPopulation);
 
@@ -163,6 +166,14 @@ public class MarsOpenApiBridge {
         Map<String, String> appointment = Request.from(routingContext).getAppointment();
 
         Response.sendAppointmentCreated(routingContext, controller.createAppointment(appointment));
+    }
+
+    private void deleteAppointment(RoutingContext routingContext) {
+        int appointmentId = Request.from(routingContext).getAppointmentId();
+
+        controller.deleteAppointment(appointmentId);
+
+        Response.sendAppointmentDeleted(routingContext);
     }
 
     private void getPopulation(RoutingContext routingContext) {
