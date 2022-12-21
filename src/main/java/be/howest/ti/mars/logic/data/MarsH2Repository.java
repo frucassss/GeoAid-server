@@ -86,6 +86,7 @@ public class MarsH2Repository {
     public static final String DATE = "date";
     public static final String TIME = "time";
     public static final String EMPLOYEE_ID = "employee_id";
+    private static final String SQL_APPOINTMENT_BY_ID = "select * from appointments where id = ?;";
     private final Server dbWebConsole;
     private final String username;
     private final String password;
@@ -503,7 +504,7 @@ public class MarsH2Repository {
 
     public Appointment getAppointment(int appointmentId) {
         try (Connection con = getConnection()) {
-            try (PreparedStatement ps = con.prepareStatement(SQL_DELETE_APPOINTMENT)) {
+            try (PreparedStatement ps = con.prepareStatement(SQL_APPOINTMENT_BY_ID)) {
                 ps.setInt(1, appointmentId);
                 ResultSet rs = ps.executeQuery();
                 if (rs.next()) {
