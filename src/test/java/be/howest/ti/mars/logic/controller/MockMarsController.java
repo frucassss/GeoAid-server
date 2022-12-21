@@ -1,11 +1,10 @@
 package be.howest.ti.mars.logic.controller;
 
 import be.howest.ti.mars.logic.domain.*;
-import be.howest.ti.mars.logic.domain.statistics.Appointment;
-import be.howest.ti.mars.logic.domain.statistics.MedicalDispatch;
-import be.howest.ti.mars.logic.domain.statistics.OxygenLeak;
-import be.howest.ti.mars.logic.domain.statistics.Population;
+import be.howest.ti.mars.logic.domain.Appointment;
+import be.howest.ti.mars.logic.domain.statistics.*;
 import be.howest.ti.mars.logic.util.Colony;
+import be.howest.ti.mars.logic.util.DamageLevel;
 import be.howest.ti.mars.logic.util.DangerLevel;
 import be.howest.ti.mars.logic.util.TypeOfDispatch;
 
@@ -121,6 +120,30 @@ public class MockMarsController implements MarsController {
                 new MedicalDispatch(5, TypeOfDispatch.POLICE, domeId, "2022-01-01", 6.366, 78.3214, dome)
         );
         return medicalDispatches;
+    }
+
+    @Override
+    public List<MeteorShower> getMeteorShowers() {
+        int domeId = 1;
+        Dome dome = new Dome(domeId, "Dome 1", 1.0, 1.0, 40.3);
+        List<MeteorShower> meteorShowers = List.of(
+                new MeteorShower(1,domeId, DamageLevel.LOW, "2022-12-12", 3.2,2.0, dome),
+                new MeteorShower(2,domeId, DamageLevel.MEDIUM, "2022-12-12", 3.2,2.0, dome),
+                new MeteorShower(3,domeId, DamageLevel.HIGH, "2022-12-12", 3.2,2.0, dome)
+        );
+        return meteorShowers;
+    }
+
+    @Override
+    public List<DustStorm> getDustStorms() {
+        int domeId = 1;
+        Dome dome = new Dome(domeId, "Dome 1", 1.0, 1.0, 40.3);
+        List<DustStorm> dustStorms = List.of(
+                new DustStorm(1,domeId, DamageLevel.LOW, "2022-12-12", 3.2,2.0, dome),
+                new DustStorm(2,domeId, DamageLevel.MEDIUM, "2022-12-12", 3.2,2.0, dome),
+                new DustStorm(3,domeId, DamageLevel.HIGH, "2022-12-12", 3.2,2.0, dome)
+        );
+        return dustStorms;
     }
 
 }

@@ -4,6 +4,7 @@ import be.howest.ti.mars.logic.domain.*;
 import be.howest.ti.mars.logic.domain.statistics.*;
 import be.howest.ti.mars.logic.exceptions.RepositoryException;
 import be.howest.ti.mars.logic.util.Colony;
+import be.howest.ti.mars.logic.util.DamageLevel;
 import be.howest.ti.mars.logic.util.DangerLevel;
 import be.howest.ti.mars.logic.util.TypeOfDispatch;
 import org.h2.tools.Server;
@@ -69,6 +70,18 @@ public class MarsH2Repository {
     private static final String MEDICAL_DISPATCHES_LATITUDE = "medical_dispatches.latitude";
     private static final String MEDICAL_DISPATCHES_LONGITUDE = "medical_dispatches.longitude";
     public static final String MEDICAL_DISPATCHES_DATE = "medical_dispatches.date";
+    private static final String SQL_ALL_METEOR_SHOWERS = "select * from meteor_showers m join domes d on m.dome_id = d.id;";
+    private static final String METEOR_SHOWERS_ID = "meteor_showers.id";
+    private static final String METEOR_SHOWERS_DOME_ID = "meteor_showers.dome_id";
+    private static final String  METEOR_SHOWERS_DATE = "meteor_showers.date";
+    private static final String METEOR_SHOWERS_LONGITUDE = "meteor_showers.longitude";
+    private static final String METEOR_SHOWERS_LATITUDE = "meteor_showers.latitude";
+    private static final String SQL_ALL_DUST_STORMS = "select * from dust_storms d join domes dom on d.dome_id = dom.id;";
+    private static final String DUST_STORMS_ID = "dust_storms.id";
+    private static final String DUST_STORMS_DOME_ID = "dust_storms.dome_id";
+    private static final String DUST_STORMS_DATE = "dust_storms.date";
+    private static final String DUST_STORMS_LONGITUDE = "dust_storms.longitude";
+    private static final String DUST_STORMS_LATITUDE = "dust_storms.latitude";
     private final Server dbWebConsole;
     private final String username;
     private final String password;
@@ -412,7 +425,7 @@ public class MarsH2Repository {
                             medicalDispatches.add(new MedicalDispatch(rs.getInt(MEDICAL_DISPATCHES_ID), TypeOfDispatch.POLICE, rs.getInt(MEDICAL_DISPATCHES_DOME_ID), rs.getDate(MEDICAL_DISPATCHES_DATE).toString(), rs.getDouble(MEDICAL_DISPATCHES_LATITUDE), rs.getDouble(MEDICAL_DISPATCHES_LONGITUDE), new Dome(rs.getInt(DOMES_ID), rs.getString(DOMES_DOMENAME), rs.getDouble(DOMES_LATITUDE), rs.getDouble(DOMES_LONGITUDE), rs.getDouble(DOMES_SURFACE))));
                             break;
                         default:
-                            LOGGER.log(Level.WARNING, "Unknown type of dispatch: " + type);
+                            LOGGER.log(Level.WARNING, String.format("Unknown type of dispatch: %s", type));
                             break;
                     }
                 }
@@ -421,6 +434,66 @@ public class MarsH2Repository {
         } catch (SQLException ex) {
             LOGGER.log(Level.SEVERE, "Failed to get medical dispatches.", ex);
             throw new RepositoryException("Could not get medical dispatches.");
+        }
+    }
+
+    public List<MeteorShower> getMeteorShowers() {
+        try (Connection con = getConnection()) {
+            try (PreparedStatement ps = con.prepareStatement(SQL_ALL_METEOR_SHOWERS)) {
+                ResultSet rs = ps.executeQuery();
+                List<MeteorShower> meteorShowers = new ArrayList<>();
+                while (rs.next()) {
+                    String type = rs.getString("meteor_showers.damage_type");
+                    switch (type){
+                        case "LOW":
+                            meteorShowers.add(new MeteorShower(rs.getInt(METEOR_SHOWERS_ID), rs.getInt(METEOR_SHOWERS_DOME_ID), DamageLevel.LOW, rs.getDate(METEOR_SHOWERS_DATE).toString(), rs.getDouble(METEOR_SHOWERS_LONGITUDE), rs.getDouble(METEOR_SHOWERS_LATITUDE), new Dome(rs.getInt(DOMES_ID), rs.getString(DOMES_DOMENAME), rs.getDouble(DOMES_LATITUDE), rs.getDouble(DOMES_LONGITUDE), rs.getDouble(DOMES_SURFACE))));
+                            break;
+                        case "MEDIUM":
+                            meteorShowers.add(new MeteorShower(rs.getInt(METEOR_SHOWERS_ID), rs.getInt(METEOR_SHOWERS_DOME_ID), DamageLevel.MEDIUM, rs.getDate(METEOR_SHOWERS_DATE).toString(), rs.getDouble(METEOR_SHOWERS_LONGITUDE), rs.getDouble(METEOR_SHOWERS_LATITUDE), new Dome(rs.getInt(DOMES_ID), rs.getString(DOMES_DOMENAME), rs.getDouble(DOMES_LATITUDE), rs.getDouble(DOMES_LONGITUDE), rs.getDouble(DOMES_SURFACE))));
+                            break;
+                        case "HIGH":
+                            meteorShowers.add(new MeteorShower(rs.getInt(METEOR_SHOWERS_ID), rs.getInt(METEOR_SHOWERS_DOME_ID), DamageLevel.HIGH, rs.getDate(METEOR_SHOWERS_DATE).toString(), rs.getDouble(METEOR_SHOWERS_LONGITUDE), rs.getDouble(METEOR_SHOWERS_LATITUDE), new Dome(rs.getInt(DOMES_ID), rs.getString(DOMES_DOMENAME), rs.getDouble(DOMES_LATITUDE), rs.getDouble(DOMES_LONGITUDE), rs.getDouble(DOMES_SURFACE))));
+                            break;
+                        default:
+                            LOGGER.log(Level.WARNING, String.format("Unknown damage level: %s", type));
+                            break;
+                    }
+                }
+                return meteorShowers;
+            }
+        } catch (SQLException ex) {
+            LOGGER.log(Level.SEVERE, "Failed to get meteor showers.", ex);
+            throw new RepositoryException("Could not get meteor showers.");
+        }
+    }
+
+    public List<DustStorm> getDustStorms() {
+        try (Connection con = getConnection()) {
+            try (PreparedStatement ps = con.prepareStatement(SQL_ALL_DUST_STORMS)) {
+                ResultSet rs = ps.executeQuery();
+                List<DustStorm> dustStorms = new ArrayList<>();
+                while (rs.next()) {
+                    String type = rs.getString("dust_storms.damage_type");
+                    switch (type){
+                        case "LOW":
+                            dustStorms.add(new DustStorm(rs.getInt(DUST_STORMS_ID), rs.getInt(DUST_STORMS_DOME_ID), DamageLevel.LOW, rs.getDate(DUST_STORMS_DATE).toString(), rs.getDouble(DUST_STORMS_LONGITUDE), rs.getDouble(DUST_STORMS_LATITUDE), new Dome(rs.getInt(DOMES_ID), rs.getString(DOMES_DOMENAME), rs.getDouble(DOMES_LATITUDE), rs.getDouble(DOMES_LONGITUDE), rs.getDouble(DOMES_SURFACE))));
+                            break;
+                        case "MEDIUM":
+                            dustStorms.add(new DustStorm(rs.getInt(DUST_STORMS_ID), rs.getInt(DUST_STORMS_DOME_ID), DamageLevel.MEDIUM, rs.getDate(DUST_STORMS_DATE).toString(), rs.getDouble(DUST_STORMS_LONGITUDE), rs.getDouble(DUST_STORMS_LATITUDE), new Dome(rs.getInt(DOMES_ID), rs.getString(DOMES_DOMENAME), rs.getDouble(DOMES_LATITUDE), rs.getDouble(DOMES_LONGITUDE), rs.getDouble(DOMES_SURFACE))));
+                            break;
+                        case "HIGH":
+                            dustStorms.add(new DustStorm(rs.getInt(DUST_STORMS_ID), rs.getInt(DUST_STORMS_DOME_ID), DamageLevel.HIGH, rs.getDate(DUST_STORMS_DATE).toString(), rs.getDouble(DUST_STORMS_LONGITUDE), rs.getDouble(DUST_STORMS_LATITUDE), new Dome(rs.getInt(DOMES_ID), rs.getString(DOMES_DOMENAME), rs.getDouble(DOMES_LATITUDE), rs.getDouble(DOMES_LONGITUDE), rs.getDouble(DOMES_SURFACE))));
+                            break;
+                        default:
+                            LOGGER.log(Level.WARNING, String.format("Unknown damage level: %s", type));
+                            break;
+                    }
+                }
+                return dustStorms;
+            }
+        } catch (SQLException ex) {
+            LOGGER.log(Level.SEVERE, "Failed to get dust storms.", ex);
+            throw new RepositoryException("Could not get dust storms.");
         }
     }
 }

@@ -4,6 +4,7 @@ import be.howest.ti.mars.logic.data.Repositories;
 import be.howest.ti.mars.logic.domain.Dome;
 import be.howest.ti.mars.logic.domain.Quote;
 import be.howest.ti.mars.logic.util.Colony;
+import be.howest.ti.mars.logic.util.DamageLevel;
 import be.howest.ti.mars.logic.util.TypeOfDispatch;
 import io.vertx.core.json.JsonObject;
 import org.apache.commons.lang3.StringUtils;
@@ -273,4 +274,35 @@ class DefaultMarsControllerTest {
         assertEquals("2022-01-01", medicalDispatches.get(3).getDate());
     }
 
+    @Test
+    void getMeteorShowers(){
+        // Arrange
+        MarsController sut = new MockMarsController();
+
+        // Act
+        var meteorShowers = sut.getMeteorShowers();
+
+        //Assert
+        assertEquals(3, meteorShowers.size());
+        assertEquals(1, meteorShowers.get(0).getId());
+        assertEquals("2022-12-12", meteorShowers.get(1).getDate());
+        assertEquals(1, meteorShowers.get(2).getDome().getId());
+        assertEquals(DamageLevel.HIGH, meteorShowers.get(2).getDamageLevel());
+    }
+
+    @Test
+    void getDustStorms(){
+        // Arrange
+        MarsController sut = new MockMarsController();
+
+        // Act
+        var dustStorms = sut.getDustStorms();
+
+        //Assert
+        assertEquals(3, dustStorms.size());
+        assertEquals(1, dustStorms.get(0).getId());
+        assertEquals("2022-12-12", dustStorms.get(1).getDate());
+        assertEquals(1, dustStorms.get(2).getDome().getId());
+        assertEquals(DamageLevel.HIGH, dustStorms.get(2).getDamageLevel());
+    }
 }
