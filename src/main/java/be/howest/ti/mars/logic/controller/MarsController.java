@@ -33,4 +33,8 @@ public interface MarsController {
     List<Population> getPopulation();
 
     List<MedicalDispatch> getMedicalDispatches();
+
+    List<MeteorShower> getMeteorShowers();
+
+    List<DustStorm> getDustStorms();
 }

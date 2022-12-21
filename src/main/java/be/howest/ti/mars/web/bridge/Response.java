@@ -120,4 +120,20 @@ public class Response {
         }
         sendOkJsonResponse(routingContext, new JsonObject().put("medicalDispatches", medicalDispatchJsons));
     }
+
+    public static void sendMeteorShowers(RoutingContext routingContext, List<MeteorShower> meteorShowers) {
+        List<JsonObject> meteorShowerJsons = new ArrayList<>();
+        for (MeteorShower meteorShower : meteorShowers) {
+            meteorShowerJsons.add(JsonObject.mapFrom(meteorShower));
+        }
+        sendOkJsonResponse(routingContext, new JsonObject().put("meteorShowers", meteorShowerJsons));
+    }
+
+    public static void sendDustStorms(RoutingContext routingContext, List<DustStorm> dustStorms) {
+        List<JsonObject> dustStormJsons = new ArrayList<>();
+        for (DustStorm dustStorm : dustStorms) {
+            dustStormJsons.add(JsonObject.mapFrom(dustStorm));
+        }
+        sendOkJsonResponse(routingContext, new JsonObject().put("dustStorms", dustStormJsons));
+    }
 }

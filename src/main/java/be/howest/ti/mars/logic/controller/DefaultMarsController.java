@@ -140,4 +140,22 @@ public class DefaultMarsController implements MarsController {
         }
         return medicalDispatches;
     }
+
+    @Override
+    public List<MeteorShower> getMeteorShowers() {
+        List<MeteorShower> meteorShowers = Repositories.getH2Repo().getMeteorShowers();
+        if (meteorShowers.isEmpty()) {
+            throw new NoSuchElementException("No meteor showers found!");
+        }
+        return meteorShowers;
+    }
+
+    @Override
+    public List<DustStorm> getDustStorms() {
+        List<DustStorm> dustStorms = Repositories.getH2Repo().getDustStorms();
+        if (dustStorms.isEmpty()) {
+            throw new NoSuchElementException("No dust storms found!");
+        }
+        return dustStorms;
+    }
 }

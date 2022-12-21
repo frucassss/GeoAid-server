@@ -412,7 +412,7 @@ public class MarsH2Repository {
                             medicalDispatches.add(new MedicalDispatch(rs.getInt(MEDICAL_DISPATCHES_ID), TypeOfDispatch.POLICE, rs.getInt(MEDICAL_DISPATCHES_DOME_ID), rs.getDate(MEDICAL_DISPATCHES_DATE).toString(), rs.getDouble(MEDICAL_DISPATCHES_LATITUDE), rs.getDouble(MEDICAL_DISPATCHES_LONGITUDE), new Dome(rs.getInt(DOMES_ID), rs.getString(DOMES_DOMENAME), rs.getDouble(DOMES_LATITUDE), rs.getDouble(DOMES_LONGITUDE), rs.getDouble(DOMES_SURFACE))));
                             break;
                         default:
-                            LOGGER.log(Level.WARNING, "Unknown type of dispatch: " + type);
+                            LOGGER.log(Level.WARNING, String.format("Unknown type of dispatch: %s", type));
                             break;
                     }
                 }
@@ -422,5 +422,13 @@ public class MarsH2Repository {
             LOGGER.log(Level.SEVERE, "Failed to get medical dispatches.", ex);
             throw new RepositoryException("Could not get medical dispatches.");
         }
+    }
+
+    public List<MeteorShower> getMeteorShowers() {
+        return null;
+    }
+
+    public List<DustStorm> getDustStorms() {
+        return null;
     }
 }

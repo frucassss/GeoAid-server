@@ -3,7 +3,7 @@ package be.howest.ti.mars.logic.domain.statistics;
 import be.howest.ti.mars.logic.domain.Dome;
 import be.howest.ti.mars.logic.util.DamageLevel;
 
-public class MeteorStorm implements Statistics {
+public class MeteorShower implements Statistics {
     private final int id;
     final int domeId;
     private final DamageLevel damageLevel;
@@ -12,7 +12,7 @@ public class MeteorStorm implements Statistics {
     private final Double latitude;
     private final Dome dome;
 
-    public MeteorStorm(int id, int domeId, DamageLevel damageLevel, String date, Double longitude, Double latitude, Dome dome) {
+    public MeteorShower(int id, int domeId, DamageLevel damageLevel, String date, Double longitude, Double latitude, Dome dome) {
         this.id = id;
         this.domeId = domeId;
         this.damageLevel = damageLevel;

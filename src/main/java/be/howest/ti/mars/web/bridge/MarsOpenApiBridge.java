@@ -77,6 +77,12 @@ public class MarsOpenApiBridge {
         LOGGER.log(Level.INFO, "Installing handler for: getMedicalDispatches");
         routerBuilder.operation("getMedicalDispatches").handler(this::getMedicalDispatches);
 
+        LOGGER.log(Level.INFO, "Installing handler for: getMeteorShowers");
+        routerBuilder.operation("getMeteorStorms").handler(this::getMeteorShowers);
+
+        LOGGER.log(Level.INFO, "Installing handler for: getDustStorms");
+        routerBuilder.operation("getDustStorms").handler(this::getDustStorms);
+
         LOGGER.log(Level.INFO, "All handlers are installed, creating router.");
         return routerBuilder.createRouter();
     }
@@ -170,6 +176,19 @@ public class MarsOpenApiBridge {
 
         Response.sendMedicalDispatches(routingContext, medicalDispatches);
     }
+
+    private void getMeteorShowers(RoutingContext routingContext) {
+        List<MeteorShower> meteorShowers = controller.getMeteorShowers();
+
+        Response.sendMeteorShowers(routingContext, meteorShowers);
+    }
+
+    private void getDustStorms(RoutingContext routingContext) {
+        List<DustStorm> dustStorms = controller.getDustStorms();
+
+        Response.sendDustStorms(routingContext, dustStorms);
+    }
+
     private void onFailedRequest(RoutingContext ctx) {
         Throwable cause = ctx.failure();
         int code = ctx.statusCode();
