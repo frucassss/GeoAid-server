@@ -1,8 +1,10 @@
 package be.howest.ti.mars.logic.controller;
 
 import be.howest.ti.mars.logic.data.Repositories;
+import be.howest.ti.mars.logic.domain.Dome;
 import be.howest.ti.mars.logic.domain.Quote;
 import be.howest.ti.mars.logic.util.Colony;
+import be.howest.ti.mars.logic.util.TypeOfDispatch;
 import io.vertx.core.json.JsonObject;
 import org.apache.commons.lang3.StringUtils;
 import org.junit.jupiter.api.BeforeAll;
@@ -253,6 +255,22 @@ class DefaultMarsControllerTest {
         assertEquals(100, population.get(2).getLatitude());
         assertEquals(-951, population.get(3).getLongitude());
         assertEquals(Colony.SPACESTATION, population.get(3).getColony());
+    }
+
+    @Test
+    void getMedicalDispatches(){
+        // Arrange
+        MarsController sut = new MockMarsController();
+
+        // Act
+        var medicalDispatches = sut.getMedicalDispatches();
+
+        //Assert
+        assertEquals(5, medicalDispatches.size());
+        assertEquals(1, medicalDispatches.get(0).getId());
+        assertEquals(TypeOfDispatch.POLICE, medicalDispatches.get(1).getDispachType());
+        assertEquals(medicalDispatches.get(1).getDome(), medicalDispatches.get(2).getDome());
+        assertEquals("2022-01-01", medicalDispatches.get(3).getDate());
     }
 
 }

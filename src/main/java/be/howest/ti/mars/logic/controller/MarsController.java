@@ -31,4 +31,6 @@ public interface MarsController {
     Appointment createAppointment(Map<String, String> appointment);
 
     List<Population> getPopulation();
+
+    List<MedicalDispatch> getMedicalDispatches();
 }

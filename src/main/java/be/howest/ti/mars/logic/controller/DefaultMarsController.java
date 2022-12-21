@@ -131,4 +131,13 @@ public class DefaultMarsController implements MarsController {
         }
         return population;
     }
+
+    @Override
+    public List<MedicalDispatch> getMedicalDispatches() {
+        List<MedicalDispatch> medicalDispatches = Repositories.getH2Repo().getMedicalDispatches();
+        if (medicalDispatches.isEmpty()) {
+            throw new NoSuchElementException("No medical dispatches found!");
+        }
+        return medicalDispatches;
+    }
 }

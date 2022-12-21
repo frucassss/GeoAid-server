@@ -170,21 +170,21 @@ insert into oxygen_leaks values (107, 'high', 17, '2023-02-11', -22.892977448921
 
 
 //population
-insert into population values (0, 100, -23.81830978488233, -69.12460472106935, 'MINE');
-insert into population values (1, 120, -26.79251580987326, -67.14254478454591, 'COLONY');
-insert into population values (2, 160, -29.778641315056486, -62.12589073181154, 'SURFACE');
-insert into population values (3, 150, -24.837979149921235, -67.11855148315431, 'MINE');
-insert into population values (4, 90, -24.826341365435415056486, -70.15589073181154, 'COLONY');
-insert into population values (5, 110, -22.812979149921235, -67.11855148315431, 'SURFACE');
-insert into population values (6, 160, -20.872979149921235, -66.14855148315431, 'MINE');
-insert into population values (7, 80, -25.816341315056488, -67.12589073181154, 'COLONY');
-insert into population values (8, 90, -24.992979149921235, -66.13215687431, 'SURFACE');
-insert into population values (9, 120, -26.836341315056586, -666.12589073181154, 'MINE');
-insert into population values (10, 130, -20.792979149921335, -64.09855148315431, 'COLONY');
-insert into population values (11, 140, -28.872341315156486, -65.12589073181154, 'SURFACE');
-insert into population values (12, 90, -25.792979149922235, -69.092855148315431, 'MINE');
-insert into population values (13, 150, -23.8266491325056486, -68.082582073181154, 'COLONY');
-insert into population values (14, 120, -22.812964148921235, -67.12855148315431, 'SURFACE');
+insert into population values (0, 100,1, -23.81830978488233, -69.12460472106935, 'MINE');
+insert into population values (1, 120,1, -26.79251580987326, -67.14254478454591, 'COLONY');
+insert into population values (2, 160,3, -29.778641315056486, -62.12589073181154, 'SURFACE');
+insert into population values (3, 150,4, -24.837979149921235, -67.11855148315431, 'MINE');
+insert into population values (4, 90,9, -24.826341365435415056486, -70.15589073181154, 'COLONY');
+insert into population values (5, 110,4, -22.812979149921235, -67.11855148315431, 'SURFACE');
+insert into population values (6, 160,10, -20.872979149921235, -66.14855148315431, 'MINE');
+insert into population values (7, 80,7, -25.816341315056488, -67.12589073181154, 'COLONY');
+insert into population values (8, 90,11, -24.992979149921235, -66.13215687431, 'SURFACE');
+insert into population values (9, 120,13, -26.836341315056586, -666.12589073181154, 'MINE');
+insert into population values (10, 130,16, -20.792979149921335, -64.09855148315431, 'COLONY');
+insert into population values (11, 140,9, -28.872341315156486, -65.12589073181154, 'SURFACE');
+insert into population values (12, 90,8, -25.792979149922235, -69.092855148315431, 'MINE');
+insert into population values (13, 150,5, -23.8266491325056486, -68.082582073181154, 'COLONY');
+insert into population values (14, 120,6, -22.812964148921235, -67.12855148315431, 'SURFACE');
 
 
 
@@ -194,3 +194,9 @@ insert into appointments values (0, '2022-01-01', '12:00:00', 'Meeting with the 
 insert into appointments values (1, '2022-01-01', '13:00:00', 'Meeting with the CTO', 1, 'CTO');
 
 
+//medical dispatches
+insert into medical_dispatches values (0, '2022-01-01', 5, -23.88830978488233, -69.10460472106935, 'AMBULANCE');
+insert into medical_dispatches values (1, '2022-01-01', 5, -23.87351580987326, -69.10254478454591, 'POLICE');
+insert into medical_dispatches values (2, '2022-01-01', 5, -23.876341315056486, -69.12589073181154, 'FIRE_DEPARTMENT');
+insert into medical_dispatches values (3, '2022-01-01', 5, -23.892979149921235, -69.12855148315431, 'AMBULANCE');
+insert into medical_dispatches values (4, '2022-01-01', 5, -23.88830978488233, -69.10460472106935, 'POLICE');
