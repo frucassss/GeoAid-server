@@ -2,10 +2,12 @@ package be.howest.ti.mars.logic.controller;
 
 import be.howest.ti.mars.logic.domain.*;
 import be.howest.ti.mars.logic.domain.statistics.Appointment;
+import be.howest.ti.mars.logic.domain.statistics.MedicalDispatch;
 import be.howest.ti.mars.logic.domain.statistics.OxygenLeak;
 import be.howest.ti.mars.logic.domain.statistics.Population;
 import be.howest.ti.mars.logic.util.Colony;
 import be.howest.ti.mars.logic.util.DangerLevel;
+import be.howest.ti.mars.logic.util.TypeOfDispatch;
 
 import java.util.List;
 import java.util.Map;
@@ -105,6 +107,20 @@ public class MockMarsController implements MarsController {
         );
         return population;
 
+    }
+
+    @Override
+    public List<MedicalDispatch> getMedicalDispatches() {
+        int domeId = 1;
+        Dome dome = new Dome(domeId, "Dome 1", 1.0, 1.0, 40.3);
+        List<MedicalDispatch> medicalDispatches = List.of(
+                new MedicalDispatch(1, TypeOfDispatch.AMBULANCE, domeId, "2022-01-01", 2.0, 3.2, dome),
+                new MedicalDispatch(2, TypeOfDispatch.POLICE, domeId, "2022-01-01", 6.366, 78.3214, dome),
+                new MedicalDispatch(3, TypeOfDispatch.FIRE_DEPARTMENT, domeId, "2022-01-01", -63.666, 47.635, dome),
+                new MedicalDispatch(4, TypeOfDispatch.AMBULANCE, domeId, "2022-01-01", 2.0, 3.2, dome),
+                new MedicalDispatch(5, TypeOfDispatch.POLICE, domeId, "2022-01-01", 6.366, 78.3214, dome)
+        );
+        return medicalDispatches;
     }
 
 }
