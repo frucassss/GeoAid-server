@@ -82,6 +82,11 @@ public class MarsH2Repository {
     private static final String DUST_STORMS_DATE = "dust_storms.date";
     private static final String DUST_STORMS_LONGITUDE = "dust_storms.longitude";
     private static final String DUST_STORMS_LATITUDE = "dust_storms.latitude";
+    private static final String SQL_DELETE_APPOINTMENT = "delete from appointments where id = ?;";
+    public static final String DATE = "date";
+    public static final String TIME = "time";
+    public static final String EMPLOYEE_ID = "employee_id";
+    private static final String SQL_APPOINTMENT_BY_ID = "select * from appointments where id = ?;";
     private final Server dbWebConsole;
     private final String username;
     private final String password;
@@ -326,7 +331,7 @@ public class MarsH2Repository {
             try (ResultSet rs = stmt.executeQuery()) {
                 List<Appointment> appointments = new ArrayList<>();
                 while (rs.next()) {
-                    appointments.add(new Appointment(rs.getInt(ID), rs.getDate("date").toString(), rs.getString("time"), rs.getString(TOPIC), rs.getInt("employee_id"), rs.getString(EXPERTISE)));
+                    appointments.add(new Appointment(rs.getInt(ID), rs.getDate(DATE).toString(), rs.getString(TIME), rs.getString(TOPIC), rs.getInt(EMPLOYEE_ID), rs.getString(EXPERTISE)));
                 }
                 return appointments;
             }
@@ -341,15 +346,15 @@ public class MarsH2Repository {
                 Connection conn = getConnection();
                 PreparedStatement stmt = conn.prepareStatement(SQL_INSERT_APPOINTMENT, Statement.RETURN_GENERATED_KEYS)
         ) {
-            stmt.setString(1, appointment.get("date"));
-            stmt.setString(2, appointment.get("time"));
+            stmt.setString(1, appointment.get(DATE));
+            stmt.setString(2, appointment.get(TIME));
             stmt.setString(3, appointment.get(TOPIC));
             stmt.setInt(4, Integer.parseInt(appointment.get("employeeID")));
             stmt.setString(5, appointment.get(EXPERTISE));
             stmt.executeUpdate();
             try (ResultSet rs = stmt.getGeneratedKeys()) {
                 if (rs.next()) {
-                    return new Appointment(rs.getInt(1), appointment.get("date"), appointment.get("time"), appointment.get(TOPIC), Integer.parseInt(appointment.get("employeeID")), appointment.get(EXPERTISE));
+                    return new Appointment(rs.getInt(1), appointment.get(DATE), appointment.get(TIME), appointment.get(TOPIC), Integer.parseInt(appointment.get("employeeID")), appointment.get(EXPERTISE));
                 } else {
                     throw new RepositoryException("Could not insert appointment.");
                 }
@@ -494,6 +499,34 @@ public class MarsH2Repository {
         } catch (SQLException ex) {
             LOGGER.log(Level.SEVERE, "Failed to get dust storms.", ex);
             throw new RepositoryException("Could not get dust storms.");
+        }
+    }
+
+    public Appointment getAppointment(int appointmentId) {
+        try (Connection con = getConnection()) {
+            try (PreparedStatement ps = con.prepareStatement(SQL_APPOINTMENT_BY_ID)) {
+                ps.setInt(1, appointmentId);
+                ResultSet rs = ps.executeQuery();
+                if (rs.next()) {
+                    return new Appointment(rs.getInt(ID), rs.getDate(DATE).toString(), rs.getString(TIME), rs.getString(TOPIC), rs.getInt(EMPLOYEE_ID), rs.getString(EXPERTISE));
+                }
+                return null;
+            }
+        } catch (SQLException ex) {
+            LOGGER.log(Level.SEVERE, "Failed to get appointment.", ex);
+            throw new RepositoryException("Could not get appointment.");
+        }
+    }
+
+    public void deleteAppointment(int appointmentId) {
+        try (Connection con = getConnection()) {
+            try (PreparedStatement ps = con.prepareStatement(SQL_DELETE_APPOINTMENT)) {
+                ps.setInt(1, appointmentId);
+                ps.executeUpdate();
+            }
+        } catch (SQLException ex) {
+            LOGGER.log(Level.SEVERE, "Failed to delete appointment.", ex);
+            throw new RepositoryException("Could not delete appointment.");
         }
     }
 }

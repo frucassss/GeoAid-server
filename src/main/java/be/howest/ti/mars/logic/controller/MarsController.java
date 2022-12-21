@@ -37,4 +37,6 @@ public interface MarsController {
     List<MeteorShower> getMeteorShowers();
 
     List<DustStorm> getDustStorms();
+
+    void deleteAppointment(int appointmentId);
 }

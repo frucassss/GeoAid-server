@@ -158,4 +158,12 @@ public class DefaultMarsController implements MarsController {
         }
         return dustStorms;
     }
+
+    @Override
+    public void deleteAppointment(int appointmentId) {
+        if (null == Repositories.getH2Repo().getAppointment(appointmentId))
+            throw new NoSuchElementException(String.format("No appointment with id: %d", appointmentId));
+
+        Repositories.getH2Repo().deleteAppointment(appointmentId);
+    }
 }
