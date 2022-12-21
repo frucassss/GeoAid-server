@@ -195,22 +195,114 @@ insert into appointments values (1, '2022-01-01', '13:00:00', 'Meeting with the 
 
 
 //medical dispatches
-insert into medical_dispatches values (0, '2022-03-01', 0, -23.88830978488233, -69.10460472106935, 'AMBULANCE');
-insert into medical_dispatches values (1, '2022-01-21', 3, -23.87351580987326, -69.10254478454591, 'POLICE');
-insert into medical_dispatches values (2, '2021-01-01', 6, -23.876341315056486, -69.12589073181154, 'FIRE_DEPARTMENT');
-insert into medical_dispatches values (3, '2022-09-01', 9, -23.892979149921235, -69.12855148315431, 'AMBULANCE');
-insert into medical_dispatches values (4, '2023-01-01', 12, -23.88830978488233, -69.10460472106935, 'POLICE');
+insert into medical_dispatches values (0, '2022-03-01', 0, -22.38830978488233, -69.10460472106935, 'AMBULANCE');
+insert into medical_dispatches values (1, '2022-01-21', 3, -24.37351580987326, -69.10254478454591, 'POLICE');
+insert into medical_dispatches values (2, '2021-01-01', 6, -23.576341315056486, -69.62589073181154, 'FIRE_DEPARTMENT');
+insert into medical_dispatches values (3, '2022-09-01', 9, -23.892979149921235, -68.12855148315431, 'AMBULANCE');
+insert into medical_dispatches values (4, '2023-01-01', 12, -23.18830978488233, -69.10460472106935, 'POLICE');
+
+
+
 
 //meteor showers
-insert into meteor_showers values (0, '2021-01-01', 1, -22.88830978488233, -69.10460472106935, 'MEDIUM');
-insert into meteor_showers values (1, '2022-09-09', 4, -24.87351580987326, -69.10254478454591, 'LOW');
-insert into meteor_showers values (2, '2021-06-01', 7, -23.876341315056486, -68.12589073181154, 'HIGH');
-insert into meteor_showers values (3, '2022-06-01', 10, -22.892979149921235, -68.12855148315431, 'MEDIUM');
-insert into meteor_showers values (4, '2022-01-01', 13, -23.88830978488233, -69.10460472106935, 'LOW');
+insert into meteor_showers values (0, '2021-01-01', 1, -22.58830978488233, -69.10460472106935, 'MEDIUM');
+insert into meteor_showers values (1, '2022-09-09', 4, -25.17351580987326, -69.10254478454591, 'LOW');
+insert into meteor_showers values (2, '2021-06-01', 7, -24.176341315056486, -68.12589073181154, 'HIGH');
+insert into meteor_showers values (3, '2022-06-01', 10, -23.192979149921235, -68.12855148315431, 'MEDIUM');
+insert into meteor_showers values (4, '2022-01-01', 13, -23.88830978488233, -68.70460472106935, 'LOW');
+
+//stupid ai
+insert into meteor_showers values (5, '2022-02-01', 14, -22.58830978488233, -69.10460472106935, 'HIGH');
+insert into meteor_showers values (6, '2021-04-01', 12, -25.17351580987326, -69.10254478454591, 'MEDIUM');
+insert into meteor_showers values (7, '2023-01-01', 11, -24.176341315056486, -68.12589073181154, 'LOW');
+insert into meteor_showers values (8, '2021-03-01', 10, -23.192979149921235, -68.12855148315431, 'HIGH');
+insert into meteor_showers values (9, '2021-12-01', 9, -23.88830978488233, -68.70460472106935, 'MEDIUM');
+insert into meteor_showers values (27, '2022-07-01', 0, -22.58830978488233, -69.10460472106935, 'LOW');
+insert into meteor_showers values (28, '2022-03-01', 1, -25.17351580987326, -69.10254478454591, 'HIGH');
+insert into meteor_showers values (29, '2023-02-01', 2, -24.176341315056486, -68.12589073181154, 'MEDIUM');
+insert into meteor_showers values (30, '2022-12-01', 3, -23.192979149921235, -68.12855148315431, 'LOW');
+insert into meteor_showers values (31, '2023-03-01', 4, -23.88830978488233, -68.70460472106935, 'HIGH');
+insert into meteor_showers values (32, '2022-05-01', 5, -22.58830978488233, -69.10460472106935, 'MEDIUM');
+insert into meteor_showers values (33, '2021-07-01', 6, -25.17351580987326, -69.10254478454591, 'LOW');
+insert into meteor_showers values (34, '2022-04-01', 7, -24.176341315056486, -68.12589073181154, 'HIGH');
+insert into meteor_showers values (35, '2023-04-01', 8, -23.192979149921235, -68.12855148315431, 'MEDIUM');
+insert into meteor_showers values (36, '2022-08-01', 9, -23.88830978488233, -68.70460472106935, 'LOW');
+insert into meteor_showers values (37, '2021-02-01', 10, -22.58830978488233, -69.10460472106935, 'HIGH');
+insert into meteor_showers values (38, '2023-05-01', 11, -25.17351580987326, -69.10254478454591, 'MEDIUM');
+insert into meteor_showers values (39, '2022-11-01', 12, -24.176341315056486, -68.12589073181154, 'LOW');
+insert into meteor_showers values (40, '2022-01-01', 13, -23.192979149921235, -68.12855148315431, 'HIGH');
+insert into meteor_showers values (41, '2022-10-01', 14, -23.88830978488233, -68.70460472106935, 'MEDIUM');
+insert into meteor_showers values (42, '2023-06-01', 11, -22.58830978488233, -69.10460472106935, 'LOW');
+insert into meteor_showers values (44, '2023-02-01', 14, -22.58830978488233, -69.10460472106935, 'LOW');
+insert into meteor_showers values (45, '2022-03-01', 9, -25.17351580987326, -69.10254478454591, 'HIGH');
+insert into meteor_showers values (46, '2022-12-01', 2, -24.176341315056486, -68.12589073181154, 'MEDIUM');
+insert into meteor_showers values (47, '2023-03-01', 0, -23.192979149921235, -68.12855148315431, 'LOW');
+insert into meteor_showers values (48, '2022-05-01', 12, -23.88830978488233, -68.70460472106935, 'HIGH');
+insert into meteor_showers values (49, '2021-07-01', 4, -22.58830978488233, -69.10460472106935, 'MEDIUM');
+insert into meteor_showers values (50, '2022-04-01', 7, -25.17351580987326, -69.10254478454591, 'LOW');
+insert into meteor_showers values (51, '2023-04-01', 11, -24.176341315056486, -68.12589073181154, 'HIGH');
+insert into meteor_showers values (52, '2022-08-01', 3, -23.192979149921235, -68.12855148315431, 'MEDIUM');
+insert into meteor_showers values (53, '2021-02-01', 10, -23.88830978488233, -68.70460472106935, 'LOW');
+insert into meteor_showers values (54, '2023-05-01', 5, -22.58830978488233, -69.10460472106935, 'HIGH');
+insert into meteor_showers values (55, '2022-11-01', 14, -25.17351580987326, -69.10254478454591, 'MEDIUM');
+insert into meteor_showers values (56, '2022-01-01', 8, -24.176341315056486, -68.12589073181154, 'LOW');
+insert into meteor_showers values (57, '2022-10-01', 6, -23.192979149921235, -68.12855148315431, 'HIGH');
+insert into meteor_showers values (58, '2023-06-01', 13, -23.88830978488233, -68.70460472106935, 'MEDIUM');
+insert into meteor_showers values (59, '2021-08-01', 1, -22.58830978488233, -69.10460472106935, 'LOW');
+insert into meteor_showers values (61, '2022-03-01', 11, -22.58830978488233, -69.10460472106935, 'LOW');
+insert into meteor_showers values (62, '2023-02-01', 0, -25.17351580987326, -69.10254478454591, 'HIGH');
+insert into meteor_showers values (63, '2022-12-01', 7, -24.176341315056486, -68.12589073181154, 'MEDIUM');
+insert into meteor_showers values (64, '2023-03-01', 3, -23.192979149921235, -68.12855148315431, 'LOW');
+insert into meteor_showers values (65, '2022-05-01', 12, -23.88830978488233, -68.70460472106935, 'HIGH');
+insert into meteor_showers values (66, '2021-07-01', 9, -22.58830978488233, -69.10460472106935, 'MEDIUM');
+insert into meteor_showers values (67, '2022-04-01', 5, -25.17351580987326, -69.10254478454591, 'LOW');
+insert into meteor_showers values (68, '2023-04-01', 2, -24.176341315056486, -68.12589073181154, 'HIGH');
+insert into meteor_showers values (69, '2022-08-01', 6, -23.192979149921235, -68.12855148315431, 'MEDIUM');
+insert into meteor_showers values (70, '2021-02-01', 13, -23.88830978488233, -68.70460472106935, 'LOW');
+insert into meteor_showers values (71, '2023-05-01', 10, -22.58830978488233, -69.10460472106935, 'HIGH');
+insert into meteor_showers values (72, '2022-11-01', 14, -25.17351580987326, -69.10254478454591, 'MEDIUM');
+insert into meteor_showers values (73, '2022-01-01', 1, -24.176341315056486, -68.12589073181154, 'LOW');
+insert into meteor_showers values (74, '2022-10-01', 4, -23.192979149921235, -68.12855148315431, 'HIGH');
+insert into meteor_showers values (75, '2023-06-01', 8, -23.88830978488233, -68.70460472106935, 'MEDIUM');
+
+
 
 //dust storms
-insert into dust_storms values (0, '2021-10-11', 2, -23.88830978488233, -69.10460472106935, 'MEDIUM');
-insert into dust_storms values (1, '2022-11-11', 5, -23.87351580987326, -69.10254478454591, 'LOW');
-insert into dust_storms values (2, '2021-11-10', 8, -23.876341315056486, -69.12589073181154, 'HIGH');
-insert into dust_storms values (3, '2022-05-01', 11, -23.892979149921235, -69.12855148315431, 'MEDIUM');
-insert into dust_storms values (4, '2023-01-12', 14, -23.88830978488233, -69.10460472106935, 'LOW');
+insert into dust_storms values (0, '2021-10-11', 2, -24.18830978488233, -69.10460472106935, 'MEDIUM');
+insert into dust_storms values (1, '2022-11-11', 5, -23.87351580987326, -68.70254478454591, 'LOW');
+insert into dust_storms values (2, '2021-11-10', 8, -24.276341315056486, -69.12589073181154, 'HIGH');
+insert into dust_storms values (3, '2022-05-01', 11, -23.892979149921235, -70.12855148315431, 'MEDIUM');
+insert into dust_storms values (4, '2023-01-12', 14, -22.88830978488233, -69.10460472106935, 'LOW');
+
+insert into dust_storms values (20, '2023-02-01', 4, -24.18830978488233, -69.10460472106935, 'LOW');
+insert into dust_storms values (21, '2022-03-01', 6, -23.87351580987326, -68.70254478454591, 'HIGH');
+insert into dust_storms values (22, '2022-12-01', 12, -24.276341315056486, -69.12589073181154, 'MEDIUM');
+insert into dust_storms values (23, '2023-03-01', 1, -23.892979149921235, -70.12855148315431, 'LOW');
+insert into dust_storms values (24, '2022-05-01', 14, -22.88830978488233, -69.10460472106935, 'HIGH');
+insert into dust_storms values (25, '2021-07-01', 10, -24.18830978488233, -69.10460472106935, 'MEDIUM');
+insert into dust_storms values (26, '2022-04-01', 2, -23.87351580987326, -68.70254478454591, 'LOW');
+insert into dust_storms values (27, '2023-04-01', 5, -24.276341315056486, -69.12589073181154, 'HIGH');
+insert into dust_storms values (28, '2022-08-01', 3, -23.892979149921235, -70.12855148315431, 'MEDIUM');
+insert into dust_storms values (29, '2021-02-01', 7, -22.88830978488233, -69.10460472106935, 'LOW');
+insert into dust_storms values (30, '2023-05-01', 0, -24.18830978488233, -69.10460472106935, 'HIGH');
+insert into dust_storms values (31, '2022-11-01', 11, -23.87351580987326, -68.70254478454591, 'MEDIUM');
+insert into dust_storms values (32, '2022-01-01', 13, -24.276341315056486, -69.12589073181154, 'LOW');
+insert into dust_storms values (33, '2022-10-01', 8, -23.892979149921235, -70.12855148315431, 'HIGH');
+insert into dust_storms values (34, '2023-06-01', 9, -22.88830978488233, -69.10460472106935, 'MEDIUM');
+insert into dust_storms values (35, '2021-08-01', 1, -24.18830978488233, -69.10460472106935, 'LOW');
+insert into dust_storms values (40, '2023-02-01', 3, -24.18830978488233, -69.10460472106935, 'LOW');
+insert into dust_storms values (41, '2022-03-01', 9, -23.87351580987326, -68.70254478454591, 'HIGH');
+insert into dust_storms values (42, '2022-12-01', 2, -24.276341315056486, -69.12589073181154, 'MEDIUM');
+insert into dust_storms values (43, '2023-03-01', 8, -23.892979149921235, -70.12855148315431, 'LOW');
+insert into dust_storms values (44, '2022-05-01', 1, -22.88830978488233, -69.10460472106935, 'HIGH');
+insert into dust_storms values (45, '2021-07-01', 10, -24.18830978488233, -69.10460472106935, 'MEDIUM');
+insert into dust_storms values (46, '2022-04-01', 14, -23.87351580987326, -68.70254478454591, 'LOW');
+insert into dust_storms values (47, '2023-04-01', 5, -24.276341315056486, -69.12589073181154, 'HIGH');
+insert into dust_storms values (48, '2022-08-01', 6, -23.892979149921235, -70.12855148315431, 'MEDIUM');
+insert into dust_storms values (49, '2021-02-01', 12, -22.88830978488233, -69.10460472106935, 'LOW');
+insert into dust_storms values (50, '2023-05-01', 0, -24.18830978488233, -69.10460472106935, 'HIGH');
+insert into dust_storms values (51, '2022-11-01', 7, -23.87351580987326, -68.70254478454591, 'MEDIUM');
+insert into dust_storms values (52, '2022-01-01', 4, -24.276341315056486, -69.12589073181154, 'LOW');
+insert into dust_storms values (53, '2022-10-01', 13, -23.892979149921235, -70.12855148315431, 'HIGH');
+insert into dust_storms values (54, '2023-06-01', 11, -22.88830978488233, -69.10460472106935, 'MEDIUM');
+insert into dust_storms values (55, '2021-08-01', 2, -24.18830978488233, -69.10460472106935, 'LOW');
