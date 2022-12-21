@@ -78,7 +78,7 @@ public class MarsOpenApiBridge {
         routerBuilder.operation("getMedicalDispatches").handler(this::getMedicalDispatches);
 
         LOGGER.log(Level.INFO, "Installing handler for: getMeteorShowers");
-        routerBuilder.operation("getMeteorStorms").handler(this::getMeteorShowers);
+        routerBuilder.operation("getMeteorShowers").handler(this::getMeteorShowers);
 
         LOGGER.log(Level.INFO, "Installing handler for: getDustStorms");
         routerBuilder.operation("getDustStorms").handler(this::getDustStorms);

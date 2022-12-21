@@ -86,3 +86,27 @@ create table medical_dispatches
     longitude double,
     dispatch_type varchar(255)
 );
+
+drop table if exists meteor_showers;
+
+create table meteor_showers
+(
+    id      int auto_increment,
+    date date,
+    dome_id int,
+    latitude double,
+    longitude double,
+    damage_type varchar(255)
+);
+
+drop table if exists dust_storms;
+
+create table dust_storms
+(
+    id      int auto_increment,
+    date date,
+    dome_id int,
+    latitude double,
+    longitude double,
+    damage_type varchar(255)
+);
