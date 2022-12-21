@@ -3,7 +3,7 @@ package be.howest.ti.mars.logic.domain.statistics;
 import be.howest.ti.mars.logic.domain.Dome;
 import be.howest.ti.mars.logic.util.Colony;
 
-public class Population {
+public class Population implements Statistics {
 
     private final int id;
     final int domeId;
@@ -33,11 +33,11 @@ public class Population {
         return size;
     }
 
-    public double getLatitude() {
+    public Double getLatitude() {
         return latitude;
     }
 
-    public double getLongitude() {
+    public Double getLongitude() {
         return longitude;
     }
 

@@ -3,7 +3,7 @@ package be.howest.ti.mars.logic.domain.statistics;
 import be.howest.ti.mars.logic.domain.Dome;
 import be.howest.ti.mars.logic.util.TypeOfDispatch;
 
-public class MedicalDispatch {
+public class MedicalDispatch implements Statistics {
     private final int id;
     private final TypeOfDispatch dispachType;
     final int domeId;
@@ -12,9 +12,9 @@ public class MedicalDispatch {
     private final Double latitude;
     private final Dome dome;
 
-    public MedicalDispatch(int id, TypeOfDispatch dispachType, int domeId, String date, Double longitude, Double latitude, Dome dome) {
+    public MedicalDispatch(int id, TypeOfDispatch dispatchType, int domeId, String date, Double longitude, Double latitude, Dome dome) {
         this.id = id;
-        this.dispachType = dispachType;
+        this.dispachType = dispatchType;
         this.domeId = domeId;
         this.date = date;
         this.longitude = longitude;
