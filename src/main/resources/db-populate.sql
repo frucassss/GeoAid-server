@@ -190,8 +190,8 @@ insert into population values (14, 120,6, -22.812964148921235, -67.1285514831543
 
 
 //appointments
-insert into appointments values (0, '2022-01-01', '12:00:00', 'Meeting with the CEO', 'Jhon', 'CEO');
-insert into appointments values (1, '2022-01-01', '13:00:00', 'Meeting with the CTO', 'Bob', 'CTO');
+insert into appointments values (0, '2022-01-01', '12:00:00', 'Meeting with the CEO', 1, 'CEO');
+insert into appointments values (1, '2022-01-01', '13:00:00', 'Meeting with the CTO', 1, 'CTO');
 
 
 //medical dispatches
