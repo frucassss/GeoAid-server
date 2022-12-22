@@ -124,4 +124,46 @@ class OpenAPITest {
     private JsonObject createQuote(String quote) {
         return new JsonObject().put("quote", quote);
     }
+
+    @Test
+    void getDomes(final VertxTestContext testContext) {
+        webClient.get(PORT, HOST, "/api/domes").send()
+                .onFailure(testContext::failNow)
+                .onSuccess(response -> testContext.verify(() -> {
+                    assertEquals(200, response.statusCode(), MSG_200_EXPECTED);
+                    assertTrue(
+                            response.bodyAsJsonObject().getJsonArray("domes").size() > 0,
+                            "No domes found"
+                    );
+                    testContext.completeNow();
+                }));
+    }
+
+    @Test
+    void getUsers(final VertxTestContext testContext) {
+        webClient.get(PORT, HOST, "/api/users").send()
+                .onFailure(testContext::failNow)
+                .onSuccess(response -> testContext.verify(() -> {
+                    assertEquals(200, response.statusCode(), MSG_200_EXPECTED);
+                    assertTrue(
+                            response.bodyAsJsonObject().getJsonArray("users").size() > 0,
+                            "No users found"
+                    );
+                    testContext.completeNow();
+                }));
+    }
+
+    @Test
+    void getCompanies(final VertxTestContext testContext) {
+        webClient.get(PORT, HOST, "/api/companies").send()
+                .onFailure(testContext::failNow)
+                .onSuccess(response -> testContext.verify(() -> {
+                    assertEquals(200, response.statusCode(), MSG_200_EXPECTED);
+                    assertTrue(
+                            response.bodyAsJsonObject().getJsonArray("companies").size() > 0,
+                            "No companies found"
+                    );
+                    testContext.completeNow();
+                }));
+    }
 }
