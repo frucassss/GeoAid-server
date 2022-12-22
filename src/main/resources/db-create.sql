@@ -59,7 +59,7 @@ create table appointments
     date date,
     time time,
     topic varchar(255),
-    employee_id int,
+    employee_name varchar(255),
     expertise varchar(255)
 );
 
@@ -94,8 +94,8 @@ create table meteor_showers
     id      int auto_increment,
     date date,
     dome_id int,
+    longitude  double,
     latitude double,
-    longitude double,
     damage_type varchar(255)
 );
 
@@ -106,7 +106,7 @@ create table dust_storms
     id      int auto_increment,
     date date,
     dome_id int,
+    longitude  double,
     latitude double,
-    longitude double,
     damage_type varchar(255)
 );

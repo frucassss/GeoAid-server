@@ -5,15 +5,15 @@ public class Appointment {
     private final String date;
     private final String time;
     private final String topic;
-    private final int employeeId;
+    private final String  employeeName;
     private final String expertise;
 
-    public Appointment(int id, String date, String time, String topic, int employeeId, String expertise) {
+    public Appointment(int id, String date, String time, String topic, String  employeeName, String expertise) {
         this.id = id;
         this.date = date;
         this.time = time;
         this.topic = topic;
-        this.employeeId = employeeId;
+        this.employeeName = employeeName;
         this.expertise = expertise;
     }
 
@@ -33,8 +33,8 @@ public class Appointment {
         return topic;
     }
 
-    public int getEmployeeId() {
-        return employeeId;
+    public String  getEmployeeName() {
+        return employeeName;
     }
 
     public String getExpertise() {
