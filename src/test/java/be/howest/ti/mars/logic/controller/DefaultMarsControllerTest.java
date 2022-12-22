@@ -263,9 +263,10 @@ class DefaultMarsControllerTest {
         var population = sut.getPopulation();
 
         //Assert
-        assertEquals(7, population.size());
+        assertEquals(8, population.size());
         assertEquals(0, population.get(0).getId());
         assertEquals(160, population.get(1).getSize());
+        assertEquals("2021-11-30", population.get(1).getDate());
         assertEquals(-24.837979149921235, population.get(2).getLatitude());
         assertEquals(-67.1185514831543, population.get(3).getLongitude());
         assertEquals(Colony.SURFACE, population.get(3).getColony());

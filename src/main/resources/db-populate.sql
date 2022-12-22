@@ -170,22 +170,22 @@ insert into oxygen_leaks values (107, 'high', 17, '2023-02-11', -22.892977448921
 
 
 //population
-insert into population values (0, 100,1, -23.81830978488233, -69.12460472106935, 'MINE');
-insert into population values (1, 120,1, -26.79251580987326, -67.14254478454591, 'COLONY');
-insert into population values (2, 160,3, -29.778641315056486, -62.12589073181154, 'SURFACE');
-insert into population values (3, 150,4, -24.837979149921235, -67.11855148315431, 'MINE');
-insert into population values (4, 90,9, -24.826341365435415056486, -70.15589073181154, 'COLONY');
-insert into population values (5, 110,4, -22.812979149921235, -67.11855148315431, 'SURFACE');
-insert into population values (6, 160,10, -20.872979149921235, -66.14855148315431, 'MINE');
-insert into population values (7, 80,7, -25.816341315056488, -67.12589073181154, 'COLONY');
-insert into population values (8, 90,11, -24.992979149921235, -66.13215687431, 'SURFACE');
-insert into population values (9, 120,13, -26.836341315056586, -666.12589073181154, 'MINE');
-insert into population values (10, 130,16, -20.792979149921335, -64.09855148315431, 'COLONY');
-insert into population values (11, 140,9, -28.872341315156486, -65.12589073181154, 'SURFACE');
-insert into population values (12, 90,8, -25.792979149922235, -69.092855148315431, 'MINE');
-insert into population values (13, 150,5, -23.8266491325056486, -68.082582073181154, 'COLONY');
-insert into population values (14, 120,6, -22.812964148921235, -67.12855148315431, 'SURFACE');
-
+insert into population values (0, 100,1, '2022-01-01', -23.81830978488233, -69.12460472106935, 'MINE');
+insert into population values (1, 120,1, '2022-12-01', -26.79251580987326, -67.14254478454591, 'COLONY');
+insert into population values (2, 160,3, '2021-11-30', -29.778641315056486, -62.12589073181154, 'SURFACE');
+insert into population values (3, 150,4, '2022-02-09', -24.837979149921235, -67.11855148315431, 'MINE');
+insert into population values (4, 90,9, '2022-10-22', -24.826341365435415056486, -70.15589073181154, 'COLONY');
+insert into population values (5, 110,4, '2022-04-16', -22.812979149921235, -67.11855148315431, 'SURFACE');
+insert into population values (6, 160,10, '2022-06-11', -20.872979149921235, -66.14855148315431, 'MINE');
+insert into population values (7, 80,7, '2022-08-08', -25.816341315056488, -67.12589073181154, 'COLONY');
+insert into population values (8, 90,11, '2022-05-15', -24.992979149921235, -66.13215687431, 'SURFACE');
+insert into population values (9, 120,13, '2022-06-06', -26.836341315056586, -666.12589073181154, 'MINE');
+insert into population values (10, 130,16, '2022-06-01', -20.792979149921335, -64.09855148315431, 'COLONY');
+insert into population values (11, 140,9, '2022-04-18', -28.872341315156486, -65.12589073181154, 'SURFACE');
+insert into population values (12, 90,8, '2022-09-28', -25.792979149922235, -69.092855148315431, 'MINE');
+insert into population values (13, 150,5, '2022-01-28', -23.8266491325056486, -68.082582073181154, 'COLONY');
+insert into population values (14, 120,6, '2021-10-29', -22.812964148921235, -67.12855148315431, 'SURFACE');
+insert into population values (15, 110,12, '2022-12-31', -23.876341315056486, -68.12589073181154, 'SPACESTATION');
 
 
 
