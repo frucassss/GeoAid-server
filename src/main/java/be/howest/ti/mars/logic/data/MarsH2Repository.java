@@ -40,12 +40,12 @@ public class MarsH2Repository {
     private static final String SQL_ALL_COMPANIES = "select id, name, section, ad_effectiveness, user_id from companies;";
     private static final String SQL_COMPANY_BY_ID = "select id, name, section, ad_effectiveness, user_id from companies where user_id = ?;";
     private static final String SQL_ALL_OXYGENLEAKS = "select * from oxygen_leaks o join domes d on o.dome_id = d.id;";
-    private static final String SQL_ALL_APPOINTMENTS = "select id, date, time, topic, employee_id, expertise from appointments;";
+    private static final String SQL_ALL_APPOINTMENTS = "select id, date, time, topic, employee_name, expertise from appointments;";
     private static final String ID = "id";
     private static final String TOPIC = "topic";
     private static final String EXPERTISE = "expertise";
 
-    private static final String SQL_INSERT_APPOINTMENT = "insert into appointments (`date`, `time`, `topic`, `employee_id`, `expertise`) values (?, ?, ?, ?, ?);";
+    private static final String SQL_INSERT_APPOINTMENT = "insert into appointments (`date`, `time`, `topic`, `employee_name`, `expertise`) values (?, ?, ?, ?, ?);";
     public static final String LONGITUDE = "longitude";
     public static final String LATITUDE = "latitude";
     private static final String SQL_ALL_POPULATIONS = "select * from population p join domes d on p.dome_id = d.id;";
@@ -85,7 +85,7 @@ public class MarsH2Repository {
     private static final String SQL_DELETE_APPOINTMENT = "delete from appointments where id = ?;";
     public static final String DATE = "date";
     public static final String TIME = "time";
-    public static final String EMPLOYEE_ID = "employee_id";
+    public static final String EMPLOYEE_NAME = "employee_name";
     private static final String SQL_APPOINTMENT_BY_ID = "select * from appointments where id = ?;";
     private final Server dbWebConsole;
     private final String username;
@@ -331,7 +331,7 @@ public class MarsH2Repository {
             try (ResultSet rs = stmt.executeQuery()) {
                 List<Appointment> appointments = new ArrayList<>();
                 while (rs.next()) {
-                    appointments.add(new Appointment(rs.getInt(ID), rs.getDate(DATE).toString(), rs.getString(TIME), rs.getString(TOPIC), rs.getInt(EMPLOYEE_ID), rs.getString(EXPERTISE)));
+                    appointments.add(new Appointment(rs.getInt(ID), rs.getDate(DATE).toString(), rs.getString(TIME), rs.getString(TOPIC), rs.getString(EMPLOYEE_NAME), rs.getString(EXPERTISE)));
                 }
                 return appointments;
             }
@@ -349,14 +349,14 @@ public class MarsH2Repository {
             stmt.setString(1, appointment.get(DATE));
             stmt.setString(2, appointment.get(TIME));
             stmt.setString(3, appointment.get(TOPIC));
-            stmt.setInt(4, Integer.parseInt(appointment.get("employeeID")));
+            stmt.setString(4, appointment.get(EMPLOYEE_NAME));
             stmt.setString(5, appointment.get(EXPERTISE));
             stmt.executeUpdate();
             try (ResultSet rs = stmt.getGeneratedKeys()) {
                 if (rs.next()) {
-                    return new Appointment(rs.getInt(1), appointment.get(DATE), appointment.get(TIME), appointment.get(TOPIC), Integer.parseInt(appointment.get("employeeID")), appointment.get(EXPERTISE));
+                    return new Appointment(rs.getInt(1), appointment.get(DATE), appointment.get(TIME), appointment.get(TOPIC), appointment.get(EMPLOYEE_NAME), appointment.get(EXPERTISE));
                 } else {
-                    throw new RepositoryException("Could not insert appointment.");
+                    throw new RepositoryException("Could not insert appointment. because of: " + appointment);
                 }
             }
         } catch (SQLException ex) {
@@ -508,7 +508,7 @@ public class MarsH2Repository {
                 ps.setInt(1, appointmentId);
                 ResultSet rs = ps.executeQuery();
                 if (rs.next()) {
-                    return new Appointment(rs.getInt(ID), rs.getDate(DATE).toString(), rs.getString(TIME), rs.getString(TOPIC), rs.getInt(EMPLOYEE_ID), rs.getString(EXPERTISE));
+                    return new Appointment(rs.getInt(ID), rs.getDate(DATE).toString(), rs.getString(TIME), rs.getString(TOPIC), rs.getString(EMPLOYEE_NAME), rs.getString(EXPERTISE));
                 }
                 return null;
             }

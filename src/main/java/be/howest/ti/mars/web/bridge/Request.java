@@ -69,7 +69,7 @@ public class Request {
                 appointmentParms.put("date", params.body().getJsonObject().getString("date"));
                 appointmentParms.put("time", params.body().getJsonObject().getString("time"));
                 appointmentParms.put("topic", params.body().getJsonObject().getString("topic"));
-                appointmentParms.put("employeeID", params.body().getJsonObject().getString("employee_id"));
+                appointmentParms.put("employee_name", params.body().getJsonObject().getString("employee_name"));
                 appointmentParms.put("expertise", params.body().getJsonObject().getString("expertise"));
                 return appointmentParms;
             }

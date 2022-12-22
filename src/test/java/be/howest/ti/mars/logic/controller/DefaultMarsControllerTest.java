@@ -5,6 +5,7 @@ import be.howest.ti.mars.logic.domain.Dome;
 import be.howest.ti.mars.logic.domain.Quote;
 import be.howest.ti.mars.logic.util.Colony;
 import be.howest.ti.mars.logic.util.DamageLevel;
+import be.howest.ti.mars.logic.util.DangerLevel;
 import be.howest.ti.mars.logic.util.TypeOfDispatch;
 import io.vertx.core.json.JsonObject;
 import org.apache.commons.lang3.StringUtils;
@@ -13,6 +14,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
 
+import java.util.HashMap;
 import java.util.Map;
 import java.util.NoSuchElementException;
 
@@ -166,6 +168,21 @@ class DefaultMarsControllerTest {
     }
 
     @Test
+    void getUserDetails() {
+        // Arrange
+        MarsController sut = new DefaultMarsController();
+
+        // Act
+        var user = sut.getUsers().get(0);
+
+        //Assert
+        assertEquals("John", user.getFirstName());
+        assertEquals("Doe", user.getLastName());
+        assertEquals("123 Main Street", user.getHomeAddress());
+        assertEquals("none", user.getPremium());
+    }
+
+    @Test
     void getCompanies() {
         // Arrange
         MarsController sut = new MockMarsController();
@@ -211,7 +228,7 @@ class DefaultMarsControllerTest {
                 "date", "2021-01-01",
                 "time", "12:00:00",
                 "topic", "some topic",
-                "employeeID", "1",
+                "employeeName", "Bob",
                 "expertise", "some expertise"
         );
         var appointment = sut.createAppointment(appointmentData);
@@ -221,24 +238,8 @@ class DefaultMarsControllerTest {
         assertEquals("2021-01-01", appointment.getDate());
         assertEquals("12:00:00", appointment.getTime());
         assertEquals("some topic", appointment.getTopic());
-        assertEquals(1, appointment.getEmployeeId());
+        assertEquals("Bob", appointment.getEmployeeName());
         assertEquals("some expertise", appointment.getExpertise());
-    }
-
-    @Test
-    void createAppointmentWithWrongDateThrowsIllegalArgument() {
-        // Arrange
-        MarsController sut = new MockMarsController();
-
-        // Act + Assert
-        Map<String, String> appointmentData = Map.of(
-                "date", "2021-01-01",
-                "time", "12:00:00",
-                "topic", "some topic",
-                "employeeID", "dertig",
-                "expertise", "some expertise"
-        );
-        assertThrows(IllegalArgumentException.class, () -> sut.createAppointment(appointmentData));
     }
 
     @Test
@@ -304,5 +305,21 @@ class DefaultMarsControllerTest {
         assertEquals("2022-12-12", dustStorms.get(1).getDate());
         assertEquals(1, dustStorms.get(2).getDome().getId());
         assertEquals(DamageLevel.HIGH, dustStorms.get(2).getDamageLevel());
+    }
+
+    @Test
+    void getOxygenLeaks(){
+        // Arrange
+        MarsController sut = new MockMarsController();
+
+        // Act
+        var oxygenLeaks = sut.getOxygenLeaks();
+
+        //Assert
+        assertEquals(3, oxygenLeaks.size());
+        assertEquals(1, oxygenLeaks.get(0).getId());
+        assertEquals("2022-01-01", oxygenLeaks.get(1).getDate());
+        assertEquals(1, oxygenLeaks.get(2).getDome().getId());
+        assertEquals(DangerLevel.LOW, oxygenLeaks.get(2).getDangerLevel());
     }
 }
