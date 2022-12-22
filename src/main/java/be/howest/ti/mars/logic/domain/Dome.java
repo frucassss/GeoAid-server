@@ -38,15 +38,6 @@ public class Dome {
         return surface;
     }
 
-    @Override
-    public String toString() {
-        return "{" +
-                "id=" + id +
-                ", domeName='" + domeName + '\'' +
-                ", latitude=" + latitude +
-                ", longitude=" + longitude +
-                '}';
-    }
 
     @Override
     public boolean equals(Object o) {

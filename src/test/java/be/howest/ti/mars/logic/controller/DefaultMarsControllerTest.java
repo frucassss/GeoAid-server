@@ -243,6 +243,18 @@ class DefaultMarsControllerTest {
     }
 
     @Test
+    void deleteAppointment() {
+        // Arrange
+        MarsController sut = new DefaultMarsController();
+
+        // Act
+        sut.deleteAppointment(1);
+
+        //Assert
+        assertThrows(NoSuchElementException.class, () -> sut.getAppointment(1));
+    }
+
+    @Test
     void getPopulation() {
         // Arrange
         MarsController sut = new DefaultMarsController();
@@ -272,6 +284,9 @@ class DefaultMarsControllerTest {
         assertEquals(0, medicalDispatches.get(0).getId());
         assertEquals(TypeOfDispatch.POLICE, medicalDispatches.get(1).getDispachType());
         assertEquals(medicalDispatches.get(1).getDome(), medicalDispatches.get(2).getDome());
+        assertEquals(medicalDispatches.get(1).getDome().getId(), medicalDispatches.get(2).getDome().getId());
+        assertEquals(medicalDispatches.get(1).getDome().getDomeName(), medicalDispatches.get(2).getDome().getDomeName());
+        assertEquals(medicalDispatches.get(1).getDome().getSurface(), medicalDispatches.get(2).getDome().getSurface());
         assertEquals("2022-01-01", medicalDispatches.get(3).getDate());
     }
 
