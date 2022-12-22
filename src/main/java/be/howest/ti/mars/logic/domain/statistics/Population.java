@@ -7,6 +7,7 @@ public class Population implements Statistics {
 
     private final int id;
     final int domeId;
+    private final String date;
     private final int size;
     private final double latitude;
     private final double longitude;
@@ -14,9 +15,10 @@ public class Population implements Statistics {
     private final Colony colony;
     private final Dome dome;
 
-    public Population(int id, int domeId, int size, double latitude, double longitude, Colony colony, Dome dome) {
+    public Population(int id, int domeId, String date, int size, double latitude, double longitude, Colony colony, Dome dome) {
         this.id = id;
         this.domeId = domeId;
+        this.date = date;
         this.size = size;
         this.latitude = latitude;
         this.longitude = longitude;
@@ -28,6 +30,9 @@ public class Population implements Statistics {
         return id;
     }
 
+    public String getDate() {
+        return date;
+    }
 
     public int getSize() {
         return size;

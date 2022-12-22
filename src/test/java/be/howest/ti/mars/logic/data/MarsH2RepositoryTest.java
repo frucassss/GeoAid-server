@@ -129,7 +129,7 @@ class MarsH2RepositoryTest {
         // Act
         List<Population> population = Repositories.getH2Repo().getPopulation();
         // Assert
-        assertEquals(7, population.size());
+        assertEquals(8, population.size());
     }
 
     @Test

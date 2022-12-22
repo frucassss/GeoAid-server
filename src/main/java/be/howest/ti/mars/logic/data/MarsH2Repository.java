@@ -87,6 +87,7 @@ public class MarsH2Repository {
     public static final String TIME = "time";
     public static final String EMPLOYEE_NAME = "employee_name";
     private static final String SQL_APPOINTMENT_BY_ID = "select * from appointments where id = ?;";
+    public static final String POPULATION_DATE = "population.date";
     private final Server dbWebConsole;
     private final String username;
     private final String password;
@@ -375,13 +376,13 @@ public class MarsH2Repository {
                 while (rs.next()) {
                     String colony = rs.getString("colony");
                     if(colony.equals("MINE")) {
-                        populations.add(new Population(rs.getInt(POPULATION_ID), rs.getInt(POPULATION_DOME_ID), rs.getInt(POPULATION_SIZE), rs.getDouble(POPULATION_LATITUDE), rs.getDouble(POPULATION_LONGITUDE), Colony.MINE, new Dome(rs.getInt(DOMES_ID), rs.getString(DOMES_DOMENAME), rs.getDouble(DOMES_LATITUDE), rs.getDouble(DOMES_LONGITUDE), rs.getDouble(DOMES_SURFACE))));
+                        populations.add(new Population(rs.getInt(POPULATION_ID), rs.getInt(POPULATION_DOME_ID), rs.getDate(POPULATION_DATE).toString(), rs.getInt(POPULATION_SIZE), rs.getDouble(POPULATION_LATITUDE), rs.getDouble(POPULATION_LONGITUDE), Colony.MINE, new Dome(rs.getInt(DOMES_ID), rs.getString(DOMES_DOMENAME), rs.getDouble(DOMES_LATITUDE), rs.getDouble(DOMES_LONGITUDE), rs.getDouble(DOMES_SURFACE))));
                     }
                     else if(colony.equals("SPACESTATION")) {
-                        populations.add(new Population(rs.getInt(POPULATION_ID), rs.getInt(POPULATION_DOME_ID), rs.getInt(POPULATION_SIZE), rs.getDouble(POPULATION_LATITUDE), rs.getDouble(POPULATION_LONGITUDE), Colony.SPACESTATION, new Dome(rs.getInt(DOMES_ID), rs.getString(DOMES_DOMENAME), rs.getDouble(DOMES_LATITUDE), rs.getDouble(DOMES_LONGITUDE), rs.getDouble(DOMES_SURFACE))));
+                        populations.add(new Population(rs.getInt(POPULATION_ID), rs.getInt(POPULATION_DOME_ID), rs.getDate(POPULATION_DATE).toString(), rs.getInt(POPULATION_SIZE), rs.getDouble(POPULATION_LATITUDE), rs.getDouble(POPULATION_LONGITUDE), Colony.SPACESTATION, new Dome(rs.getInt(DOMES_ID), rs.getString(DOMES_DOMENAME), rs.getDouble(DOMES_LATITUDE), rs.getDouble(DOMES_LONGITUDE), rs.getDouble(DOMES_SURFACE))));
                     }
                     else if(colony.equals("SURFACE")) {
-                        populations.add(new Population(rs.getInt(POPULATION_ID), rs.getInt(POPULATION_DOME_ID), rs.getInt(POPULATION_SIZE), rs.getDouble(POPULATION_LATITUDE), rs.getDouble(POPULATION_LONGITUDE), Colony.SURFACE, new Dome(rs.getInt(DOMES_ID), rs.getString(DOMES_DOMENAME), rs.getDouble(DOMES_LATITUDE), rs.getDouble(DOMES_LONGITUDE), rs.getDouble(DOMES_SURFACE))));
+                        populations.add(new Population(rs.getInt(POPULATION_ID), rs.getInt(POPULATION_DOME_ID), rs.getDate(POPULATION_DATE).toString(), rs.getInt(POPULATION_SIZE), rs.getDouble(POPULATION_LATITUDE), rs.getDouble(POPULATION_LONGITUDE), Colony.SURFACE, new Dome(rs.getInt(DOMES_ID), rs.getString(DOMES_DOMENAME), rs.getDouble(DOMES_LATITUDE), rs.getDouble(DOMES_LONGITUDE), rs.getDouble(DOMES_SURFACE))));
                     }
                 }
                 return populations;
