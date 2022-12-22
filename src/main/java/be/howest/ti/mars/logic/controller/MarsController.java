@@ -39,4 +39,6 @@ public interface MarsController {
     List<DustStorm> getDustStorms();
 
     void deleteAppointment(int appointmentId);
+
+    void getAppointment(int id);
 }

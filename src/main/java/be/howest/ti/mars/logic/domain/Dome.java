@@ -1,5 +1,7 @@
 package be.howest.ti.mars.logic.domain;
 
+import java.util.Objects;
+
 public class Dome {
 
     private final int id;
@@ -36,13 +38,17 @@ public class Dome {
         return surface;
     }
 
+
     @Override
-    public String toString() {
-        return "{" +
-                "id=" + id +
-                ", domeName='" + domeName + '\'' +
-                ", latitude=" + latitude +
-                ", longitude=" + longitude +
-                '}';
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Dome dome = (Dome) o;
+        return id == dome.id && Double.compare(dome.latitude, latitude) == 0 && Double.compare(dome.longitude, longitude) == 0 && Double.compare(dome.surface, surface) == 0 && Objects.equals(domeName, dome.domeName);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, domeName, latitude, longitude, surface);
     }
 }

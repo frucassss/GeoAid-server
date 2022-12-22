@@ -166,4 +166,10 @@ public class DefaultMarsController implements MarsController {
 
         Repositories.getH2Repo().deleteAppointment(appointmentId);
     }
+
+    @Override
+    public void getAppointment(int id) {
+        if (null == Repositories.getH2Repo().getAppointment(id))
+            throw new NoSuchElementException(String.format("No appointment with id: %d", id));
+    }
 }

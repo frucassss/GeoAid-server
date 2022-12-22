@@ -151,4 +151,9 @@ public class MockMarsController implements MarsController {
         System.out.println("Appointment with id " + appointmentId + " deleted");
     }
 
+    @Override
+    public void getAppointment(int id) {
+        System.out.println("Appointment with id " + id + " deleted");
+    }
+
 }
