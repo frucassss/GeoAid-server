@@ -146,13 +146,13 @@ class DefaultMarsControllerTest {
     @Test
     void getDomes() {
         // Arrange
-        MarsController sut = new MockMarsController();
+        MarsController sut = new DefaultMarsController();
 
         // Act
         var domes = sut.getDomes();
 
         //Assert
-        assertEquals(3, domes.size());
+        assertEquals(15, domes.size());
     }
 
     @Test
@@ -185,56 +185,56 @@ class DefaultMarsControllerTest {
     @Test
     void getCompanies() {
         // Arrange
-        MarsController sut = new MockMarsController();
+        MarsController sut = new DefaultMarsController();
 
         // Act
         var companies = sut.getCompanies();
 
         //Assert
-        assertEquals(3, companies.size());
+        assertEquals(19, companies.size());
     }
 
     @Test
     void getCompany(){
         // Arrange
-        MarsController sut = new MockMarsController();
+        MarsController sut = new DefaultMarsController();
 
         // Act
         var company = sut.getCompany(1);
 
         //Assert
-        assertEquals("company 1", company.getName());
+        assertEquals("Coca Cola", company.getName());
     }
 
     @Test
     void getAppointments() {
         // Arrange
-        MarsController sut = new MockMarsController();
+        MarsController sut = new DefaultMarsController();
 
         // Act
         var appointments = sut.getAppointments();
 
         //Assert
-        assertEquals(4, appointments.size());
+        assertEquals(2, appointments.size());
     }
 
     @Test
     void createAppointment() {
         // Arrange
-        MarsController sut = new MockMarsController();
+        MarsController sut = new DefaultMarsController();
 
         // Act
         Map<String, String> appointmentData = Map.of(
                 "date", "2021-01-01",
                 "time", "12:00:00",
                 "topic", "some topic",
-                "employeeName", "Bob",
+                "employee_name", "Bob",
                 "expertise", "some expertise"
         );
         var appointment = sut.createAppointment(appointmentData);
 
         //Assert
-        assertEquals(1, appointment.getId());
+        assertEquals(2, appointment.getId());
         assertEquals("2021-01-01", appointment.getDate());
         assertEquals("12:00:00", appointment.getTime());
         assertEquals("some topic", appointment.getTopic());
@@ -245,31 +245,31 @@ class DefaultMarsControllerTest {
     @Test
     void getPopulation() {
         // Arrange
-        MarsController sut = new MockMarsController();
+        MarsController sut = new DefaultMarsController();
 
         // Act
         var population = sut.getPopulation();
 
         //Assert
-        assertEquals(6, population.size());
-        assertEquals(1, population.get(0).getId());
-        assertEquals(60, population.get(1).getSize());
-        assertEquals(100, population.get(2).getLatitude());
-        assertEquals(-951, population.get(3).getLongitude());
-        assertEquals(Colony.SPACESTATION, population.get(3).getColony());
+        assertEquals(7, population.size());
+        assertEquals(0, population.get(0).getId());
+        assertEquals(160, population.get(1).getSize());
+        assertEquals(-24.837979149921235, population.get(2).getLatitude());
+        assertEquals(-67.1185514831543, population.get(3).getLongitude());
+        assertEquals(Colony.SURFACE, population.get(3).getColony());
     }
 
     @Test
     void getMedicalDispatches(){
         // Arrange
-        MarsController sut = new MockMarsController();
+        MarsController sut = new DefaultMarsController();
 
         // Act
         var medicalDispatches = sut.getMedicalDispatches();
 
         //Assert
         assertEquals(5, medicalDispatches.size());
-        assertEquals(1, medicalDispatches.get(0).getId());
+        assertEquals(0, medicalDispatches.get(0).getId());
         assertEquals(TypeOfDispatch.POLICE, medicalDispatches.get(1).getDispachType());
         assertEquals(medicalDispatches.get(1).getDome(), medicalDispatches.get(2).getDome());
         assertEquals("2022-01-01", medicalDispatches.get(3).getDate());
@@ -278,48 +278,48 @@ class DefaultMarsControllerTest {
     @Test
     void getMeteorShowers(){
         // Arrange
-        MarsController sut = new MockMarsController();
+        MarsController sut = new DefaultMarsController();
 
         // Act
         var meteorShowers = sut.getMeteorShowers();
 
         //Assert
         assertEquals(3, meteorShowers.size());
-        assertEquals(1, meteorShowers.get(0).getId());
-        assertEquals("2022-12-12", meteorShowers.get(1).getDate());
-        assertEquals(1, meteorShowers.get(2).getDome().getId());
+        assertEquals(0, meteorShowers.get(0).getId());
+        assertEquals("2022-01-01", meteorShowers.get(1).getDate());
+        assertEquals(12, meteorShowers.get(2).getDome().getId());
         assertEquals(DamageLevel.HIGH, meteorShowers.get(2).getDamageLevel());
     }
 
     @Test
     void getDustStorms(){
         // Arrange
-        MarsController sut = new MockMarsController();
+        MarsController sut = new DefaultMarsController();
 
         // Act
         var dustStorms = sut.getDustStorms();
 
         //Assert
-        assertEquals(3, dustStorms.size());
-        assertEquals(1, dustStorms.get(0).getId());
-        assertEquals("2022-12-12", dustStorms.get(1).getDate());
-        assertEquals(1, dustStorms.get(2).getDome().getId());
-        assertEquals(DamageLevel.HIGH, dustStorms.get(2).getDamageLevel());
+        assertEquals(2, dustStorms.size());
+        assertEquals(0, dustStorms.get(0).getId());
+        assertEquals("2022-01-01", dustStorms.get(1).getDate());
+        assertEquals(2, dustStorms.get(1).getDome().getId());
+        assertEquals(DamageLevel.HIGH, dustStorms.get(1).getDamageLevel());
     }
 
     @Test
     void getOxygenLeaks(){
         // Arrange
-        MarsController sut = new MockMarsController();
+        MarsController sut = new DefaultMarsController();
 
         // Act
         var oxygenLeaks = sut.getOxygenLeaks();
 
         //Assert
-        assertEquals(3, oxygenLeaks.size());
-        assertEquals(1, oxygenLeaks.get(0).getId());
-        assertEquals("2022-01-01", oxygenLeaks.get(1).getDate());
-        assertEquals(1, oxygenLeaks.get(2).getDome().getId());
+        assertEquals(79, oxygenLeaks.size());
+        assertEquals(0, oxygenLeaks.get(0).getId());
+        assertEquals("2022-12-05", oxygenLeaks.get(1).getDate());
+        assertEquals(0, oxygenLeaks.get(2).getDome().getId());
         assertEquals(DangerLevel.LOW, oxygenLeaks.get(2).getDangerLevel());
     }
 }
