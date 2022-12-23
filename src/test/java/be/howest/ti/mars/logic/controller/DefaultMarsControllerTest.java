@@ -175,7 +175,7 @@ class DefaultMarsControllerTest {
         var medicalDispatches = sut.getMedicalDispatches();
 
         //Assert
-        assertEquals(5, medicalDispatches.size());
+        assertEquals(11, medicalDispatches.size());
         assertEquals(0, medicalDispatches.get(0).getId());
         assertEquals(TypeOfDispatch.POLICE, medicalDispatches.get(1).getDispachType());
         assertEquals(medicalDispatches.get(1).getDome(), medicalDispatches.get(2).getDome());

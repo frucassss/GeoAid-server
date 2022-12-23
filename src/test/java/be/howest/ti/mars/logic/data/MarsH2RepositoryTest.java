@@ -126,7 +126,7 @@ class MarsH2RepositoryTest {
         // Act
         List<MedicalDispatch> medicalDispatches = Repositories.getH2Repo().getMedicalDispatches();
         // Assert
-        assertEquals(5, medicalDispatches.size());
+        assertEquals(11, medicalDispatches.size());
     }
 
     @Test
