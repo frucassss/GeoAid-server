@@ -37,6 +37,12 @@ class MarsH2RepositoryExceptionsTest {
         Assertions.assertThrows(RepositoryException.class, repo::getDomes);
         Assertions.assertThrows(RepositoryException.class, repo::getUsers);
         Assertions.assertThrows(RepositoryException.class, repo::getAppointments);
+        Assertions.assertThrows(RepositoryException.class, repo::getCompanies);
+        Assertions.assertThrows(RepositoryException.class, () -> repo.getCompany(id));
+        Assertions.assertThrows(RepositoryException.class, repo::getOxygenLeaks);
+        Assertions.assertThrows(RepositoryException.class, repo::getMedicalDispatches);
+        Assertions.assertThrows(RepositoryException.class, repo::getMeteorShowers);
+
     }
 
 
