@@ -20,4 +20,24 @@ class MarsH2RepositoryExceptionsTest {
         Assertions.assertThrows(RepositoryException.class, Repositories::getH2Repo);
     }
 
+    @Test
+    void functionsWithSQLExceptionFailsNicely() {
+        // Arrange
+        int id = 1;
+        JsonObject dbProperties = new JsonObject(Map.of("url",URL,
+                "username", "",
+                "password", "",
+                "webconsole.port", 9000 ));
+        Repositories.shutdown();
+        Repositories.configure(dbProperties);
+        MarsH2Repository repo = Repositories.getH2Repo();
+        repo.cleanUp();
+
+        // Act + Assert
+        Assertions.assertThrows(RepositoryException.class, repo::getDomes);
+        Assertions.assertThrows(RepositoryException.class, repo::getUsers);
+        Assertions.assertThrows(RepositoryException.class, repo::getAppointments);
+    }
+
+
 }
