@@ -1,14 +1,10 @@
 package be.howest.ti.mars.logic.data;
 
-import be.howest.ti.mars.logic.domain.Quote;
 import be.howest.ti.mars.logic.exceptions.RepositoryException;
-import io.netty.util.internal.StringUtil;
 import io.vertx.core.json.JsonObject;
 import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import java.sql.SQLException;
 import java.util.Map;
 
 class MarsH2RepositoryExceptionsTest {
@@ -38,9 +34,15 @@ class MarsH2RepositoryExceptionsTest {
         repo.cleanUp();
 
         // Act + Assert
-        Assertions.assertThrows(RepositoryException.class, () -> repo.getQuote(id));
-        Assertions.assertThrows(RepositoryException.class, () -> repo.deleteQuote(id));
-        Assertions.assertThrows(RepositoryException.class, () -> repo.updateQuote(id, "update"));
+        Assertions.assertThrows(RepositoryException.class, repo::getDomes);
+        Assertions.assertThrows(RepositoryException.class, repo::getUsers);
+        Assertions.assertThrows(RepositoryException.class, repo::getAppointments);
+        Assertions.assertThrows(RepositoryException.class, repo::getCompanies);
+        Assertions.assertThrows(RepositoryException.class, () -> repo.getCompany(id));
+        Assertions.assertThrows(RepositoryException.class, repo::getOxygenLeaks);
+        Assertions.assertThrows(RepositoryException.class, repo::getMedicalDispatches);
+        Assertions.assertThrows(RepositoryException.class, repo::getMeteorShowers);
+
     }
 
 

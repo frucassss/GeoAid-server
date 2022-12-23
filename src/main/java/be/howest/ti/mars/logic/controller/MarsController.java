@@ -8,13 +8,6 @@ import java.util.List;
 import java.util.Map;
 
 public interface MarsController {
-    Quote getQuote(int quoteId);
-
-    Quote createQuote(String quote);
-
-    Quote updateQuote(int quoteId, String quote);
-
-    void deleteQuote(int quoteId);
 
     List<Dome> getDomes();
 

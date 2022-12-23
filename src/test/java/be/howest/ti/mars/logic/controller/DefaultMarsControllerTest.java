@@ -1,8 +1,6 @@
 package be.howest.ti.mars.logic.controller;
 
 import be.howest.ti.mars.logic.data.Repositories;
-import be.howest.ti.mars.logic.domain.Dome;
-import be.howest.ti.mars.logic.domain.Quote;
 import be.howest.ti.mars.logic.util.Colony;
 import be.howest.ti.mars.logic.util.DamageLevel;
 import be.howest.ti.mars.logic.util.DangerLevel;
@@ -14,7 +12,6 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
 
-import java.util.HashMap;
 import java.util.Map;
 import java.util.NoSuchElementException;
 
@@ -38,109 +35,6 @@ class DefaultMarsControllerTest {
     @BeforeEach
     void setupTest() {
         Repositories.getH2Repo().generateData();
-    }
-
-    @Test
-    void getQuote() {
-        // Arrange
-        MarsController sut = new DefaultMarsController();
-
-        // Act
-        Quote quote = sut.getQuote(0);
-
-        //Assert
-        assertTrue(quote != null && StringUtils.isNoneBlank(quote.getValue()));
-    }
-
-    @Test
-    void deleteQuote() {
-        // Arrange
-        MarsController sut = new DefaultMarsController();
-
-        // Act
-        sut.deleteQuote(0);
-
-        //Assert
-        assertThrows(NoSuchElementException.class, () -> sut.getQuote(0));
-    }
-
-    @Test
-    void updateQuote() {
-        // Arrange
-        MarsController sut = new DefaultMarsController();
-        Quote quote = sut.createQuote("some value");
-
-        // Act
-        Quote updatedQuoted = sut.updateQuote(quote.getId(), "new value");
-
-        //Assert
-        assertEquals("new value", updatedQuoted.getValue());
-    }
-
-    @Test
-    void createQuote() {
-        // Arrange
-        MarsController sut = new DefaultMarsController();
-
-        // Act
-        Quote quote = sut.createQuote("new value");
-
-        //Assert
-        assertEquals("new value", quote.getValue());
-    }
-
-    @Test
-    void getQuoteWithUnknownIdThrowsNotFound() {
-        // Arrange
-        MarsController sut = new DefaultMarsController();
-
-        // Act + Assert
-        assertThrows(NoSuchElementException.class, () -> sut.getQuote(-1));
-    }
-
-    @Test
-    void createQuoteWithEmptyQuoteThrowsIllegalArgument() {
-        // Arrange
-        MarsController sut = new DefaultMarsController();
-
-        // Act + Assert
-        assertThrows(IllegalArgumentException.class, () -> sut.createQuote(""));
-    }
-
-    @Test
-    void updateQuoteWithWrongIdThrowsIllegalArgument() {
-        // Arrange
-        MarsController sut = new DefaultMarsController();
-
-        // Act + Assert
-        assertThrows(IllegalArgumentException.class, () -> sut.updateQuote(-1, "some quote"));
-    }
-
-    @Test
-    void updateQuoteWithUnknownIdThrowsNoSuchElementException() {
-        // Arrange
-        MarsController sut = new DefaultMarsController();
-
-        // Act + Assert
-        assertThrows(NoSuchElementException.class, () -> sut.updateQuote(1000, "some quote"));
-    }
-
-    @Test
-    void updateQuoteWithEmptyQuoteThrowsIllegalArgument() {
-        // Arrange
-        MarsController sut = new DefaultMarsController();
-
-        // Act + Assert
-        assertThrows(IllegalArgumentException.class, () -> sut.updateQuote(1, ""));
-    }
-
-    @Test
-    void deleteQuoteWithUnknownIdThrowsNotFound() {
-        // Arrange
-        MarsController sut = new DefaultMarsController();
-
-        // Act + Assert
-        assertThrows(NoSuchElementException.class, () -> sut.deleteQuote(-1));
     }
 
     @Test
@@ -281,7 +175,7 @@ class DefaultMarsControllerTest {
         var medicalDispatches = sut.getMedicalDispatches();
 
         //Assert
-        assertEquals(5, medicalDispatches.size());
+        assertEquals(11, medicalDispatches.size());
         assertEquals(0, medicalDispatches.get(0).getId());
         assertEquals(TypeOfDispatch.POLICE, medicalDispatches.get(1).getDispachType());
         assertEquals(medicalDispatches.get(1).getDome(), medicalDispatches.get(2).getDome());
