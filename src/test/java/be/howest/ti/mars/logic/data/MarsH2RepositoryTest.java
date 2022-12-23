@@ -27,57 +27,6 @@ class MarsH2RepositoryTest {
     }
 
     @Test
-    void getQuote() {
-        // Arrange
-        int id = 1;
-
-        // Act
-        Quote quote = Repositories.getH2Repo().getQuote(id);
-
-        // Assert
-        Assertions.assertTrue(quote != null && !StringUtil.isNullOrEmpty(quote.getValue()));
-    }
-
-    @Test
-    void updateQuote() {
-        // Arrange
-        int id = 1;
-        String quoteValue = "some value";
-
-        // Act
-        Quote quote = Repositories.getH2Repo().updateQuote(id, quoteValue);
-
-        // Assert
-        Assertions.assertNotNull(quote);
-        Assertions.assertEquals(quoteValue, quote.getValue());
-    }
-
-    @Test
-    void insertQuote() {
-        // Arrange
-        String quoteValue = "some value";
-
-        // Act
-        Quote quote = Repositories.getH2Repo().insertQuote(quoteValue);
-
-        // Assert
-        Assertions.assertNotNull(quote);
-        Assertions.assertEquals(quoteValue, quote.getValue());
-    }
-
-    @Test
-    void deleteQuote() {
-        // Arrange
-        int id = 1;
-
-        // Act
-        Repositories.getH2Repo().deleteQuote(id);
-
-        // Assert
-        Assertions.assertNull(Repositories.getH2Repo().getQuote(id));
-    }
-
-    @Test
     void getDomes(){
 
         // Act

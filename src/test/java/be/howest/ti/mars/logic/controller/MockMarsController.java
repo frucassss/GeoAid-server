@@ -12,26 +12,6 @@ import java.util.List;
 import java.util.Map;
 
 public class MockMarsController implements MarsController {
-    private static final String SOME_QUOTE = "quote";
-    @Override
-    public Quote getQuote(int quoteId) {
-        return new Quote(quoteId, SOME_QUOTE);
-    }
-
-    @Override
-    public Quote createQuote(String quote) {
-        return new Quote(1, quote);
-    }
-
-    @Override
-    public Quote updateQuote(int quoteId, String quote) {
-        return new Quote(quoteId, quote);
-    }
-
-    @Override
-    public void deleteQuote(int quoteId) {
-    }
-
     @Override
     public List<Dome> getDomes() {
         double surface = 40.3;
