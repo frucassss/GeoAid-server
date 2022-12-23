@@ -197,6 +197,12 @@ insert into medical_dispatches values (1, '2022-01-01', 5, -23.87351580987326, -
 insert into medical_dispatches values (2, '2022-01-01', 5, -23.876341315056486, -69.12589073181154, 'FIRE_DEPARTMENT');
 insert into medical_dispatches values (3, '2022-01-01', 5, -23.892979149921235, -69.12855148315431, 'AMBULANCE');
 insert into medical_dispatches values (4, '2022-01-01', 5, -23.88830978488233, -69.10460472106935, 'POLICE');
+insert into medical_dispatches values (5, '2022-01-01', 5, -23.87351580987326, -69.10254478454591, 'EMS');
+insert into medical_dispatches values (6, '2022-01-01', 5, -23.876341315056486, -69.12589073181154, 'HAZMAT_TEAM');
+insert into medical_dispatches values (7, '2022-01-01', 5, -23.892979149921235, -69.12855148315431, 'LIFEGUARD');
+insert into medical_dispatches values (8, '2022-01-01', 5, -23.88830978488233, -69.10460472106935, 'MEDICAL_HELICOPTER');
+insert into medical_dispatches values (9, '2022-01-01', 5, -23.87351580987326, -69.10254478454591, 'SEARCH_AND_RESCUE');
+insert into medical_dispatches values (10, '2022-01-01', 5, -23.876341315056486, -69.12589073181154, 'TOXICOLOGY_TEAM');
 
 //meteor showers
 insert into meteor_showers values (0, '2022-01-01', 1, -23.88830978488233, -69.10460472106935, 'MEDIUM');
